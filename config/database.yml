@@ -1,25 +1,75 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
-default: &default
+development:
   adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
   timeout: 5000
 
-development:
-  <<: *default
-  database: db/development.sqlite3
+  # adapter: mysql2
+  # database: devdeploysuite
+  # username: root
+  # password:
+  # encoding: utf8
+  # pool: 5
+  # socket: /tmp/mysql.sock
+
+  # adapter: oracle_enhanced
+  # database: xe
+  # username: mmentis
+  # password: gan1dolf2
+  # host: 192.168.59.103
+  # port: 49161
+
+  # adapter: <%= CONFIG[:adapter1_mysql] %>
+  # database: <%= CONFIG[:databaseB] %>
+  # username: <%= CONFIG[:usernameB] %>
+  # password: <%= CONFIG[:passwordB] %>
+  # encoding: <%= CONFIG[:encodingB] %>
+  # pool: <%= CONFIG[:poolB] %>
+  # socket: <%= CONFIG[:socketB] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
+  adapter: sqlite3
   database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+  # adapter: mysql2
+  # database: testdeploysuite
+  # username: root
+  # password:
+  # encoding: utf8
+  # pool: 5
+  # socket: /tmp/mysql.sock
+
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  # adapter: sqlite3
+  # database: db/production.sqlite3
+  # pool: 5
+  # timeout: 5000
+
+  # adapter: "mysql2"
+  # encoding: "utf8"
+  # database: "deploysuitetest"
+  # pool: "5"
+  # username: "root"
+  # password: "gan1dolf2"
+  # socket_mysql: "/var/run/mysqld/mysqld.sock"
+
+  adapter: <%= CONFIG[:adapter1_oracle] %>
+  database: <%= CONFIG[:database1] %>
+  username: <%= CONFIG[:username1] %>
+  password: <%= CONFIG[:password1] %>
+
+
+  # adapter: <%= CONFIG[:adapter1_mysql] %>
+  # database: <%= CONFIG[:databaseA] %>
+  # username: <%= CONFIG[:usernameA] %>
+  # password: <%= CONFIG[:passwordA] %>
+  # encoding: <%= CONFIG[:encodingA] %>
+  # pool: <%= CONFIG[:poolA] %>
+  # socket: <%= CONFIG[:socketA] %>
+
