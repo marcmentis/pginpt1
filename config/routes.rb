@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   get 'static_pages/home'
+  get "widgets" => 'widgets#index'
+
+  resources :for_selects
+  get '/for_selects_options_search' => 'for_selects#options_search', as: :options_search
+  get '/for_selects_search' => 'for_selects#complex_search', as: :complex_search_for_selects
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

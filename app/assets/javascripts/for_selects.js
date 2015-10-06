@@ -165,8 +165,6 @@ if($('body.for_selects').length) {
 	// $('#slt_for_selects_S_facility').mjm_addOptions('facility', {firstLine: 'Facilities'})
 	// for_select_complex_search1();
 
-
-	
 	
 	//*****************************************************
 	//FUNCTIONS CALLED FROM ABOVE

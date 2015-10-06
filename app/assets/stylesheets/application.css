@@ -10,6 +10,8 @@
  *   require jquery-ui/button
  *		require_tree .  Default - all .css files in stylesheets folder
  *      require jquery-ui
+ *      require ../../../vendor/assets/stylesheets/ui.jqgrid.css
+ *      require ../../../vendor/assets/stylesheets/superfish.css
  *      require ../../../vendor/assets/stylesheets/sweetalert.css
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
@@ -19,11 +21,8 @@
  *= require jquery-ui/datepicker
  *= require jquery-ui/button
  *= require ui.jqgrid.css
- *= superfish.css
- *= sweetalert.css
- *  require ../../../vendor/assets/stylesheets/ui.jqgrid.css
- * require ../../../vendor/assets/stylesheets/superfish.css
- * require ../../../vendor/assets/stylesheets/sweetalert.css
+ *= require superfish.css
+ *= require sweetalert.css
  *= require jquery-ui/redmond
  *= require reset
  *= require_tree ./anyorder

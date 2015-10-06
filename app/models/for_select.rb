@@ -1,6 +1,6 @@
 class ForSelect < ActiveRecord::Base
 	include Jqgridconcern
-	resourcify
+	# resourcify
 
 	def get_jqGrid_obj(params, session_admin3)
 		conditions = ForSelect.all

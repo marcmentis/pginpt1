@@ -20,12 +20,12 @@
 				<%# if policy(MxAssessment).index? %>			 
 					<a href="#">notes</a>
 				<%# end %>
-					<ul> 
+					<ul> <%#= if policy(MxAssessments).complex_search? %>
 						<li>
 							<%#= link_to("BioPsychoSocial Assessment", mx_assessments_path) if policy(MxAssessment).index? %>
 
 						</li>
-						
+						<%# end %>
 						<li class="current">
 							<a href="#">Mall Notes</a>
 							<ul>
@@ -141,9 +141,10 @@
 					<%# end %>
 					<ul>
 						<li><%#= link_to('users', users_path) if policy(ForSelect).complex_search? %></li>
-						<li><%#= link_to('for_selects', for_selects_path) if policy(ForSelect).complex_search? %></li>
-						<li><%#= link_to('widgets', widgets_path) if policy(:widget).index? %></li>
-
+						<li><%= link_to('for_selects', for_selects_path) %>
+						<%#= link_to('for_selects', for_selects_path) if policy(ForSelect).complex_search? %></li>
+						<li><%= link_to('widgets', widgets_path) %>
+						<%#= link_to('widgets', widgets_path) if policy(:widget).index? %></li>
 					</ul>
 				</li>	
 				<li><%= link_to('home', root_path) %></li>

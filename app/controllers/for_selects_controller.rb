@@ -44,7 +44,7 @@ class ForSelectsController < ApplicationController
     for_select = ForSelect.new
     @jqGrid_obj = for_select.get_jqGrid_obj(params, session[:admin3])
 
-    authorize ForSelect
+    # authorize ForSelect
     respond_to do |format|
       format.html
       format.json {render json: @jqGrid_obj }
