@@ -23,6 +23,8 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
 # Authentication
 gem 'pundit'
+# Multiple Role capability
+gem 'rolify'
 
 # DB for all environments
 # gem "activerecord-oracle_enhanced-adapter", "~> 1.5.0"

@@ -3,6 +3,6 @@ class WidgetsController < ApplicationController
   	@request = request
     @response = response
 
-    # authorize :widget, :index?
+    authorize :widget, :index?
   end
 end

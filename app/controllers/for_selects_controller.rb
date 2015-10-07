@@ -12,31 +12,6 @@ class ForSelectsController < ApplicationController
   # GET /for_selects
   # GET /for_selects.json
   def index
-    # byebug
-    # reset_session
-    # if current_user == 'pgmdmjm'
-    # # if session[:authen] == 'pgmdmjm'
-    #   flash[:notice] = "Yes: #{session[:authen]}"
-    # else
-    #   flash[:notice] = 'no current user not known'
-    # end
-
-    # authorize ForSelect
-    # @for_selects = ForSelect.all
-    # if params[:page] != nil
-    #   total_query_count = ForSelect.all.count     
-    #   # Run query and extract just those rows needed
-    #   extract = ForSelect.order("#{params[:sidx]} #{params[:sord]}")
-    #                     .limit(params[:rows].to_i)
-    #                     .offset((params[:page].to_i - 1) * params[:rows].to_i)
-    #   # Create jqGrid object from 'extract' data
-    #   @jqGrid_obj = create_jqGrid_obj(extract, params, total_query_count)
-    # end
-    
-    # respond_to do |format|
-    #   format.html
-    #   format.json {render json: @jqGrid_obj }
-    # end
   end
 
   # GET /for_selects_search(.:format) 
@@ -44,7 +19,7 @@ class ForSelectsController < ApplicationController
     for_select = ForSelect.new
     @jqGrid_obj = for_select.get_jqGrid_obj(params, session[:admin3])
 
-    # authorize ForSelect
+    authorize ForSelect
     respond_to do |format|
       format.html
       format.json {render json: @jqGrid_obj }

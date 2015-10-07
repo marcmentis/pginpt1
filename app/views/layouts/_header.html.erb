@@ -136,16 +136,15 @@
 					</ul>
 				</li> -->
 				<li>
-					<%# if policy(ForSelect).complex_search?%>
+					<% if policy(ForSelect).complex_search?%>
 					<a href="#">admin</a>
-					<%# end %>
+					<% end %>
 					<ul>
-						<li><%= link_to('users', users_path) %>
-						<%#= link_to('users', users_path) if policy(ForSelect).complex_search? %></li>
-						<li><%= link_to('for_selects', for_selects_path) %>
-						<%#= link_to('for_selects', for_selects_path) if policy(ForSelect).complex_search? %></li>
-						<li><%= link_to('widgets', widgets_path) %>
-						<%#= link_to('widgets', widgets_path) if policy(:widget).index? %></li>
+						<li><%= link_to('users', users_path) if policy(ForSelect).complex_search? %></li>
+						<li>
+						<%= link_to('for_selects', for_selects_path) if policy(ForSelect).complex_search? %></li>
+						<li>
+						<%= link_to('widgets', widgets_path) if policy(:widget).index? %></li>
 					</ul>
 				</li>	
 				<li><%= link_to('home', root_path) %></li>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430132953) do
+ActiveRecord::Schema.define(version: 20150501225242) do
 
   create_table "for_selects", force: :cascade do |t|
     t.string   "code"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20150430132953) do
   add_index "for_selects", ["code"], name: "index_for_selects_on_code"
   add_index "for_selects", ["facility", "code"], name: "facility-code"
   add_index "for_selects", ["facility"], name: "index_for_selects_on_facility"
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "name_restype_res_id"
+  add_index "roles", ["name"], name: "index_roles_on_name"
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname"
@@ -44,5 +55,12 @@ ActiveRecord::Schema.define(version: 20150430132953) do
   add_index "users", ["authen"], name: "index_users_on_authen"
   add_index "users", ["facility", "authen"], name: "facility-lastname"
   add_index "users", ["facility"], name: "index_users_on_facility"
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "roles_userid_roleid"
 
 end

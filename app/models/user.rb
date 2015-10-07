@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include Jqgridconcern
-  # rolify
+  rolify
 
   def get_jqGrid_obj(params, session_admin3)
   	conditions = User.all
