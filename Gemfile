@@ -19,9 +19,10 @@ gem 'jquery-ui-themes'
 gem 'turbolinks'
 # Allows document 'ready' event to work properly (Remember to change js manifest)
 gem 'jquery-turbolinks'
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+# Authentication
+gem 'pundit'
 
 # DB for all environments
 # gem "activerecord-oracle_enhanced-adapter", "~> 1.5.0"
