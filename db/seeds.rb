@@ -6,9 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# *****  User  **************************
+# User make sure pgmdmjm in database
+User.find_or_initialize_by(authen: 'pgmdmjm').update_attributes(firstname: 'Marc', lastname: 'Mentis', authen: 'pgmdmjm', facility: '0013', email: 'marc.mentis@omh.ny.gov', firstinitial: 'M', middleinitial: 'J')
 
 
-# ********************************
+# *****  ForSelect  *********************
 # FOR ALL HOSPITALS
 # Hospital names/numbers
 ForSelect.find_or_initialize_by(value: '0001').update_attributes(facility: '9999', code: 'facility', value: '0001', text: 'GBHC', option_order: 1, grouper: '')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430132603) do
+ActiveRecord::Schema.define(version: 20150430132953) do
 
   create_table "for_selects", force: :cascade do |t|
     t.string   "code"
@@ -27,5 +27,22 @@ ActiveRecord::Schema.define(version: 20150430132603) do
   add_index "for_selects", ["code"], name: "index_for_selects_on_code"
   add_index "for_selects", ["facility", "code"], name: "facility-code"
   add_index "for_selects", ["facility"], name: "index_for_selects_on_facility"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "authen"
+    t.string   "facility"
+    t.string   "email"
+    t.string   "firstinitial"
+    t.string   "middleinitial"
+    t.string   "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["authen"], name: "index_users_on_authen"
+  add_index "users", ["facility", "authen"], name: "facility-lastname"
+  add_index "users", ["facility"], name: "index_users_on_facility"
 
 end

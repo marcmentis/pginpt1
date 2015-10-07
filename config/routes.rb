@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   get '/for_selects_options_search' => 'for_selects#options_search', as: :options_search
   get '/for_selects_search' => 'for_selects#complex_search', as: :complex_search_for_selects
 
+  resources :users
+  get '/users_search' => 'users#complex_search', as: :complex_search_users
+  get '/users_roles/:id' => 'users#user_roles', as: :user_roles
+  post '/users_add_role/:id' => 'users#add_role', as: :add_role
+  delete '/users_remove_role/:id' => 'users#remove_role', as: :remove_role
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
