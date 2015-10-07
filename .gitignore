@@ -25,3 +25,4 @@ notes.rb
 
 # Ignore brakeman files
 brakeman*
+brakeman.*

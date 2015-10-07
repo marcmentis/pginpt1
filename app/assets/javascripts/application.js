@@ -2,15 +2,33 @@
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+//    require turbolinks
+//    require jquery-ui
+//  require jquery-ui/datepicker
+//  require jquery-ui/button
+//    rails 4.2.4 had require turbolinks before require_tree.
 //
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file.
 //
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery-ui/datepicker
+//= require jquery-ui/button
+//= require grid.locale-en.js
+//= require jquery.jqGrid.min.js
+//= require hoverintent.js
+//= require superfish.js
+//= require jquery.validate.min.js
+//= require moment.js
+//= require mjm.js
 //= require_tree .
+//= require turbolinks
+
+
