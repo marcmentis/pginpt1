@@ -22,7 +22,6 @@
  *= require jquery-ui/button
  *= require ui.jqgrid.css
  *= require superfish.css
- *= require sweetalert.css
  *= require jquery-ui/redmond
  *= require reset
  *= require_tree ./anyorder
