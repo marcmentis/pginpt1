@@ -28,6 +28,27 @@ ActiveRecord::Schema.define(version: 20150501225242) do
   add_index "for_selects", ["facility", "code"], name: "facility-code"
   add_index "for_selects", ["facility"], name: "index_for_selects_on_facility"
 
+  create_table "patients", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "identifier"
+    t.string   "facility"
+    t.string   "site"
+    t.date     "doa"
+    t.date     "dob"
+    t.date     "dod"
+    t.string   "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "patients", ["facility", "site", "lastname"], name: "facility-site-lastname"
+  add_index "patients", ["facility", "site"], name: "facility-site"
+  add_index "patients", ["facility"], name: "index_patients_on_facility"
+  add_index "patients", ["identifier"], name: "index_patients_on_identifier"
+  add_index "patients", ["lastname"], name: "index_patients_on_lastname"
+  add_index "patients", ["site"], name: "index_patients_on_site"
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"

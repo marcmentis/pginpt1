@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   get '/roles' => 'roles#all_roles', as: :all_roles
   get '/roles_users/' => 'roles#all_users', as: :all_users
 
+  resources :patients
+  get '/patients_search' => 'patients#complex_search', as: :complex_search_patients
+  get '/patients_site_search' => 'patients#patients_site_search', as: :patients_site_search
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
