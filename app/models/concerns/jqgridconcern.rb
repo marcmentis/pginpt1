@@ -4,7 +4,18 @@ module Jqgridconcern
 	def create_jqGrid_obj(active_record_relation, params)
 
 		total_query = active_record_relation
-	    total_query_count = total_query.count
+# byebug
+		if total_query.blank?
+			total_query_count = 0
+		else
+			total_query_count = total_query.count
+		end
+	    # total_query_count = total_query.count
+
+	    # total_query_count.blank? ? total_query_count = 0 : total_query_count
+
+
+
 
 		# Run query and extract just those rows needed
 	      extract = active_record_relation

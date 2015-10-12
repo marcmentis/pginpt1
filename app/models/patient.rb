@@ -1,6 +1,6 @@
 class Patient < ActiveRecord::Base
 	include Jqgridconcern
-	# has_many :mx_assessments, dependent: :destroy
+	has_many :mx_assessments, dependent: :destroy
 	
 	validates :firstname, presence: true
 	validates :lastname, presence: true

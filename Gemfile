@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'pundit'
 # Multiple Role capability
 gem 'rolify'
+# pdf
+gem 'prawn', '~>2.0.0'
+gem 'prawn-table'
 
 # DB for all environments
 # gem "activerecord-oracle_enhanced-adapter", "~> 1.5.0"  # For Rails v4.0

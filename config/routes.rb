@@ -19,6 +19,16 @@ Rails.application.routes.draw do
   get '/patients_search' => 'patients#complex_search', as: :complex_search_patients
   get '/patients_site_search' => 'patients#patients_site_search', as: :patients_site_search
 
+  resources :mx_assessments
+  get '/mxa_date_history/' => 'mx_assessments#date_history', as: :mxa_date_history
+  get '/mxa_pat_lists/' => 'mx_assessments#patient_lists', as: :mxa_pat_lists
+  get '/mxa_pat_data/' => 'mx_assessments#get_pat_data', as: :mxa_pat_data
+
+  get "mxa_tracker/index"
+  get '/mxa_tracker_search/' => 'mxa_tracker#complex_search', as: :mxa_tracker_complex_search
+  get '/mxa_tracker_search_all/' => 'mxa_tracker#complex_search_all', as: :mxa_tracker_complex_search_all
+  get '/mxa_tracker_get_reasons/:id' => 'mxa_tracker#get_reasons', as: :get_reasons
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
