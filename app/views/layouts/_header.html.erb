@@ -14,29 +14,29 @@
 			<ul class="sf-menu" id="example">
 
 				<li class="current">
-				<%# if policy(MxAssessment).index? %>			 
+				<% if policy(MxAssessment).index? %>			 
 					<a href="#">notes</a>
-				<%# end %>
+				<% end %>
 					<ul> <%#= if policy(MxAssessments).complex_search? %>
 						<li>
-							<%#= link_to("BioPsychoSocial Assessment", mx_assessments_path) if policy(MxAssessment).index? %>
+							<%= link_to("BioPsychoSocial Assessment", mx_assessments_path) if policy(MxAssessment).index? %>
 
 						</li>
 						<%# end %>
 					</ul>
 				</li>
 				<li class="current">
-					<%# if policy(:mxa_tracker).index? %>
+					<% if policy(:mxa_tracker).index? %>
 					<a href="#">trackers</a>
-					<%# end %>
+					<% end %>
 					<ul>
 						<li>
-							<%#= link_to("BioPsychoSocial Assessment", mxa_tracker_index_path) %>
+							<%= link_to("BioPsychoSocial Assessment", mxa_tracker_index_path) %>
 						</li>
 					</ul>
 				</li>
 				<li>
-					<%#= link_to("patients", patients_path) %>
+					<%= link_to("patients", patients_path) %>
 				</li>
 				<!-- <li>
 					<a href="#">menu item 3</a>
