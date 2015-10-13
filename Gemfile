@@ -25,11 +25,18 @@ gem 'jbuilder', '~> 2.0'
 gem 'pundit'
 # Multiple Role capability
 gem 'rolify'
+# pdf
+gem 'prawn', '~>2.0.0'
+gem 'prawn-table'
 
 # DB for all environments
-# gem "activerecord-oracle_enhanced-adapter", "~> 1.5.0"
-# gem 'ruby-oci8', '~> 2.1.0'
-gem 'sqlite3'
+# gem "activerecord-oracle_enhanced-adapter", "~> 1.5.0"  # For Rails v4.0
+gem 'activerecord-oracle_enhanced-adapter', '~> 1.6.0'  # For Rails v4.2
+# gem 'activerecord-oracle_enhanced-adapter', github: 'rsim/oracle-enhanced', branch: 'rails42'
+# gem 'activerecord-oracle_enhanced-adapter', github: 'rsim/oracle-enhanced', branch: 'rails5'
+gem 'ruby-oci8', '~> 2.1.0'
+# gem 'sqlite3'
+gem 'faker'  # If want to generate data in production environment on DEV/QA VMs
 
 
 
@@ -38,13 +45,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'sqlite3'
+  gem 'sqlite3'
   gem 'mysql2'
   gem 'byebug'
   gem 'rspec-rails'  # Includes RSpec in wraper with rails-specific features
   gem 'factory_girl_rails'  # Replaces Rails' default fixtures with factories
   gem 'shoulda-matchers', require: false # association matchers v2.8.0
-  gem 'faker'	# Generates names, email addresses etc
+  # gem 'faker'	# Generates names, email addresses etc
 end
 
 group :test do
