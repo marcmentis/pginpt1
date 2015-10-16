@@ -10,7 +10,7 @@ class MxaTrackerPdf < Prawn::Document
 	end
 
 	def heading
-		text "some heading"
+		text "Management Assessments"
 	end
 	def create_table
 		table(fill_table,
@@ -37,7 +37,7 @@ class MxaTrackerPdf < Prawn::Document
 	end
 	def fill_table
 		 # rows = [["first", "second"],["third", "fourth"]]
-		attributes = %w{firstname lastname identifier site doa meeting_date danger_yn drugs_last_changed psychsoc_last_changed pre_date_yesno pre_date}
+		attributes = %w{First Last C# Ward DOA Meeting Danger Drugs Psychsoc Pre_y/n Pre_date}
 		rows = []
 		rows << attributes
 		@data.each do |row|	

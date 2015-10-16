@@ -32,8 +32,6 @@ gem 'prawn-table'
 # DB for all environments
 # gem "activerecord-oracle_enhanced-adapter", "~> 1.5.0"  # For Rails v4.0
 gem 'activerecord-oracle_enhanced-adapter', '~> 1.6.0'  # For Rails v4.2
-# gem 'activerecord-oracle_enhanced-adapter', github: 'rsim/oracle-enhanced', branch: 'rails42'
-# gem 'activerecord-oracle_enhanced-adapter', github: 'rsim/oracle-enhanced', branch: 'rails5'
 gem 'ruby-oci8', '~> 2.1.0'
 # gem 'sqlite3'
 gem 'faker'  # If want to generate data in production environment on DEV/QA VMs
