@@ -108,17 +108,17 @@ class PatientsController < ApplicationController
 
     
     def create_phi
-      accessauditlog_entry('I', 6387)
+      accessauditlog_entry('I', 833)
     end
     def show_phi
-      accessauditlog_entry('S', 6387)
+      accessauditlog_entry('S', 833)
     end
     def update_phi
-      accessauditlog_entry('U', 6387)
+      accessauditlog_entry('U', 833)
     end
     def destroy_phi
 
-      accessauditlog_entry('D', 6387)
+      accessauditlog_entry('D', 833)
     end
 
 end
