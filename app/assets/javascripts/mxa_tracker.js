@@ -86,11 +86,10 @@ if ($('body.mxa_tracker').length) {
 			reason = $('#slt_MxAWinfo_ChooseInfo').val();
 
 			get_reasons_from_note(patient_id, reason)
-
-			//Create pdf link
-			var pdf_choooseInfo_url = '/mxa_tracker_get_reasons/'+patient_id+'.pdf?patient_id='+patient_id+'&reason='+reason+''
-			var pdf_choooseInfo_html = '<a href="'+pdf_choooseInfo_url+'">PDF</a>'
-			$('#divForChooseInfoPDF').html(''+pdf_choooseInfo_html+'')
+			//Create pdf link only if data exists
+			// var pdf_choooseInfo_url = '/mxa_tracker_get_reasons/'+patient_id+'.pdf?patient_id='+patient_id+'&reason='+reason+''
+			// var pdf_choooseInfo_html = '<a href="'+pdf_choooseInfo_url+'">PDF</a>'
+			// $('#divForChooseInfoPDF').html(''+pdf_choooseInfo_html+'')
 
 		});
 
