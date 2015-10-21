@@ -85,6 +85,10 @@ function refreshgrid(url){
 						$('#id').val(data.id);
 						$('#txt_Pat_firstname').val(data.firstname);
 						$('#txt_Pat_lastname').val(data.lastname);
+						if ($('#session-admin3').val() !== 'true'){
+							$('#txt_Pat_lastname').prop("disabled", true)
+												.css({'background-color': '#E0E0E0'})
+						};
 						$('#txt_Pat_number').val(data.identifier);
 						$('#slt_F_facility').val(data.facility);	
 						if ($('#session-admin3').val() == 'true') {
@@ -190,6 +194,8 @@ function clearFields(){
 	}else {
 		$('#slt_F_ward').val('-1')
 	};
+	$('#txt_Pat_lastname').prop("disabled", false)
+						  .css({'background-color': '#fcfdfd'})
 };
 
 function patients_ajax1 (url, type) {

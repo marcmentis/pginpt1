@@ -15,6 +15,7 @@ module SessionValues
 	private
 		def check_rsa_authorization_dev
 			session[:authen] = 'pgmdmjm'
+			# session[:authen] = 'pgmdjs'
 			this_user = current_user
 			if this_user.blank?
 				@error = 'User has no privileges in this application'

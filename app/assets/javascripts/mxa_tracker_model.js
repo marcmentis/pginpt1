@@ -108,6 +108,8 @@ function MxAW_refreshgrid(url){
 		
 						//Clear the two textareas
 						$('[id^=txa_MxAW]').val('');
+						// Clear Med change PDF
+						$('#divForChooseInfoPDF').html('')
 						//populate past Mx Assessment
 						var pat_demog = data.pat_demog;
 						var pat_assessments = data.pat_assessments;
@@ -267,71 +269,86 @@ function get_reasons_from_note (patient_id, reason) {
 		cache: false,
 		dataType: 'json'
 	}).done(function(data){
-		//Clear text area
+		//Clear text area and PDF
 		$('#txa_MxAW_specificAssessments').val('');
-		//Pat_demog data				
-		var lastname = data[0].lastname;
-		var firstname = data[0].firstname;
-		var doa = moment(data[0].doa,"YYYY-MM-DD").format('YYYY-MM-DD');
-		var name = ''+lastname+' '+firstname+''
+		$('#divForChooseInfoPDF').html('')
 
-		//Identify the patient
-		var text = '';
-		text += '\nNAME: '+name+'    DOA:  '+doa+''
-		// Create the past_mx_text
-		for (var i=0; i < data.length; i++) {
-			var data_meeting_date = moment(data[i].meeting_date, "YYYY-MM-DD")
-			var data_meeting_date_formatted = data_meeting_date.format('YYYY-MM-DD')
-			var updated_at = moment(data[i].updated_at, "YYYY-MM-DD").format('YYYY-MM-DD');
-			var updated_by	= data[i].updated_by
-			//NOTE: calculate Days in hosp to meeting date - WILL REPLACE
-				//WHEN ADD COLUMN "DAYS IN HOSPITAL" to database
-			var diff = moment.duration(data_meeting_date.diff(doa));
-			var days_in_hosp = Math.floor(diff.asDays());
+		if (data != '') {
+			//Pat_demog data				
+				var lastname = data[0].lastname;
+				var firstname = data[0].firstname;
+				var doa = moment(data[0].doa,"YYYY-MM-DD").format('YYYY-MM-DD');
+				var name = ''+lastname+' '+firstname+''
 
-			var dangerYesNo = data[i].danger_yn
-			var drugs_last_changed = data[i].drugs_last_changed
-			var drugs_not_why = data[i].drugs_not_why
-			var drugs_change_why = data[i].drugs_change_why
-			var psychsoc_last_changed = data[i].psychsoc_last_changed
-			var psychsoc_not_why = data[i].psychsoc_not_why
-			var psychsoc_change_why = data[i].psychsoc_change_why
-			var pre_date_yesno = data[i].pre_date_yesno
-			var pre_date_no_why = data[i].pre_date_no_why
+				//Identify the patient
+				var text = '';
+				text += '\nNAME: '+name+'    DOA:  '+doa+''
+				// Create the past_mx_text
+				for (var i=0; i < data.length; i++) {
+					var data_meeting_date = moment(data[i].meeting_date, "YYYY-MM-DD")
+					var data_meeting_date_formatted = data_meeting_date.format('YYYY-MM-DD')
+					var updated_at = moment(data[i].updated_at, "YYYY-MM-DD").format('YYYY-MM-DD');
+					var updated_by	= data[i].updated_by
+					//NOTE: calculate Days in hosp to meeting date - WILL REPLACE
+						//WHEN ADD COLUMN "DAYS IN HOSPITAL" to database
+					var diff = moment.duration(data_meeting_date.diff(doa));
+					var days_in_hosp = Math.floor(diff.asDays());
 
-			//Create and populate past Mx Assessments
-			text += '\n\n________________________________________________'
-			text += '\nMEETING DATE:  '+data_meeting_date_formatted+'     DAYS In HOSP: '+days_in_hosp+''
-			text += '\nSAVED BY:  '+updated_by+'      ON: '+updated_at+''
-							  
-			text += '\n\nPATIENT DANGEROUS (SELF/OTHERS) IF IN APPROVED HOUSING:  '+dangerYesNo+''
+					var dangerYesNo = data[i].danger_yn
+					var drugs_last_changed = data[i].drugs_last_changed
+					var drugs_not_why = data[i].drugs_not_why
+					var drugs_change_why = data[i].drugs_change_why
+					var psychsoc_last_changed = data[i].psychsoc_last_changed
+					var psychsoc_not_why = data[i].psychsoc_not_why
+					var psychsoc_change_why = data[i].psychsoc_change_why
+					var pre_date_yesno = data[i].pre_date_yesno
+					var pre_date_no_why = data[i].pre_date_no_why
 
-			if (dangerYesNo == 'Y') {	
-				if (drugs_last_changed == '0-8Weeks' && reason == 'MedChange') {
-					text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
-					text +='\n'+drugs_change_why+'';
-				}else if (drugs_last_changed == 'Gt8Weeks' && reason == 'MedNoChange') {
-					text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
-					text +='\n'+drugs_not_why+'';
+					//Create and populate past Mx Assessments
+					text += '\n\n________________________________________________'
+					text += '\nMEETING DATE:  '+data_meeting_date_formatted+'     DAYS In HOSP: '+days_in_hosp+''
+					text += '\nSAVED BY:  '+updated_by+'      ON: '+updated_at+''
+									  
+					text += '\n\nPATIENT DANGEROUS (SELF/OTHERS) IF IN APPROVED HOUSING:  '+dangerYesNo+''
+
+					if (dangerYesNo == 'Y') {	
+						if (drugs_last_changed == '0-8Weeks' && reason == 'MedChange') {
+							text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
+							text +='\n'+drugs_change_why+'';
+						}else if (drugs_last_changed == 'Gt8Weeks' && reason == 'MedNoChange') {
+							text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
+							text +='\n'+drugs_not_why+'';
+						};
+					
+						if (psychsoc_last_changed == '0-3Months' && reason == 'GroupChange') {
+							text +='\n   PSYCHOSOCIAL LAST CHANGED: '+psychsoc_last_changed+'';
+							text +='\n'+psychsoc_change_why+'';
+						}else if (psychsoc_last_changed == 'Gt3Months' && reason == 'GroupNoChange') {
+							text +='\n   PSYCHOSOCIAL LAST CHANGED: '+psychsoc_last_changed+'';
+							text +='\n'+psychsoc_not_why+'';
+						};
+					}else if (dangerYesNo == 'N') {
+						text +='\n   Date set for Pre-Conference Meeting: '+pre_date_yesno+'';
+						text +='\n'+pre_date_no_why+'';
+					};
+
+					text +='\n'
+
 				};
-			
-				if (psychsoc_last_changed == '0-3Months' && reason == 'GroupChange') {
-					text +='\n   PSYCHOSOCIAL LAST CHANGED: '+psychsoc_last_changed+'';
-					text +='\n'+psychsoc_change_why+'';
-				}else if (psychsoc_last_changed == 'Gt3Months' && reason == 'GroupNoChange') {
-					text +='\n   PSYCHOSOCIAL LAST CHANGED: '+psychsoc_last_changed+'';
-					text +='\n'+psychsoc_not_why+'';
-				};
-			}else if (dangerYesNo == 'N') {
-				text +='\n   Date set for Pre-Conference Meeting: '+pre_date_yesno+'';
-				text +='\n'+pre_date_no_why+'';
-			};
+				//Enter specific reasons into txa_MxAW_specificAssessments
+				$('#txa_MxAW_specificAssessments').val(text)
+				//Create pdf link only if data exists i.e., here
+				var pdf_choooseInfo_url = '/mxa_tracker_get_reasons/'+patient_id+'.pdf?patient_id='+patient_id+'&reason='+reason+''
+				var pdf_choooseInfo_html = '<a href="'+pdf_choooseInfo_url+'">PDF</a>'
+				$('#divForChooseInfoPDF').html(''+pdf_choooseInfo_html+'')
+		} 
 
-			text +='\n'
 
-		};
-		//Enter specific reasons into txa_MxAW_specificAssessments
-		$('#txa_MxAW_specificAssessments').val(text)
+
+		
+
+		
+
 
 
 	}).fail(function(jqXHR,textStatus,errorThrown){

@@ -43,6 +43,7 @@ if ($('body.patients').length) {
 
 		//text
 		$('#Pat_ID').addClass('display_none')
+		
 
 	// SELECTS
 		//selects
