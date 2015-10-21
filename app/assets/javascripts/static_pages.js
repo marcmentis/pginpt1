@@ -7,6 +7,8 @@ if ($('body.static_pages').length) {
 								.css({'width': '90%'});
 
 		$('#fHome1').addClass('form_container')
+		$('#divTitle').addClass('text_align_center')
+						.css({'margin': '50px 0 50px 0'})
 
 
 
