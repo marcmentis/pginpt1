@@ -28,7 +28,7 @@ if ($('body.patients').length) {
 		//button
 		//REMOVE id^=b
 		$('[id^=b]').button().addClass('reduce_button')
-		$('[id^=bt').button().addClass('reduce_button')
+		$('[id^=bt]').button().addClass('reduce_button')
 
 
 		//dates

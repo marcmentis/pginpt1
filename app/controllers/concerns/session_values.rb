@@ -9,12 +9,23 @@ module SessionValues
 				check_rsa_authorization_prod
 			end
 		end
-		# puts "AUTHORIZED AND CONFIRMED"
+		# puts 'authorized_and_confirmed'
 	end
 
 	private
 		def check_rsa_authorization_dev
 			session[:authen] = 'pgmdmjm'
+			browser = request.env['HTTP_USER_AGENT'].downcase
+			if browser.include? 'chrome'
+				browser_type = 'chrome'
+			elsif browser.include? 'trident'
+				browser_type = 'ie'
+			elsif browser.include? 'version'
+				browser_type = 'safari'
+			else
+				browser_type = 'unknown'		
+			end
+
 			# session[:authen] = 'pgmdjs'
 			this_user = current_user
 			if this_user.blank?
@@ -25,6 +36,7 @@ module SessionValues
 				session[:facility] = this_user.facility
 				session[:admin3] = this_user.has_role? :admin3
 				session[:user_name] = ''+this_user.lastname+' '+this_user.firstinitial+''
+				session[:browser] = browser_type
 			end				
 		end
 
