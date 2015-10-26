@@ -55,7 +55,7 @@ function MxAW_refreshgrid(url){
 		url: url,
 		datatype:"json",
 		mtype:"GET",
-		colNames:["id","Pat_id","FirstName","LastName","C#","Ward","DOA", "Meeting", "Danger", "Drugs", "PsySoc", "Pre", "PreDate"],
+		colNames:["id","Pat_id","FirstName","LastName","C#","Ward","DOA", "Mx Meeting", "Hosp", "Drugs", "PsySoc", "D/C", "D/C Date"],
 		colModel:[
 			{name:"id",index:"id",width:55, hidden: true},
 			{name: "patient_id",index: "patient_id", width: 55, hidden: true},
