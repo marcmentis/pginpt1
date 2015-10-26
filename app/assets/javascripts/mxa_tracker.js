@@ -59,7 +59,7 @@ if ($('body.mxa_tracker').length) {
 		$('#slt_MxAW_danger_yn').mjm_addOptions('YesNo',{firstLine: 'Remain In Hosp'});
 		$('#slt_MxAW_preDateYesNo').mjm_addOptions('YesNo',{firstLine: 'D/C Date Set'});
 		$('#slt_MxAW_drugsChanged').mjm_addOptions('DrugsChanged',{firstLine: 'Drugs Changed'});	
-		$('#slt_MxAW_groupChanged').mjm_addOptions('GroupsChanged',{firstLine: 'Group Changed'});
+		$('#slt_MxAW_groupChanged').mjm_addOptions('GroupsChanged',{firstLine: 'Gr/Ind Changed'});
 		$('#slt_MxAWinfo_ChooseInfo').mjm_addOptions('MxTracker', {firstLine: 'Choose Info'})
 	
 	//SELECT HANDLERS
