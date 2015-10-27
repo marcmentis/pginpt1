@@ -47,7 +47,7 @@ class MxaTracker3Pdf < Prawn::Document
 			end
 
 			move_down 5
-			text 'PATIENT DANGEROUS (Self/Others) IF IN APPROVED HOUSING: '+a.danger_yn+''
+			text 'MUST REMAIN HOSPITALIZED (even if d/c disposition available): '+a.danger_yn+''
 
 			if a.danger_yn == 'Y'
 				if a.drugs_last_changed == '0-8Weeks' && @search == 'MedChange'
@@ -75,7 +75,7 @@ class MxaTracker3Pdf < Prawn::Document
 				end
 				
 			elsif a.danger_yn == 'N'
-				text 'Date set for Pre-Conference Meeting: '+a.pre_date_yesno+'', style: :bold
+				text 'Date set for D/C (or d/c meeting): '+a.pre_date_yesno+'', style: :bold
 				if a.pre_date_yesno == 'Y'
 					span(span_width, :position => :center) do
 						text 'Date: '+pre_date+''
