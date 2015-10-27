@@ -16,7 +16,7 @@
         <div class="text_align_center">
           <select id="slt_MxA_ward" name="slt_MxA_ward" class="rt_margin_10"></select>
           <label for="dt_MxA_newDate" class="label">New Date</label>
-          <input type="text" id="dt_MxA_newDate" name="new_date" class="rt_margin_10">
+          <input type="text" id="dt_MxA_newDate" name="new_date" class="rt_margin_10" />
           <label for="slt_MxA_date_history" class="label">Date History</label>
           <select id="slt_MxA_date_history" name="date_history"></select>
         </div>  
@@ -37,7 +37,7 @@
         <div class="col-1">
           <div>
             <h3>Past Management Assessments
-            <input type="button" id="bt_MxA_TogNotes" value="tog"></input>
+            <input type="button" id="bt_MxA_TogNotes" value="tog" />
             </h3>
           </div>
           <div class="spacer_vertical_small">
@@ -59,7 +59,8 @@
 
       <div id="div_MxA_dangerQuestion" class="spacer_vertical_small">
         <span class="text-14-bold">
-          Is Patient a danger to self/other, if in approved housing?
+          <!-- Is Patient a danger to self/other, if in approved housing? -->
+          Must Patient remain in hospital (even if d/c disposition available)?
         </span>
         <select name="danger_yn" id="slt_MxA_danger_yn"></select>
       </div>    
@@ -67,15 +68,17 @@
         <!--YES Still Dangerous--> 
         <div id="div_MxA_dangerYes_drug" class="spacer_vertical_small">
           <span class="text-12-bold">
-            (i)When was medication for Axis I/II Dx last changed?
+            <!-- (i)When was medication for Axis I/II Dx last changed? -->
+            (i)When was medication for Target signs/symp last changed?
           </span>        
           <select name="drugs_last_changed" id="slt_Mxa_drugsChanged"></select>
         </div>
         <div id="div_MxA_dangerYes_drugYes" class="spacer_vertical_small">
           <span class="text-12">
-            What Medication change was made for AxisI/II and WHY?
+            <!-- What Medication change was made for AxisI/II and WHY? -->
+            What Medication change was made for Target signs/symp and WHY?
           </span>
-          <input type="button" id ="bt_MxA_togDrugWhyChange" value="tog">
+          <input type="button" id ="bt_MxA_togDrugWhyChange" value="tog" />
           <!-- <input type="button" id ="bt_MxA_histDrugWhyChange" value="Hist"> -->
           <div class="spacer_vertical_small">
               <textarea id="txa_MxA_drugWhyChange"></textarea>
@@ -83,9 +86,10 @@
         </div>
         <div id="div_MxA_dangerYes_drugNo" class="spacer_vertical_small">
           <span class="text-12">
-            Why No Change in Medication for AxisI or II disorder(s)?
+            <!-- Why No Change in Medication for AxisI or II disorder(s)? -->
+            Why No Change in Medication for Target signs/symp?
           </span>
-          <input type="button" id ="bt_MxA_togDrugNoChange" value="tog">
+          <input type="button" id ="bt_MxA_togDrugNoChange" value="tog" />
           <!-- <input type="button" id ="bt_MxA_histDrugNoChange" value="Hist"> -->
           <div class="spacer_vertical_small">
             <textarea id="txa_MxA_drugNoChange"></textarea>
@@ -94,15 +98,17 @@
 
         <div id="div_MxA_dangerYes_group" class="spacer_vertical_small">
           <span class="text-12-bold">
-            (ii)When was group/indiv Tx for Axis I/II Dx last changed?
+            <!-- (ii)When was group/indiv Tx for Axis I/II Dx last changed? -->
+            (ii)When was group/indiv Tx for Target signs/symp last changed?
           </span>   
           <select name="psychsoc_last_changed" id="slt_Mxa_groupChanged" ></select>
         </div>
         <div id="div_MxA_dangerYes_groupYes" class="spacer_vertical_small">
           <span class="text-12">
-            What change was made in Group/Individual therapy for Axis1 or II disorder(s)?
+            <!-- What change was made in Group/Individual therapy for Axis1 or II disorder(s)? -->
+            What change was made in Group/Individual therapy for Target signs/symp?
           </span>
-          <input type="button" id ="bt_MxA_togGroupChange" value="tog">
+          <input type="button" id ="bt_MxA_togGroupChange" value="tog" />
           <!-- <input type="button" id ="bt_MxA_histGroupChange" value="Hist"> -->
           <div class="spacer_vertical_small">
             <textarea id="txa_MxA_groupWhyChange"></textarea>
@@ -110,9 +116,10 @@
         </div>
         <div id="div_MxA_dangerYes_groupNo" class="spacer_vertical_small">
           <span class="text-12">
-            Why No Change in Group/Individual therapy for Axis1 or II disorder(s)?
+            <!-- Why No Change in Group/Individual therapy for Axis1 or II disorder(s)? -->
+            Why No Change in Group/Individual therapy for Target signs/symp?
           </span>
-          <input type="button" id ="bt_MxA_togGroupNoChange" value="tog">
+          <input type="button" id ="bt_MxA_togGroupNoChange" value="tog" />
           <!-- <input type="button" id ="bt_MxA_histGroupNoChange" value="Hist"> -->
           <div class="spacer_vertical_small">
             <textarea id="txa_MxA_groupNoChange"></textarea>
@@ -123,8 +130,9 @@
         <!--NO Not Dangerous-->
         <div id="div_MxA_dangerNo_date"> 
           <div class="spacer_vertical_small">
-            <span class="text-12">
-              Has date been set for Pre-Conference Meeting?
+            <span class="text-12-bold">
+              <!-- Has date been set for Pre-Conference Meeting? -->
+              Has date been set for Discharge (or d/c meeting)?
             </span>
             <select id="slt_MxA_pre_date_yesno" name="pre_date_yesno"></select>
 
@@ -136,9 +144,10 @@
            <!--No Pre Date Not Set--> 
           <div id="div_MxA_dangerNo_dateNo" class="spacer_vertical_small">
             <span class="text-12">
-              Why has Pre-date not been set?
+              <!-- Why has Pre-date not been set? -->
+              Why has date for Discharge (or d/c meeting) not been set?
             </span>
-            <input type="button" id ="bt_MxA_togPreDateNo" value="tog">
+            <input type="button" id ="bt_MxA_togPreDateNo" value="tog" />
             <!-- <input type="button" id ="bt_MxA_histPreDateNo" value="Hist"> -->
               <div class="spacer_vertical_small">
                 <textarea id="txa_MxA_PreDateNo"></textarea>
@@ -146,17 +155,17 @@
           </div>                  
         </div> 
       <div id="div_MxA_saveButtons" class="spacer_vertical_small">
-        <input id="bt_MxA_save" type="button" value="Save">
-        <input id="bt_MxA_update" type="button" value="Update">
-        <input id="bt_MxA_back" type="button" value="Back">
-        <input id="bt_MxA_delete" type="button" value="Delete">
+        <input id="bt_MxA_save" type="button" value="Save" />
+        <input id="bt_MxA_update" type="button" value="Update" />
+        <input id="bt_MxA_back" type="button" value="Back" />
+        <input id="bt_MxA_delete" type="button" value="Delete" />
       </div>
       <div class="success_message" id="div_MxA_save_message"></div>
     </form> <!-- class="form_container" -->
   </div> <!-- <div id="grid_RightContainer" class="col-1-2"> -->
 
 <!-- Hidden inputs containing values -->
-<input id="hide_mx_assessment_id" class="hidden"></input>
+<input id="hide_mx_assessment_id" class="hidden" />
 
 </div>  <!-- <div id="GRID-WHOLE PAGE" class="grid"> -->
 

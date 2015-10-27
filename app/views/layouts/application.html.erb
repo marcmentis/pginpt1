@@ -10,10 +10,10 @@
 </head>
 <body class="<%= params[:controller] %>">
 	<%= render 'layouts/header.html.erb' %>
-	<input id="session-admin3" type="text" value="<%= session[:admin3] %>"></input>
-	<input id="session-facility" value="<%= session[:facility] %>"></input>
-	<input id="session-authen" value="<%= session[:authen] %>"></input>
-	<input id="session-username" value="<%= session[:user_name] %>"></input>
+	<input id="session-admin3" type="text" value="<%= session[:admin3] %>" />
+	<input id="session-facility" value="<%= session[:facility] %>" />
+	<input id="session-authen" value="<%= session[:authen] %>" />
+	<input id="session-username" value="<%= session[:user_name] %>" />
 	<%= yield %>
 
 	<%= render 'layouts/footer.html.erb' %>

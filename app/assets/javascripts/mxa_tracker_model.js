@@ -55,7 +55,7 @@ function MxAW_refreshgrid(url){
 		url: url,
 		datatype:"json",
 		mtype:"GET",
-		colNames:["id","Pat_id","FirstName","LastName","C#","Ward","DOA", "Meeting", "Danger", "Drugs", "PsySoc", "Pre", "PreDate"],
+		colNames:["id","Pat_id","FirstName","LastName","C#","Ward","DOA", "Mx Meeting", "Hosp", "Drugs", "PsySoc", "D/C", "D/C Date"],
 		colModel:[
 			{name:"id",index:"id",width:55, hidden: true},
 			{name: "patient_id",index: "patient_id", width: 55, hidden: true},
@@ -152,7 +152,7 @@ function MxAW_refreshgrid(url){
 							text += '\nMEETING DATE:  '+data_meeting_date_formatted+'     DAYS In HOSP: '+days_in_hosp+''
 							text += '\nSAVED BY:  '+updated_by+'      ON: '+updated_at+''
 							  
-							text += '\n\nPATIENT DANGEROUS (SELF/OTHERS) IF IN APPROVED HOUSING:  '+dangerYesNo+''
+							text += '\n\nMUST REMAIN HOSPITALIZED (even if d/c disposition available):  '+dangerYesNo+''
 
 							if (dangerYesNo == 'Y') {
 								text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
@@ -168,7 +168,7 @@ function MxAW_refreshgrid(url){
 										text +='\n'+psychsoc_not_why+'';
 									};
 							}else if (dangerYesNo == 'N') {
-								text +='\n   Date set for Pre-Conference Meeting: '+pre_date_yesno+'';
+								text +='\n   Date set for D/C (or d/c meeting): '+pre_date_yesno+'';
 									if (pre_date_yesno == 'Y') {
 										text +='\nDate: '+pre_date+'';
 									}else if (pre_date_yesno == 'N') {
@@ -309,7 +309,7 @@ function get_reasons_from_note (patient_id, reason) {
 					text += '\nMEETING DATE:  '+data_meeting_date_formatted+'     DAYS In HOSP: '+days_in_hosp+''
 					text += '\nSAVED BY:  '+updated_by+'      ON: '+updated_at+''
 									  
-					text += '\n\nPATIENT DANGEROUS (SELF/OTHERS) IF IN APPROVED HOUSING:  '+dangerYesNo+''
+					text += '\n\nMUST REMAIN HOSPITALIZED (even if d/c disposition available):  '+dangerYesNo+''
 
 					if (dangerYesNo == 'Y') {	
 						if (drugs_last_changed == '0-8Weeks' && reason == 'MedChange') {
@@ -328,7 +328,7 @@ function get_reasons_from_note (patient_id, reason) {
 							text +='\n'+psychsoc_not_why+'';
 						};
 					}else if (dangerYesNo == 'N') {
-						text +='\n   Date set for Pre-Conference Meeting: '+pre_date_yesno+'';
+						text +='\n   Date set for D/C (or d/c meeting): '+pre_date_yesno+'';
 						text +='\n'+pre_date_no_why+'';
 					};
 

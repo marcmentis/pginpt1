@@ -56,10 +56,10 @@ if ($('body.mxa_tracker').length) {
 	//populate selects
 		$('#slt_MxAW_Ward').mjm_addOptions('ward', {firstLine: 'All Wards', facility: user_facility, group: true})
 		$('#slt_MxAW_AllLatestNote').mjm_addOptions('AllLatest', {firstLine: 'All/LatestNote'})
-		$('#slt_MxAW_danger_yn').mjm_addOptions('YesNo',{firstLine: 'Dangerous'});
-		$('#slt_MxAW_preDateYesNo').mjm_addOptions('YesNo',{firstLine: 'PreDate Set'});
+		$('#slt_MxAW_danger_yn').mjm_addOptions('YesNo',{firstLine: 'Remain In Hosp'});
+		$('#slt_MxAW_preDateYesNo').mjm_addOptions('YesNo',{firstLine: 'D/C Date Set'});
 		$('#slt_MxAW_drugsChanged').mjm_addOptions('DrugsChanged',{firstLine: 'Drugs Changed'});	
-		$('#slt_MxAW_groupChanged').mjm_addOptions('GroupsChanged',{firstLine: 'Group Changed'});
+		$('#slt_MxAW_groupChanged').mjm_addOptions('GroupsChanged',{firstLine: 'Gr/Ind Changed'});
 		$('#slt_MxAWinfo_ChooseInfo').mjm_addOptions('MxTracker', {firstLine: 'Choose Info'})
 	
 	//SELECT HANDLERS
