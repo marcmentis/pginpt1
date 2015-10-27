@@ -261,7 +261,7 @@
 			text += '\nMEETING DATE:  '+data_meeting_date_formatted+'     DAYS In HOSP: '+days_in_hosp+''
 			text += '\nSAVED BY:  '+updated_by+'      ON: '+updated_at+''
 
-			text += '\n\nPATIENT DANGEROUS (SELF/OTHERS) IF IN APPROVED HOUSING:  '+dangerYesNo+''
+			text += '\n\nMUST REMAIN HOSPITALIZED (even if d/c disposition available):  '+dangerYesNo+''
 
 			if (dangerYesNo == 'Y') {
 				text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
@@ -277,7 +277,7 @@
 						text +='\n'+psychsoc_not_why+'';
 					};
 			}else if (dangerYesNo == 'N') {
-				text +='\n   Date set for Pre-Conference Meeting: '+pre_date_yesno+'';
+				text +='\n   Date set for D/C (or d/c meeting): '+pre_date_yesno+'';
 					if (pre_date_yesno == 'Y') {
 						text +='\nDate: '+pre_date+'';
 					}else if (pre_date_yesno == 'N') {
