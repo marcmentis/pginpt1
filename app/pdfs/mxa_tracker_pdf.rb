@@ -37,7 +37,7 @@ class MxaTrackerPdf < Prawn::Document
 	end
 	def fill_table
 		 # rows = [["first", "second"],["third", "fourth"]]
-		attributes = %w{First Last C# Ward DOA Meeting Danger Drugs Psychsoc Pre_y/n Pre_date}
+		attributes = %w{First Last C# Ward DOA Meeting Hosp'ized Drugs Psychsoc D/C_y/n D/C_date}
 		rows = []
 		rows << attributes
 		@data.each do |row|	

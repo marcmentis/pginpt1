@@ -22,7 +22,7 @@ class MxaTrackerController < ApplicationController
     date_id = d.strftime("%F-%H-%M-%S")
 
     respond_to do |format|
-      format.csv {send_data mxa.complex_search_all_to_csv(mxaw), filename: "mxaw-#{Date.today}.csv" } 
+      format.csv {send_data mxa.complex_search_all_to_csv(mxaw), filename: "MxAssess-#{Date.today}.csv" } 
       format.pdf do
         pdf = MxaTrackerPdf.new(mxaw)      
         send_data pdf.render, 
