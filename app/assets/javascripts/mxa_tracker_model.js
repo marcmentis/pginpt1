@@ -148,7 +148,7 @@ function MxAW_refreshgrid(url){
 							
 
 							//Create and populate past Mx Assessments
-							text += '\n\n________________________________________________'
+							text += '\n\n_____________________________________________'
 							text += '\nMEETING DATE:  '+data_meeting_date_formatted+'     DAYS In HOSP: '+days_in_hosp+''
 							text += '\nSAVED BY:  '+updated_by+'      ON: '+updated_at+''
 							  
@@ -305,7 +305,7 @@ function get_reasons_from_note (patient_id, reason) {
 					var pre_date_no_why = data[i].pre_date_no_why
 
 					//Create and populate past Mx Assessments
-					text += '\n\n________________________________________________'
+					text += '\n\n_____________________________________________'
 					text += '\nMEETING DATE:  '+data_meeting_date_formatted+'     DAYS In HOSP: '+days_in_hosp+''
 					text += '\nSAVED BY:  '+updated_by+'      ON: '+updated_at+''
 									  
