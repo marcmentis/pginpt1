@@ -115,6 +115,6 @@ ForSelect.find_or_initialize_by(value: 'd/c').update_attributes(facility: '0013'
 ForSelect.find_or_initialize_by(value: 'E-unit').update_attributes(facility: '0025', code: 'ward', value: 'E-unit', text: 'E-unit', option_order: 1, grouper: 'scpc')
 ForSelect.find_or_initialize_by(value: 'F-unit').update_attributes(facility: '0025', code: 'ward', value: 'F-unit', text: 'F-unit', option_order: 2, grouper: 'scpc')
 ForSelect.find_or_initialize_by(value: 'G-unit').update_attributes(facility: '0025', code: 'ward', value: 'G-unit', text: 'G-unit', option_order: 3, grouper: 'scpc')
-
+ForSelect.find_or_initialize_by(text: 'd/c.').update_attributes(facility: '0025', code: 'ward', value: 'd/c', text: 'd/c.', option_order: 4, grouper: 'd/c')
 
 
