@@ -66,8 +66,8 @@ ForSelect.find_or_initialize_by(value: 'Latest').update_attributes(facility: '99
 #MxTracker
 ForSelect.find_or_initialize_by(value: 'MedChange').update_attributes(facility: '9999', code: 'MxTracker', value: 'MedChange', text: 'MedChange', option_order: 1, grouper: '')
 ForSelect.find_or_initialize_by(value: 'MedNoChange').update_attributes(facility: '9999', code: 'MxTracker', value: 'MedNoChange', text: 'MedNoChange', option_order: 2, grouper: '')
-ForSelect.find_or_initialize_by(value: 'GroupChange').update_attributes(facility: '9999', code: 'MxTracker', value: 'GroupChange', text: 'Gr/IndChange', option_order: 3, grouper: '')
-ForSelect.find_or_initialize_by(value: 'GroupNoChange').update_attributes(facility: '9999', code: 'MxTracker', value: 'GroupNoChange', text: 'Gr/IndNoChange', option_order: 4, grouper: '')
+ForSelect.find_or_initialize_by(value: 'GroupChange').update_attributes(facility: '9999', code: 'MxTracker', value: 'GroupChange', text: 'PsySocChange', option_order: 3, grouper: '')
+ForSelect.find_or_initialize_by(value: 'GroupNoChange').update_attributes(facility: '9999', code: 'MxTracker', value: 'GroupNoChange', text: 'PsySocNoChange', option_order: 4, grouper: '')
 ForSelect.find_or_initialize_by(value: 'PreNoDate').update_attributes(facility: '9999', code: 'MxTracker', value: 'PreNoDate', text: 'd/c NoDate', option_order: 5, grouper: '')
 
 # Bio-Psycho-Social Mx Assessment
