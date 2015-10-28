@@ -248,6 +248,10 @@ $background_light_gray: #F5F5F5;
 		width: 108px;
 		font-size: 12px;
 	}
+	optgroup {
+		font-weight: bolder;
+		display: block;
+	}
 	a {
 		font-size: 12px;
 		font-family: $r_font_family;
