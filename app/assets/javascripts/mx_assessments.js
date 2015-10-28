@@ -84,7 +84,7 @@ if ($('body.mx_assessments').length) {
 	//SELECT HANDLERS
 		//populate selects
 		$('#slt_Mxa_drugsChanged').mjm_addOptions('DrugsChanged',{firstLine: 'Drugs Changed'});	
-		$('#slt_Mxa_groupChanged').mjm_addOptions('GroupsChanged',{firstLine: 'Gr/Ind Changed'});
+		$('#slt_Mxa_groupChanged').mjm_addOptions('GroupsChanged',{firstLine: 'PsySoc Changed'});
 		$('#slt_MxA_ward').mjm_addOptions('ward', {firstLine: 'All Wards', facility: user_facility, group: true})
 		$('#slt_MxA_danger_yn, #slt_MxA_pre_date_yesno').mjm_addOptions('YesNo',{firstLine: 'Choose Y/N'});
 

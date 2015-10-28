@@ -248,6 +248,21 @@ $background_light_gray: #F5F5F5;
 		width: 108px;
 		font-size: 12px;
 	}
+	option {
+		font-weight: normal;
+    	display: block;
+    	padding: 0px 2px 1px;
+    		padding-top: 0px;
+    		padding-right: 2px;
+    		padding-bottom: 1px;
+    		padding-left: 2px;
+    	white-space: pre;
+    	min-height: 1.2em;
+	}
+	optgroup {
+		font-weight: bolder;
+		display: block;
+	}
 	a {
 		font-size: 12px;
 		font-family: $r_font_family;

@@ -8,7 +8,7 @@ class MxaTracker3Pdf < Prawn::Document
 	end
 
 	def heading
-		text '"'+@search+'"   Info extracted from Past Mx Assessments', style: :bold, align: :center
+		text 'Specific Reason extracted from Past Mx Assessments', style: :bold, align: :center
 		move_down 20
 	end
 
