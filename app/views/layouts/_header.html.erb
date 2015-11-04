@@ -26,12 +26,12 @@
 					</ul>
 				</li>
 				<li class="current">
-					<% if policy(:mxa_tracker).index? %>
+					<%# if policy(:mxa_tracker).index? %>
 					<a href="#">trackers</a>
-					<% end %>
+					<%# end %>
 					<ul>
 						<li>
-							<%= link_to("BioPsychoSocial Assessment", mxa_tracker_index_path) %>
+							<%= link_to("BioPsychoSocial Assessment", mxa_tracker_index_path) if policy(:mxa_tracker).index? %>
 						</li>
 					</ul>
 				</li>

@@ -10,7 +10,6 @@
 # User make sure pgmdmjm in database
 User.find_or_initialize_by(authen: 'pgmdmjm').update_attributes(firstname: 'Marc', lastname: 'Mentis', authen: 'pgmdmjm', facility: '0013', email: 'marc.mentis@omh.ny.gov', firstinitial: 'M', middleinitial: 'J')
 
-
 # *****  ForSelect  *********************
 # FOR ALL HOSPITALS
 # Hospital names/numbers

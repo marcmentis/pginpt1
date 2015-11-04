@@ -125,11 +125,16 @@ class MxAssessmentsController < ApplicationController
   # DELETE /mx_assessments/1
   # DELETE /mx_assessments/1.json
   def destroy
+    # Need to put this before the comm
+    authorize @mx_assessment
+
     @mx_assessment.destroy
     respond_to do |format|
       format.html { redirect_to mx_assessments_url }
       format.json { head :no_content }
     end
+
+
   end
 
 

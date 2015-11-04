@@ -44,7 +44,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3'
-  gem 'mysql2'
+  # gem 'mysql2'
   gem 'byebug'
   gem 'rspec-rails'  # Includes RSpec in wraper with rails-specific features
   gem 'factory_girl_rails'  # Replaces Rails' default fixtures with factories

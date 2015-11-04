@@ -8,12 +8,14 @@ class MxAssessmentPolicy
 
 	def index?
 		@current_user.has_role? :admin3 or 
-		(
-			@current_user.has_role? :bps_crud
-		)
-	end
+		@current_user.has_role? :admin2 or  
+		@current_user.has_role? :bps_crud or
+		@current_user.has_role? :bps_cru
+	end	
 
-
-
+	def destroy?
+		@current_user.has_role? :admin3 or
+		@current_user.has_role? :bps_crud
+	end	
 
 end
