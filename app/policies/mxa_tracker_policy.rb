@@ -11,7 +11,7 @@ class MxaTrackerPolicy < Struct.new(:current_user, :mxa_tracker)
 		current_user.has_role? :admin2 or  
 		current_user.has_role? :bps_crud or
 		current_user.has_role? :bps_cru or
-		current_user.has_role? :trackers_r or
+		current_user.has_role? :bps_track or
 		(			
 			current_user.has_role? :trash1 and 
 			current_user.has_role? :trash2
