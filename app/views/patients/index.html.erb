@@ -2,6 +2,12 @@
 <div id="divPatientPageWrapper">
 <div id="divPatientPageInnerWrapper" class="patients_index">
 
+<% if policy(Patient).destroy? %>
+    <input id="forDelete" type="hidden" name="forDelete" value="true">
+  <% else %>
+    <input id="forDelete" type="hidden" name="forDelete" value="false">
+  <% end %>
+
 <div class="grid">
   
   <div class="col-3-4">

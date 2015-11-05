@@ -1,6 +1,7 @@
 class MxaTrackerController < ApplicationController
   def index
   	
+    # Headless policy as no mxa_gtracker.rb model
     authorize :mxa_tracker, :index?
   end
 

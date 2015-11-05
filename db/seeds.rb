@@ -10,7 +10,6 @@
 # User make sure pgmdmjm in database
 User.find_or_initialize_by(authen: 'pgmdmjm').update_attributes(firstname: 'Marc', lastname: 'Mentis', authen: 'pgmdmjm', facility: '0013', email: 'marc.mentis@omh.ny.gov', firstinitial: 'M', middleinitial: 'J')
 
-
 # *****  ForSelect  *********************
 # FOR ALL HOSPITALS
 # Hospital names/numbers
@@ -45,15 +44,16 @@ ForSelect.find_or_initialize_by(value: '9999').update_attributes(facility: '9999
 ForSelect.find_or_initialize_by(value: 'admin3').update_attributes(facility: '9999', code: 'Roles', value: 'admin3', text: 'admin3', option_order: 1, grouper: '')
 ForSelect.find_or_initialize_by(value: 'admin2').update_attributes(facility: '9999', code: 'Roles', value: 'admin2', text: 'admin2', option_order: 2, grouper: '')
 ForSelect.find_or_initialize_by(value: 'admin1').update_attributes(facility: '9999', code: 'Roles', value: 'admin1', text: 'admin1', option_order: 3, grouper: '')
-ForSelect.find_or_initialize_by(value: 'pat_crud').update_attributes(facility: '9999', code: 'Roles', value: 'pat_crud', text: 'pat_crud', option_order: 4, grouper: '')
-ForSelect.find_or_initialize_by(value: 'pat_cru').update_attributes(facility: '9999', code: 'Roles', value: 'pat_cru', text: 'pat_cru', option_order: 5, grouper: '')
-ForSelect.find_or_initialize_by(value: 'pat_r').update_attributes(facility: '9999', code: 'Roles', value: 'pat_r', text: 'pat_r', option_order: 6, grouper: '')
-ForSelect.find_or_initialize_by(value: 'trackers_r').update_attributes(facility: '9999', code: 'Roles', value: 'trackers_r', text: 'trackers_r', option_order: 7, grouper: '')
-ForSelect.find_or_initialize_by(value: 'bps_crud').update_attributes(facility: '9999', code: 'Roles', value: 'bps_crud', text: 'bps_crud', option_order: 8, grouper: '')
-ForSelect.find_or_initialize_by(value: 'bps_cru').update_attributes(facility: '9999', code: 'Roles', value: 'bps_cru', text: 'bps_cru', option_order: 9, grouper: '')
-ForSelect.find_or_initialize_by(value: 'r_and_d').update_attributes(facility: '9999', code: 'Roles', value: 'r_and_d', text: 'r_and_d', option_order: 10, grouper: '')
-
-
+ForSelect.find_or_initialize_by(value: 'bps_crud').update_attributes(facility: '9999', code: 'Roles', value: 'bps_crud', text: 'bps_crud', option_order: 4, grouper: '')
+ForSelect.find_or_initialize_by(value: 'bps_cru').update_attributes(facility: '9999', code: 'Roles', value: 'bps_cru', text: 'bps_cru', option_order: 5, grouper: '')
+ForSelect.find_or_initialize_by(value: 'bps_track').update_attributes(facility: '9999', code: 'Roles', value: 'bps_track', text: 'bps_track', option_order: 6, grouper: '')
+ForSelect.find_or_initialize_by(value: 'nav_admin').update_attributes(facility: '9999', code: 'Roles', value: 'nav_admin', text: 'nav_admin', option_order: 7, grouper: '')
+ForSelect.find_or_initialize_by(value: 'nav_notes').update_attributes(facility: '9999', code: 'Roles', value: 'nav_notes', text: 'nav_notes', option_order: 8, grouper: '')
+ForSelect.find_or_initialize_by(value: 'nav_patients').update_attributes(facility: '9999', code: 'Roles', value: 'nav_patients', text: 'nav_patients', option_order: 9, grouper: '')
+ForSelect.find_or_initialize_by(value: 'nav_trackers').update_attributes(facility: '9999', code: 'Roles', value: 'nav_trackers', text: 'nav_trackers', option_order: 10, grouper: '')
+ForSelect.find_or_initialize_by(value: 'pat_crud').update_attributes(facility: '9999', code: 'Roles', value: 'pat_crud', text: 'pat_crud', option_order: 11, grouper: '')
+ForSelect.find_or_initialize_by(value: 'pat_cru').update_attributes(facility: '9999', code: 'Roles', value: 'pat_cru', text: 'pat_cru', option_order: 12, grouper: '')
+ForSelect.find_or_initialize_by(value: 'r_and_d').update_attributes(facility: '9999', code: 'Roles', value: 'r_and_d', text: 'r_and_d', option_order: 13, grouper: '')
 
 #YesNo
 ForSelect.find_or_initialize_by(value: 'Y').update_attributes(facility: '9999', code: 'YesNo', value: 'Y', text: 'Yes', option_order: 1, grouper: '')

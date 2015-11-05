@@ -14,7 +14,7 @@
 			<ul class="sf-menu" id="example">
 
 				<li class="current">
-				<% if policy(MxAssessment).index? %>			 
+				<% if policy(:static_pages).nav_notes? %>			 
 					<a href="#">notes</a>
 				<% end %>
 					<ul> <%#= if policy(MxAssessments).complex_search? %>
@@ -26,17 +26,19 @@
 					</ul>
 				</li>
 				<li class="current">
-					<% if policy(:mxa_tracker).index? %>
+					<% if policy(:static_pages).nav_trackers? %>
 					<a href="#">trackers</a>
 					<% end %>
 					<ul>
 						<li>
-							<%= link_to("BioPsychoSocial Assessment", mxa_tracker_index_path) %>
+							<%= link_to("BioPsychoSocial Assessment", mxa_tracker_index_path) if policy(:mxa_tracker).index? %>
 						</li>
 					</ul>
 				</li>
 				<li>
-					<%= link_to("patients", patients_path) %>
+					<% if policy(Patient).index? %>
+						<%= link_to("patients", patients_path) %>
+					<% end %>
 				</li>
 				<!-- <li>
 					<a href="#">menu item 3</a>
@@ -103,7 +105,7 @@
 					</ul>
 				</li> -->
 				<li>
-					<% if policy(ForSelect).complex_search?%>
+					<% if policy(:static_pages).nav_admin?%>
 					<a href="#">admin</a>
 					<% end %>
 					<ul>

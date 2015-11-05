@@ -10,6 +10,7 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
+    authorize Patient
   end
 
   # GET /patients_search
@@ -73,6 +74,7 @@ class PatientsController < ApplicationController
   # DELETE /patients/1
   # DELETE /patients/1.json
   def destroy
+    authorize @patient
     @patient.destroy
     respond_to do |format|
       format.html { redirect_to patients_url }

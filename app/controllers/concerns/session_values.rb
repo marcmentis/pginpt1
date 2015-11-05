@@ -15,6 +15,7 @@ module SessionValues
 	private
 		def check_rsa_authorization_dev
 			session[:authen] = 'pgmdmjm'
+			# session[:authen] = 'pgtest1'
 			browser = request.env['HTTP_USER_AGENT'].downcase
 			if browser.include? 'chrome'
 				browser_type = 'chrome'

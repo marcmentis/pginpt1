@@ -164,13 +164,21 @@ function refreshgrid(url){
 		caption: 'Delete',
 		buttonicon: '',
 		onClickButton: function(){	
-			ID = $('#Pat_ID').val(); 
-			if (ID.length > 0) {	
-				if(confirm("Are you sure you want to delete this patient")){
-					patients_ajax1('/patients/'+ID+'', 'DELETE');	
-				} else {
-					return true;
+			for_delete = $('#forDelete').val();
+			if (for_delete == 'true') {
+				ID = $('#Pat_ID').val(); 
+				if (ID.length > 0) {	
+					if(confirm("Are you sure you want to delete this patient")){
+						patients_ajax1('/patients/'+ID+'', 'DELETE');	
+					} else {
+						return true;
+					};
+				} else{
+					alert('No patient has been selected.')
 				};
+			}else {
+				alert("Sorry, you do not have privileges to delete patients");
+				return true;
 			};
 		},
 		position:'last'
