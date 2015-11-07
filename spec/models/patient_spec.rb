@@ -1,44 +1,49 @@
 require 'rails_helper'
 
-describe "Patient authentication" do
-	it "is valid with a firstname, lastname, number, facility, ward, doa" do
-		patient = Patient.new(
-			firstname: 'Aaron',
-			lastname: 'Sumner',
-			identifier: '343256',
-			facility: 'Pilgrim',
-			site: '81/101',
-			doa: '10/11/2015')
+describe "Patient validation" do
+	it "has a valid factory" do
+		expect(build(:patient)).to be_valid
+	end
+
+	it "is valid with a firstname, lastname, number, facility, ward, doa, dob, dod" do
+		patient = build(:patient)
 		expect(patient).to be_valid
 	end
 	
 	it "is invalid without a firstname" do 
-		patient = Patient.new(firstname: nil)
+		patient = build(:patient, firstname: nil)
 		patient.valid?
 		expect(patient.errors[:firstname]).to include("can't be blank")
 	end
 	it "is invalid without a lastname" do
-		patient = Patient.new(lastname: nil)
+		patient = build(:patient, lastname: nil)
 		patient.valid?
 		expect(patient.errors[:lastname]).to include("can't be blank")
 	end
 	it "is invalid without a number (identifier)" do
-		patient = Patient.new(identifier: nil)
+		patient = build(:patient, identifier: nil)
 		patient.valid?
 		expect(patient.errors[:identifier]).to include("can't be blank")
 	end
+	it "is invalid with duplicate identifier (number)" do
+		FactoryGirl.create(:patient, identifier: '123456')
+		patient = FactoryGirl.build(:patient, identifier: '123456')
+		patient.valid?
+		expect(patient.errors[:identifier]).to include("has already been taken")
+	end
+
 	it "is invalid without a facility" do
-		patient = Patient.new(facility: nil)
+		patient = build(:patient, facility: nil)
 		patient.valid?
 		expect(patient.errors[:facility]).to include("can't be blank")
 	end
 	it "is invalid without a ward (site)" do
-		patient = Patient.new(site: nil)
+		patient = build(:patient, site: nil)
 		patient.valid?
 		expect(patient.errors[:site]).to include("can't be blank")
 	end
 	it "is invalid without a doa (date of admission)" do
-		patient = Patient.new(doa: nil)
+		patient =  build(:patient, doa: nil)
 		patient.valid?
 		expect(patient.errors[:doa]).to include("can't be blank")
 	end

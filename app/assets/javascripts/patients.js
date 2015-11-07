@@ -37,7 +37,7 @@ if ($('body.patients').length) {
 				dateFormat: 'yy-mm-dd',
 				changeMonth: true,
 				changeYear: true,
-				yearRange: "-10: +10" })
+				yearRange: "-100: +10" })
 			.addClass('texts')
 			.css({'width':'7em'});
 
