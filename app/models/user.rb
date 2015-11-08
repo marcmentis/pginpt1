@@ -2,6 +2,18 @@ class User < ActiveRecord::Base
   include Jqgridconcern
   rolify
 
+  validates :firstname, presence: true
+  validates :lastname, presence: true
+  validates :authen, 
+              presence: true,
+              uniqueness: true
+  validates :facility, presence: true
+  validates :email,
+              presence: true,
+              uniqueness: true
+  validates :firstinitial, presence: true
+
+
   def get_jqGrid_obj(params, session_admin3)
   	conditions = User.all
     conditions = conditions.where("facility = :facility", {facility: params[:facility]}) if params[:facility]!= '-1'

@@ -5,7 +5,7 @@ describe "Patient validation" do
 		expect(build(:patient)).to be_valid
 	end
 
-	it "is valid with a firstname, lastname, number, facility, ward, doa, dob, dod" do
+	it "is valid with a firstname, lastname, number, facility, ward, doa, dob, dod, updated_by" do
 		patient = build(:patient)
 		expect(patient).to be_valid
 	end
@@ -26,8 +26,8 @@ describe "Patient validation" do
 		expect(patient.errors[:identifier]).to include("can't be blank")
 	end
 	it "is invalid with duplicate identifier (number)" do
-		FactoryGirl.create(:patient, identifier: '123456')
-		patient = FactoryGirl.build(:patient, identifier: '123456')
+		create(:patient, identifier: '123456')
+		patient = build(:patient, identifier: '123456')
 		patient.valid?
 		expect(patient.errors[:identifier]).to include("has already been taken")
 	end
