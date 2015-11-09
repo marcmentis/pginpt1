@@ -1,14 +1,14 @@
 require "rails_helper"
 
-describe "MxAssessment validation" do
+describe "MxAssessment:" do
 	let(:mx_assessment) {build(:mx_assessment)}
 
-	context "Validations" do
+	context "Validations:" do
 		it "has a valid factory" do
 			expect(build(:mx_assessment)).to be_valid
 		end
 
-		it "is valid with ALL FIELDS" do
+		it "is valid with: hospitalized, medsLastChanged, medsNotChangedWhy, medsChangedWhy, psychLastChanged, psychNotChangedWhy, psychChangedWhy, meetingDate, patientID, dcDateYesNo, dcDateNoWhy, updatedBy" do
 			expect(mx_assessment).to be_valid
 		end
 
@@ -18,7 +18,7 @@ describe "MxAssessment validation" do
 		end
 	end
 
-	context "Associations" do
+	context "Associations:" do
 		it " 'belongs_to' Patient" do
 			expect(mx_assessment).to belong_to :patient
 		end
