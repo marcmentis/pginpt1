@@ -28,6 +28,13 @@ describe "User validation" do
 		expect(user.errors[:authen]).to include ("can't be blank")
 	end
 
+	it "is invalid with deplicate authentication" do
+		create(:user, authen: "authen1")
+		user = build(:user, authen: "authen1")
+		user.valid?
+		expect(user.errors[:authen]).to include ("has already been taken")
+	end
+
 	it "is invalid without a facility" do
 		user = build(:user, facility: nil)
 		user.valid?
