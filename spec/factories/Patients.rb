@@ -9,5 +9,6 @@ FactoryGirl.define do
 		dob {Faker::Date.backward(1000)}
 		dod {Faker::Date.backward(14)}
 		updated_by {Faker::Name.last_name}
+
 	end
 end

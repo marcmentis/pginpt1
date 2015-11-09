@@ -1,17 +1,18 @@
 require 'rails_helper'
 
 describe "Patient validation" do
+	let(:patient) {build(:patient)}
 	it "has a valid factory" do
-		expect(build(:patient)).to be_valid
+		expect(build(:patient)).to be_valid		
 	end
 
 	it "is valid with a firstname, lastname, number, facility, ward, doa, dob, dod, updated_by" do
-		patient = build(:patient)
+		# patient = build(:patient)
 		expect(patient).to be_valid
 	end
 	
 	it "is invalid without a firstname" do 
-		patient = build(:patient, firstname: nil)
+		patient.firstname = nil
 		patient.valid?
 		expect(patient.errors[:firstname]).to include("can't be blank")
 	end

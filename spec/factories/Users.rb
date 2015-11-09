@@ -8,5 +8,6 @@ FactoryGirl.define do
 		firstinitial {Faker::Number.number(1)}
 		middleinitial {Faker::Number.number(1)}
 		updated_by {Faker::Name.last_name}
+
 	end
 end

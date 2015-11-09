@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe "User validation" do
+	# let(:user) {build(:user)}
 	it "has a valid factory" do
 		expect(build(:user)).to be_valid
 	end
@@ -59,4 +60,5 @@ describe "User validation" do
 		user.valid?
 		expect(user.errors[:firstinitial]).to include ("can't be blank")
 	end
+
 end
