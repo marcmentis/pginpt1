@@ -14,7 +14,7 @@ describe "Role:" do
 
 	
 	context "Associations:" do
-		it " 'has_many' users" do
+		it " 'many_to_many' with users" do
 			expect(role).to have_and_belong_to_many :users
 		end
 	end

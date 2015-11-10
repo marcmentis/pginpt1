@@ -65,7 +65,7 @@ describe "User:" do
 	end
 
 	context "Associations:" do
-		it " 'has_many' roles" do
+		it " 'many-to-many' with roles" do
 			expect(user).to have_and_belong_to_many :roles
 		end	
 	end
