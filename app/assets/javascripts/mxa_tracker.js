@@ -99,7 +99,7 @@ if ($('body.mxa_tracker').length) {
 				dateFormat: 'yy-mm-dd',
 				changeMonth: true,
 				changeYear: true,
-				yearRange: "-10: +10" })
+				yearRange: "-100: +10" })
 			.addClass('texts')
 			.css({'width':'7em'});
 		$('[id^=dt]').change(function(){

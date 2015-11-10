@@ -2,6 +2,8 @@ class MxAssessment < ActiveRecord::Base
 	include Jqgridconcern
 	belongs_to :patient
 
+	validates :danger_yn, presence: true
+
 	def self.get_pat_lists (params, facility)
 		# byebug
 		# Create @all_done an @all_to_do dependent upon what date should be used:

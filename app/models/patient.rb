@@ -7,6 +7,9 @@ class Patient < ActiveRecord::Base
 	validates :identifier, 
 		uniqueness: true,
 		presence: true
+	validates :facility, presence: true
+	validates :site, presence: true
+	validates :doa, presence: true
 
 	scope :in_facility, -> (facility_id) {where('facility = :facility_id',{facility_id: facility_id})}
 
