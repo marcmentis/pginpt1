@@ -55,7 +55,6 @@ describe "Patient:" do
 			expect(patient).to have_many :mx_assessments
 		end
 	end
-	
 
 	
 end

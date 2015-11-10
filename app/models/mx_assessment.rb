@@ -75,7 +75,8 @@ class MxAssessment < ActiveRecord::Base
 			# Do no filtering - allow all notes to be selected
 		else
 			# Create an empty activeRecord object
-			conditions = conditions.where("1=2")
+			# conditions = conditions.where("1=2")
+			conditions - conditions.none
 		end 
 		conditions = conditions.where("facility = :facility", {facility: params[:facility]}) unless params[:facility] == '-1'
 	    conditions = conditions.where("site = :site", {site: params[:site]}) unless params[:site] == '-1'
