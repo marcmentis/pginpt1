@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "ForSelect:" do
+describe "ForSelect Model:" do
 	let(:forselect) {build(:for_select)}
 
 	context "Validations:" do

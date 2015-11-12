@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "MxAssessment:" do
+describe "MxAssessment Model:" do
 	let(:mx_assessment) {build(:mx_assessment)}
 
 	context "Validations:" do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "User:" do
+describe "User Model:" do
 	let(:user) {build(:user)}
 
 	context "Validations:" do

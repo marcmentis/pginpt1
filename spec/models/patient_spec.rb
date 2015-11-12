@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Patient:" do
+describe "Patient Model:" do
 	let(:patient) {build(:patient)}
 	context "Validations:" do
 		it "has a valid factory" do
