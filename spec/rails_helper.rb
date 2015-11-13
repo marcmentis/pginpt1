@@ -5,6 +5,10 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'shoulda/matchers'
+# Add access to rack session - to give session values to capybara in tests
+require "rack_session_access/capybara"
+# To enable Pundit test helpers
+require "pundit/rspec"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

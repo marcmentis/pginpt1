@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe UsersController, type: :routing do
+RSpec.describe RolesController, type: :routing do
   describe "routing" do
 
     it "routes to #all_roles (for a user)" do

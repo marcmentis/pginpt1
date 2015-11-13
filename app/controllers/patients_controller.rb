@@ -10,6 +10,8 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
+    @patients = Patient.all
+
     authorize Patient
   end
 
@@ -34,10 +36,18 @@ class PatientsController < ApplicationController
   # GET /patients/new
   def new
     @patient = Patient.new
+
+    respond_to do |format|
+      format.json {render json: @patient}
+    end
   end
 
   # GET /patients/1/edit
   def edit
+
+    respond_to do |format|
+      format.json {render json: @patient}
+    end
   end
 
   # POST /patients
