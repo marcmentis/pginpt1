@@ -40,6 +40,7 @@ class MxAssessment < ActiveRecord::Base
 		                  		.where(patients: {site: params[:site]})
 		                 		.where(mx_assessments: {meeting_date: chosen_date})
 		                		.order(lastname: :asc)
+		    # byebug
 		end
 
 		# Get all Patients who do NOT have weekly notes from a given ward and date

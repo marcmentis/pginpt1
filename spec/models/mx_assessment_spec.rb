@@ -24,6 +24,32 @@ describe "MxAssessment Model:" do
 		end
 	end
 
+	# context "class methods" do
+	# 	it "returns patients with MxAssess notes for given date" do
+			
+	# 		a_note = create(:mx_assessment, meeting_date: '2015-11-10')
+	# 		b_note = create(:mx_assessment, meeting_date: '2015-11-10')
+	# 		c_note = create(:mx_assessment, meeting_date: '2015-11-11')
+
+	# 		patient = create(:patient, id: '1')
+	# 		mx_assessment = create(:mx_assessment, patient_id: '1')
+
+	# 		match_assessment = create(:mx_assessment, :match_assessment)
+
+	# 		byebug
+
+
+	# 		params = {"site"=>"81/101", "new_date"=>"", "date_history"=>"2015-11-10"}
+	# 		# params = {date_history: '2015-11-10'}
+	# 		chosen_date = '2015-11-10'
+	# 		facility = '0013'
+
+	# 		expect(MxAssessment.pat_all_done(params, chosen_date, facility)).to match_array([])
+
+	# 	end
+	# end
+end
+
 # 	context "Filtering MxAssessments:"
 # 		let(:patient) {Patient.create(
 # 			firstname: 'Aaron',
@@ -64,5 +90,5 @@ describe "MxAssessment Model:" do
 # 		 	expect(all_done).to eq []
 # 		# expect(conditions).to include [firstname: "Aaron", lastname: "Abot", facility: "Pilgrim"]
 # 	end
-end
+
 

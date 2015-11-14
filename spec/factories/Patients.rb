@@ -17,8 +17,9 @@ FactoryGirl.define do
 			firstname nil
 		end
 
-		factory :pilgrim_patient do
-			site "Pilgrim"
+		factory :facility_site_patient do
+			facility "Facility1"
+			site "Ward1"
 		end
 	end
 end
