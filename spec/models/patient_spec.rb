@@ -96,23 +96,23 @@ describe "Patient Model:" do
 						}
 			end
 			it "'total' exists and has correct value" do
-				jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+				jqGrid_obj = @patient.get_jqGrid_obj(@params)
 				expect(jqGrid_obj["total"]).to eq(1)
 			end
 			it "'page' exists and has correct value" do
-				jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+				jqGrid_obj = @patient.get_jqGrid_obj(@params)
 				expect(jqGrid_obj["page"]).to eq(1)
 			end
 			it "'records' exists and have correct value" do
-				jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+				jqGrid_obj = @patient.get_jqGrid_obj(@params)
 				expect(jqGrid_obj["records"]).to eq(4)
 			end
 			it "'rows' and 'cells' exists and have correct values" do
-				jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+				jqGrid_obj = @patient.get_jqGrid_obj(@params)
 				expect(jqGrid_obj["rows"][1]["cell"][:lastname]).to eq("Beauford")
 			end
 			it "'sidx' (ordering) is correct" do
-				jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+				jqGrid_obj = @patient.get_jqGrid_obj(@params)
 				expect(jqGrid_obj["rows"][3]["cell"][:lastname]).to eq("Davies")
 			end
 		end
@@ -128,7 +128,7 @@ describe "Patient Model:" do
 								sidx: "lastname", 
 								sord: "asc" 
 							}
-					jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+					jqGrid_obj = @patient.get_jqGrid_obj(@params)
 					expect(jqGrid_obj["records"]).to eq(3)
 				end 
 				it "site" do
@@ -141,7 +141,7 @@ describe "Patient Model:" do
 								sidx: "lastname", 
 								sord: "asc" 
 							}
-					jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+					jqGrid_obj = @patient.get_jqGrid_obj(@params)
 					expect(jqGrid_obj["records"]).to eq(3)
 				end
 				it "firstname" do
@@ -154,7 +154,7 @@ describe "Patient Model:" do
 								sidx: "lastname", 
 								sord: "asc" 
 							}
-					jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+					jqGrid_obj = @patient.get_jqGrid_obj(@params)
 					expect(jqGrid_obj["records"]).to eq(1)
 					expect(jqGrid_obj["rows"][0]["cell"][:firstname]).to eq("Abigail")
 				end
@@ -168,7 +168,7 @@ describe "Patient Model:" do
 								sidx: "lastname", 
 								sord: "asc" 
 							}
-					jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+					jqGrid_obj = @patient.get_jqGrid_obj(@params)
 					expect(jqGrid_obj["records"]).to eq(1)
 					expect(jqGrid_obj["rows"][0]["cell"][:lastname]).to eq("Davies")
 				end
@@ -182,7 +182,7 @@ describe "Patient Model:" do
 								sidx: "lastname", 
 								sord: "asc" 
 							}
-					jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+					jqGrid_obj = @patient.get_jqGrid_obj(@params)
 					expect(jqGrid_obj["records"]).to eq(1)
 					expect(jqGrid_obj["rows"][0]["cell"][:identifier]).to eq("3")
 					expect(jqGrid_obj["rows"][0]["cell"][:lastname]).to eq("Beauford")
@@ -199,7 +199,7 @@ describe "Patient Model:" do
 								sidx: "lastname", 
 								sord: "asc" 
 							}
-					jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+					jqGrid_obj = @patient.get_jqGrid_obj(@params)
 					expect(jqGrid_obj["records"]).to eq(2)
 					expect(jqGrid_obj["rows"][1]["cell"][:lastname]).to eq("Carey")
 				end
@@ -217,7 +217,7 @@ describe "Patient Model:" do
 								sidx: "lastname", 
 								sord: "asc" 
 							}
-					jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+					jqGrid_obj = @patient.get_jqGrid_obj(@params)
 					expect(jqGrid_obj["records"]).to eq(0)
 				end
 				it "multiple parameters (any one parameter invalid)" do
@@ -230,7 +230,7 @@ describe "Patient Model:" do
 								sidx: "lastname", 
 								sord: "asc" 
 							}
-					jqGrid_obj = @patient.get_jqGrid_obj(@params, false)
+					jqGrid_obj = @patient.get_jqGrid_obj(@params)
 					expect(jqGrid_obj["records"]).to eq(0)
 				end
 

@@ -10,8 +10,7 @@ class UsersController < ApplicationController
   # GET /users_search.json
   def complex_search
     user = User.new
-    @jqGrid_obj = user.get_jqGrid_obj(params, session[:admin3])
-
+    @jqGrid_obj = user.get_jqGrid_obj(params)
     respond_to do |format|
       format.html
       format.json {render json: @jqGrid_obj }

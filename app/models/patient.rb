@@ -12,7 +12,7 @@ class Patient < ActiveRecord::Base
 	validates :doa, presence: true
 
 	scope :in_facility, -> (facility_id) {where('facility = :facility_id',{facility_id: facility_id})}
-	def get_jqGrid_obj(params, session_admin3)
+	def get_jqGrid_obj(params)
 		# ActiveRecord relations are lazy loaders and can be chained
 	    # Therefore, sequental .where searches IF PARAM not zero will filter with an 'AND' relationship
 	    # Database will not be hit (lazy loading) until data needed by app

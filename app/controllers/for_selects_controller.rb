@@ -18,7 +18,7 @@ class ForSelectsController < ApplicationController
   # GET /for_selects_search(.:format) 
   def complex_search
     for_select = ForSelect.new
-    @jqGrid_obj = for_select.get_jqGrid_obj(params, session[:admin3])
+    @jqGrid_obj = for_select.get_jqGrid_obj(params)
 
     authorize ForSelect
     respond_to do |format|
