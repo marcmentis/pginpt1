@@ -56,7 +56,7 @@ describe "Patient Model:" do
 		end
 	end
 
-	context "jqGrid OBJECT (populates jqGrid tables)" do
+	context "jqGrid OBJECT ('complex_search' populates jqGrid tables)" do
 		before(:each) do
 			@patient = build(:patient)
 			@patient1 = create(:patient, facility: '0013', 

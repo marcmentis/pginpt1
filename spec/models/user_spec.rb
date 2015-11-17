@@ -70,7 +70,7 @@ describe "User Model:" do
 		end	
 	end
 
-	context "jqGrid OBJECT (populates jqGrid tables)" do
+	context "jqGrid OBJECT ('complex_search' jqGrid tables)" do
 		before(:each) do
 			@subject = build(:user)
 			@patient1 = create(:user, facility: '0013', 
@@ -143,7 +143,7 @@ describe "User Model:" do
 				expect(jqGrid_obj["rows"][3]["cell"][:lastname]).to eq("Davies")
 			end
 		end
-		context "Valid Parameters" do
+		context "Matching Parameters" do
 			context "Correctly filters these single paramaters" do
 				it "facility" do
 					@params = {firstname: "", 
@@ -261,13 +261,13 @@ describe "User Model:" do
 				end
 			end
 		end
-		context "Invalid Parameters" do
+		context "Non-Matching Parameters" do
 			context "Returns no records in jqGrid object" do
 				it "single parameter" do
 					@params = {firstname: "", 
 								lastname: "", 
 								authen: "", 
-								facility: nil, 
+								facility: "00", 
 								firstinitial: "",
 								middleinitial: '',
 								rows: "15", page: "1", 
@@ -277,12 +277,12 @@ describe "User Model:" do
 					jqGrid_obj = @subject.get_jqGrid_obj(@params)
 					expect(jqGrid_obj["records"]).to eq(0)
 				end
-				it "multiple parameters (any one parameter invalid)" do
+				it "multiple parameters (any one parameter non-matching)" do
 					@params = {firstname: "", 
 								lastname: "", 
 								authen: "1", 
-								facility: nil, 
-								firstinitial: "",
+								facility: "-1", 
+								firstinitial: "Q",
 								middleinitial: "",
 								rows: "15", page: "1", 
 								sidx: "lastname", 
