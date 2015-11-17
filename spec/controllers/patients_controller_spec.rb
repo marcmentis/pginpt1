@@ -81,26 +81,26 @@ RSpec.describe PatientsController, :type => :controller do
 
     end
 
-  #   describe "GET #complex_search (json format)" do
+  # describe "GET #complex_search (json format)" do
 
-  #   	it "assigns patients into @jqGrid" do
-  #   		params = {"firstname"=>"", "lastname"=>"", "identifier"=>"", "facility"=>"-1", "site"=>"-1", "_search"=>"false", "nd"=>"1447519814861", "rows"=>"15", "page"=>"1", "sidx"=>"lastname", "sord"=>"asc", "controller"=>"patients", "action"=>"complex_search"}
-  #   		 # @jqGrid_obj = {"total"=>21, "page"=>1, "records"=>301, "rows"=>[
-  #   		 # 			{"id"=>10360, "cell"=>#<Patient id: 10360, firstname: "Aaa", lastname: "AaaLast", identifier: "8787765", facility: "0013", site: "81/101", doa: "2015-11-02 00:00:00", dob: nil, dod: nil, updated_by: "Mentis M", created_at: "2015-11-13 20:40:25", updated_at: "2015-11-13 20:46:57">},
-  #   		 # 			 {id: 10360, firstname: "Aaaa", ...}
-  #   		 # 			 ]}
-  #   		 session[:admin] = true
-		# 	smith = create(:facility_site_patient, lastname: 'Smith')
-		# 	adams = create(:facility_site_patient, lastname: 'Adams')
-		# 	jones = create(:patient, lastname: 'Jones')
-		# 	get :complex_search, {format: 'json', params: params}, valid_session
-			
-		# 	expect(response.status).to eq 204
-		# 	# expect(assigns(:jqGrid_obj)).to include("Smith")
-		# 	# expect(assigns(:jqGrid_obj)).to match_array([adams, smith])
-		# 	# expect(assigns(:jqGrid_obj)).to eq(smith)
-		# end
-  #   end
+    # 	it "assigns patients into @jqGrid" do
+    # 		params = {"firstname"=>"", "lastname"=>"", "identifier"=>"", "facility"=>"-1", "site"=>"-1", "_search"=>"false", "nd"=>"1447519814861", "rows"=>"15", "page"=>"1", "sidx"=>"lastname", "sord"=>"asc", "controller"=>"patients", "action"=>"complex_search"}
+    # 		 # @jqGrid_obj = {"total"=>21, "page"=>1, "records"=>301, "rows"=>[
+    # 		 # 			{"id"=>10360, "cell"=>#<Patient id: 10360, firstname: "Aaa", lastname: "AaaLast", identifier: "8787765", facility: "0013", site: "81/101", doa: "2015-11-02 00:00:00", dob: nil, dod: nil, updated_by: "Mentis M", created_at: "2015-11-13 20:40:25", updated_at: "2015-11-13 20:46:57">},
+    # 		 # 			 {id: 10360, firstname: "Aaaa", ...}
+    # 		 # 			 ]}
+    # 		 session[:admin] = true
+  		# 	smith = create(:facility_site_patient, lastname: 'Smith')
+  		# 	adams = create(:facility_site_patient, lastname: 'Adams')
+  		# 	jones = create(:patient, lastname: 'Jones')
+  		# 	get :complex_search, {format: 'json', params: params}, valid_session
+  			
+  		# 	expect(response.status).to eq 204
+  		# 	# expect(assigns(:jqGrid_obj)).to include("Smith")
+  		# 	# expect(assigns(:jqGrid_obj)).to match_array([adams, smith])
+  		# 	# expect(assigns(:jqGrid_obj)).to eq(smith)
+		  #   end
+    # end
 
   describe "GET #new (json format)" do
   	it "assigns the new patient as @patient" do
@@ -125,11 +125,15 @@ RSpec.describe PatientsController, :type => :controller do
 		      }.to change(Patient, :count).by(1)
 			end
 
-			it "assigns a newly created patient as @patient" do
+			it "assigns a valid newly created patient as @patient" do
 				post :create, {format: 'json', patient: valid_attributes}, valid_session
 				expect(assigns(:patient)).to be_a(Patient)
-				expect(assigns(:patient)).to be_persisted
 			end
+
+      it "will save the valid new created @patient" do
+        post :create, {format: 'json', patient: valid_attributes}, valid_session
+        expect(assigns(:patient)).to be_persisted
+      end
 
 			it "has response status 204 - no_content" do
 				post :create, {format: 'json', patient: valid_attributes}, valid_session
@@ -142,6 +146,10 @@ RSpec.describe PatientsController, :type => :controller do
 				post :create, {format: 'json', patient: invalid_attributes}, valid_session
 				expect(assigns(:patient)).to be_a_new(Patient)
 			end
+      it "will not save invalid @patient" do
+        post :create, {format: 'json', patient: invalid_attributes}, valid_session
+        expect(assigns(:patient)).not_to be_persisted
+      end
 		end
 	end
 
@@ -160,6 +168,12 @@ RSpec.describe PatientsController, :type => :controller do
 				patch :update, {format: 'json', id: patient.to_param, patient: valid_attributes}, valid_session
 				expect(assigns(:patient)).to eq(patient)
 			end
+
+      it "saves requested patient" do
+        patient = Patient.create! valid_attributes
+        patch :update, {format: 'json', id: patient.to_param, patient: valid_attributes}, valid_session
+        expect(assigns(:patient)).to be_persisted
+      end
 
 			it "has response status 204 - no_content" do
 				patient = Patient.create! valid_attributes

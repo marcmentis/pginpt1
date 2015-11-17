@@ -12,7 +12,6 @@ class Patient < ActiveRecord::Base
 	validates :doa, presence: true
 
 	scope :in_facility, -> (facility_id) {where('facility = :facility_id',{facility_id: facility_id})}
-# byebug
 	def get_jqGrid_obj(params, session_admin3)
 		# ActiveRecord relations are lazy loaders and can be chained
 	    # Therefore, sequental .where searches IF PARAM not zero will filter with an 'AND' relationship
@@ -24,6 +23,7 @@ class Patient < ActiveRecord::Base
 	    conditions = conditions.where("firstname LIKE ?", ''+params[:firstname]+'%') if params[:firstname]!= ''
 	    conditions = conditions.where("lastname LIKE ?", ''+ params[:lastname]+'%') if params[:lastname]!= ''
 	    conditions = conditions.where("identifier LIKE ?", ''+params[:identifier]+'%') if params[:identifier]!= ''    
+
 	    return jqGrid_obj = create_jqGrid_obj(conditions, params)
 	end
 
