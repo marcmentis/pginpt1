@@ -115,7 +115,8 @@ class MxAssessment < ActiveRecord::Base
 			# Create an empty activeRecord object
 			# conditions = conditions.where("1=2")
 			conditions = conditions.none
-		end 
+		end
+		# byebug 
 		conditions = conditions.where("facility = :facility", {facility: params[:facility]}) unless params[:facility] == '-1'
 	    conditions = conditions.where("site = :site", {site: params[:site]}) unless params[:site] == '-1'
 	    conditions = conditions.where("patient_id = :pid", {pid: params[:pid]}) unless params[:pid] == '-1'

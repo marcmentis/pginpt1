@@ -21,6 +21,8 @@ FactoryGirl.define do
 			danger_yn nil
 		end
 
+		# patient
+
 		# association :patient, factory: :facility_site_patient
 
 		# trait :match_assessment do
