@@ -20,14 +20,43 @@ RSpec.describe UsersController, :type => :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # ProductsController. Be sure to keep this updated too.
   let(:valid_session) { {
-    confirmed: 'authen_and_in_db',
+    confirmed: 'authen_and_in_db'
     # authen: 'pgmdmjm',
     # facility: '0013',
-    admin3: true,
+    # admin3: true,
     # user_name: 'mentis'
     } }
 
+    let(:invalid_session){{
+    	confirmed: 'rubbish'
+    	}}
 
+    let(:invalid_session_for_app){ {
+    	confirmed: 'wrong',
+    	authen: 'pass_rfc_athorized'
+    	} }
+
+    describe "Authentication" do
+    	context "RSA Authentication" do
+    		it "Log in To App Authentication Successful with RSA authentication" do
+	    		get :index, {}, valid_session
+	    		expect(response.status).to eq 200
+	    	end
+	    	it "Log in To App Authentication Fails (for ALL ACTIONS) without RSA authentication" do
+	    		get :index, {}, invalid_session
+	    		expect(response.status).to eq 200
+	    		expect(assigns(:error)).to eq("User has not passed RSA authentication")
+	    	end
+	    end
+	    context "Post RSA App Authentication" do
+	    	it "After Successful RSA authentication, cannot log in without APP authentication" do
+	    		# request.headers["HTTP_REMOTE_USER"] = "pgmdjmj"
+	    		get :index, {}, invalid_session_for_app
+	    		expect(response.status).to eq 200
+	    		expect(assigns(:error)).to eq("User has no privileges in this application")
+	    	end
+	    end
+    end
     describe "GET #index (json format)" do
     	it "assigns all users as @users" do
     		# Stub out 'authorize Patient'
@@ -35,7 +64,7 @@ RSpec.describe UsersController, :type => :controller do
     		smith = create(:user, lastname: 'Smith')
     		jones = create(:user, lastname: 'Jones')
 
-    		get :index, {format: 'json'}, valid_session
+    		get :index, {}, valid_session
     		expect(assigns(:users)).to eq([smith, jones])
     		# 'match_array' doesn't have to be in correct order
     		# expect(assigns(:patients)).to match_array([jones, smith])

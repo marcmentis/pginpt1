@@ -2,10 +2,10 @@ module SessionValues
 
 	def authorized_and_confirmed
 		if session[:confirmed] != 'authen_and_in_db'
-			if Rails.env == 'development' || Rails.env == 'test'
+			if Rails.env == 'development' 
 				check_rsa_authorization_dev
 				# puts "NOT AUTHORIZED AND CONFIRMED YET"
-			elsif Rails.env == 'production'
+			elsif Rails.env == 'production' || Rails.env == 'test'
 				check_rsa_authorization_prod
 			end
 		end
@@ -42,6 +42,7 @@ module SessionValues
 		end
 
 		def check_rsa_authorization_prod
+			# byebug
 			if rfc_authorized? 
 				session[:authen] = request.headers["HTTP_REMOTE_USER"]				
 				this_user = current_user
@@ -61,7 +62,11 @@ module SessionValues
 		end
 
 		def rfc_authorized?
-			request.headers["HTTP_REMOTE_USER"].blank? ? false : true		
+			if  Rails.env == 'test' && session[:authen] == 'pass_rfc_athorized'
+				return true
+			else
+			request.headers["HTTP_REMOTE_USER"].blank? ? false : true
+			end		
 	  	end
 	
 end
