@@ -62,11 +62,7 @@ module SessionValues
 		end
 
 		def rfc_authorized?
-			if  Rails.env == 'test' && session[:authen] == 'pass_rfc_athorized'
-				return true
-			else
-			request.headers["HTTP_REMOTE_USER"].blank? ? false : true
-			end		
+			request.headers["HTTP_REMOTE_USER"].blank? ? false : true		
 	  	end
 	
 end

@@ -27,33 +27,53 @@ RSpec.describe UsersController, :type => :controller do
     # user_name: 'mentis'
     } }
 
-    let(:invalid_session){{
-    	confirmed: 'rubbish'
-    	}}
-
-    let(:invalid_session_for_app){ {
-    	confirmed: 'wrong',
-    	authen: 'pass_rfc_athorized'
-    	} }
+  let(:invalid_session) {{
+  	confirmed: 'rubbish'
+  	}}
 
     describe "Authentication" do
     	context "RSA Authentication" do
-    		it "Log in To App Authentication Successful with RSA authentication" do
+    		it "Log in Successful with RSA authentication" do
 	    		get :index, {}, valid_session
 	    		expect(response.status).to eq 200
 	    	end
-	    	it "Log in To App Authentication Fails (for ALL ACTIONS) without RSA authentication" do
-	    		get :index, {}, invalid_session
+	    	it "Log in Fails (for ALL ACTIONS) without RSA authentication" do
+	    		# Don't use 'valid_session' as don't want to bypass authorization
+	    		request.env["HTTP_REMOTE_USER"] = nil
+	    		# Don't use 'valid_session' as don't want to bypass authorization
+	    		get :index, {}
 	    		expect(response.status).to eq 200
 	    		expect(assigns(:error)).to eq("User has not passed RSA authentication")
 	    	end
 	    end
-	    context "Post RSA App Authentication" do
-	    	it "After Successful RSA authentication, cannot log in without APP authentication" do
-	    		# request.headers["HTTP_REMOTE_USER"] = "pgmdjmj"
-	    		get :index, {}, invalid_session_for_app
+	    context "Post RSA Still need App Authentication" do
+	    	it "After Successful RSA authentication, login fails with invalid App authentication" do
+	    		user = create(:user, authen: 'bad_authen')
+	    		request.env["HTTP_REMOTE_USER"] = 'good_authen'
+	    		# Don't use 'valid_session' as don't want to bypass authorization
+	    		get :index, {}
 	    		expect(response.status).to eq 200
 	    		expect(assigns(:error)).to eq("User has no privileges in this application")
+	    	end
+	    	it "After Successful RSA authentication, login successful with Valid App authentication" do
+	    		user = create(:user, authen: 'good_authen')
+	    		request.env["HTTP_REMOTE_USER"] = 'good_authen'
+	    		# Don't use 'valid_session' as don't want to bypass authorization
+	    		get :index, {}
+	    		expect(response.status).to eq 200
+	    		expect(assigns(:error)).to eq(nil)
+	    	end
+	    end
+	    context "After successful authentication set session variable for repeat login" do
+	    	it "Repeat login successful with valid authentication session variable" do
+	    		get :index, {}, valid_session
+	    		expect(response.status).to eq 200
+	    		expect(assigns(:error)).to eq(nil)
+	    	end
+	    	it "Repeat login fails with invalid authentication session variable" do
+	    		get :index, {}, invalid_session
+	    		expect(response.status).to eq 200
+	    		expect(assigns(:error)).to eq("User has not passed RSA authentication")
 	    	end
 	    end
     end
