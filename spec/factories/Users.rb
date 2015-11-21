@@ -13,9 +13,9 @@ FactoryGirl.define do
 			firstname nil
 		end
 
-		factory :Arole do
-			after(:create) { |user| user.add_rle(:Arole)}
-		end
+		# factory :Arole do
+		# 	after(:create) { |user| user.add_rle(:Arole)}
+		# end
 
 	end
 end

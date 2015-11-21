@@ -14,6 +14,7 @@ class ForSelectPolicy
 		@current_user.has_role? :admin3 or 
 		@current_user.has_role? :admin2 or
 		@current_user.has_role? :admin1 or
+		@current_user.has_role? :for_select or
 		(			
 			@current_user.has_role? :trash1 and 
 			@current_user.has_role? :trash2
