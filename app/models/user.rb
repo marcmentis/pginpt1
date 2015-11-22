@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :firstinitial, presence: true
 
 
-  def get_jqGrid_obj(params, session_admin3)
+  def get_jqGrid_obj(params)
   	conditions = User.all
     conditions = conditions.where("facility = :facility", {facility: params[:facility]}) if params[:facility]!= '-1'
     conditions = conditions.where("firstname LIKE ?", ''+params[:firstname]+'%') if params[:firstname]!= ''

@@ -6,7 +6,7 @@ class MxAssessmentPolicy
 		@mx_assessments = model
 	end
 
-	def index?
+	def create?
 		@current_user.has_role? :admin3 or 
 		@current_user.has_role? :admin2 or  
 		@current_user.has_role? :bps_crud or

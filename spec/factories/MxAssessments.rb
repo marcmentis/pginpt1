@@ -16,5 +16,19 @@ FactoryGirl.define do
 		pre_date_no_why  {Faker::Lorem.sentences}
 		pre_date {Faker::Date.forward(14)}
 		updated_by {Faker::Name.last_name}
+
+		factory :invalid_mx_assessment do
+			danger_yn nil
+		end
+
+		# patient
+
+		# association :patient, factory: :facility_site_patient
+
+		# trait :match_assessment do
+		# 	patient_id do
+		# 		Patient.find_by(id: "1") || FactoryGirl.create(:patient, id: "1")
+		# 	end
+		# end
 	end
 end

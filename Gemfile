@@ -57,6 +57,7 @@ group :test do
   gem 'database_cleaner'	# makes each spec run with clean test db
   gem 'launchy'		# Opens default browser on demand - show what app rendering - useful with debugging
   gem 'selenium-webdriver'	# for testing JavaScript-based browser interactions with Capybara
+  gem 'rack_session_access'  # for setting session values in capybara/rspec
 end
 
 group :development do

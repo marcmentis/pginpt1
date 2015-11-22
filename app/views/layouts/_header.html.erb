@@ -17,12 +17,11 @@
 				<% if policy(:static_pages).nav_notes? %>			 
 					<a href="#">notes</a>
 				<% end %>
-					<ul> <%#= if policy(MxAssessments).complex_search? %>
+					<ul> 
 						<li>
-							<%= link_to("BioPsychoSocial Assessment", mx_assessments_path) if policy(MxAssessment).index? %>
+							<%= link_to("BioPsychoSocial Assessment", mx_assessments_path) if policy(MxAssessment).create? %>
 
 						</li>
-						<%# end %>
 					</ul>
 				</li>
 				<li class="current">

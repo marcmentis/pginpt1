@@ -12,12 +12,13 @@ class ForSelectsController < ApplicationController
   # GET /for_selects
   # GET /for_selects.json
   def index
+    @for_selects = ForSelect.all
   end
 
   # GET /for_selects_search(.:format) 
   def complex_search
     for_select = ForSelect.new
-    @jqGrid_obj = for_select.get_jqGrid_obj(params, session[:admin3])
+    @jqGrid_obj = for_select.get_jqGrid_obj(params)
 
     authorize ForSelect
     respond_to do |format|
@@ -50,10 +51,18 @@ class ForSelectsController < ApplicationController
   # GET /for_selects/new
   def new
     @for_select = ForSelect.new
+
+    respond_to do |format|
+      format.json {render json: @for_select}
+    end
   end
 
   # GET /for_selects/1/edit
   def edit
+
+    respond_to do |format|
+      format.json {render json: @for_select}
+    end
   end
 
   # POST /for_selects
@@ -90,6 +99,7 @@ class ForSelectsController < ApplicationController
   # DELETE /for_selects/1
   # DELETE /for_selects/1.json
   def destroy
+    authorize @for_select
     @for_select.destroy
     respond_to do |format|
       format.html { redirect_to for_selects_url }

@@ -9,5 +9,13 @@ FactoryGirl.define do
 		middleinitial {Faker::Number.number(1)}
 		updated_by {Faker::Name.last_name}
 
+		factory :invalid_user do
+			firstname nil
+		end
+
+		# factory :Arole do
+		# 	after(:create) { |user| user.add_rle(:Arole)}
+		# end
+
 	end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Role:" do
+describe "Role Model:" do
 	let(:role) {build(:role)}
 	context "Validations:" do 
 		it "has a valid factory" do

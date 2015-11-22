@@ -40,6 +40,7 @@ class MxAssessment < ActiveRecord::Base
 		                  		.where(patients: {site: params[:site]})
 		                 		.where(mx_assessments: {meeting_date: chosen_date})
 		                		.order(lastname: :asc)
+		    # byebug
 		end
 
 		# Get all Patients who do NOT have weekly notes from a given ward and date
@@ -75,7 +76,8 @@ class MxAssessment < ActiveRecord::Base
 			# Do no filtering - allow all notes to be selected
 		else
 			# Create an empty activeRecord object
-			conditions = conditions.where("1=2")
+			# conditions = conditions.where("1=2")
+			conditions - conditions.none
 		end 
 		conditions = conditions.where("facility = :facility", {facility: params[:facility]}) unless params[:facility] == '-1'
 	    conditions = conditions.where("site = :site", {site: params[:site]}) unless params[:site] == '-1'
@@ -113,7 +115,8 @@ class MxAssessment < ActiveRecord::Base
 			# Create an empty activeRecord object
 			# conditions = conditions.where("1=2")
 			conditions = conditions.none
-		end 
+		end
+		# byebug 
 		conditions = conditions.where("facility = :facility", {facility: params[:facility]}) unless params[:facility] == '-1'
 	    conditions = conditions.where("site = :site", {site: params[:site]}) unless params[:site] == '-1'
 	    conditions = conditions.where("patient_id = :pid", {pid: params[:pid]}) unless params[:pid] == '-1'

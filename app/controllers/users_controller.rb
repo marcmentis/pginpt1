@@ -4,13 +4,13 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+    @users = User.all
   end
 
   # GET /users_search.json
   def complex_search
     user = User.new
-    @jqGrid_obj = user.get_jqGrid_obj(params, session[:admin3])
-
+    @jqGrid_obj = user.get_jqGrid_obj(params)
     respond_to do |format|
       format.html
       format.json {render json: @jqGrid_obj }
@@ -25,10 +25,18 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+
+    respond_to do |format|
+      format.json {render json: @user}
+    end
   end
 
   # GET /users/1/edit
   def edit
+
+    respond_to do |format|
+      format.json {render json: @user}
+    end 
   end
 
   # POST /users
@@ -64,6 +72,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    authorize @user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }

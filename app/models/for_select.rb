@@ -8,7 +8,7 @@ class ForSelect < ActiveRecord::Base
 	validates :option_order, presence: true
 	validates :facility, presence: true
 
-	def get_jqGrid_obj(params, session_admin3)
+	def get_jqGrid_obj(params)
 		conditions = ForSelect.all
 	    conditions = conditions.where("facility = :facility", {facility: params[:facility]}) if params[:facility]!= '-1'
 	    conditions = conditions.where("code LIKE ?", ''+params[:code]+'%') if params[:code]!= ''

@@ -11,6 +11,7 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
     authorize Patient
+    @patients = Patient.all
   end
 
   # GET /patients_search
@@ -18,7 +19,8 @@ class PatientsController < ApplicationController
 
     # Get instance of Patient so can run instance method 'get_jqGrid_obj'
     patient = Patient.new
-    @jqGrid_obj = patient.get_jqGrid_obj(params, session[:admin3])
+
+    @jqGrid_obj = patient.get_jqGrid_obj(params)
     
     respond_to do |format|
       format.html
@@ -34,10 +36,18 @@ class PatientsController < ApplicationController
   # GET /patients/new
   def new
     @patient = Patient.new
+
+    respond_to do |format|
+      format.json {render json: @patient}
+    end
   end
 
   # GET /patients/1/edit
   def edit
+
+    respond_to do |format|
+      format.json {render json: @patient}
+    end
   end
 
   # POST /patients

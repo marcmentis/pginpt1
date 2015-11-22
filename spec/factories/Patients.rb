@@ -12,5 +12,14 @@ FactoryGirl.define do
 		dob {Faker::Date.backward(1000)}
 		dod {Faker::Date.backward(14)}
 		updated_by {Faker::Name.last_name}
+
+		factory :invalid_patient do
+			firstname nil
+		end
+
+		factory :facility_site_patient do
+			facility "Facility1"
+			site "Ward1"
+		end
 	end
 end

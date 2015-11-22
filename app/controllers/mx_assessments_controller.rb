@@ -54,7 +54,7 @@ class MxAssessmentsController < ApplicationController
 
     # @pat_data = {pat_demog: pat_demog, doa: doa, pat_assessments: pat_assessments}
     @pat_data = {pat_demog: pat_demog, pat_assessments: pat_assessments}
-  # byebug
+   # byebug
     respond_to do |format|
       format.json {render json: @pat_data}
       format.pdf do
@@ -71,10 +71,10 @@ class MxAssessmentsController < ApplicationController
 
   # GET /mx_assessments
   # GET /mx_assessments.json
-  def index
-    @mx_assessments = MxAssessment.all
-    authorize MxAssessment 
-  end
+  # def index
+  #   authorize MxAssessment
+  #   @mx_assessments = MxAssessment.all    
+  # end
 
   # GET /mx_assessments/1
   # GET /mx_assessments/1.json
@@ -84,15 +84,24 @@ class MxAssessmentsController < ApplicationController
   # GET /mx_assessments/new
   def new
     @mx_assessment = MxAssessment.new
+
+    respond_to do |format|
+      format.json {render json: @mx_assessment}
+    end
   end
 
   # GET /mx_assessments/1/edit
   def edit
+
+    respond_to do |format|
+      format.json {render json: @mx_assessment}
+    end
   end
 
   # POST /mx_assessments
   # POST /mx_assessments.json
   def create
+    authorize MxAssessment
     @mx_assessment = MxAssessment.new(mx_assessment_params)
     # byebug
 

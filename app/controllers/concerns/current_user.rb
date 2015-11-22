@@ -2,7 +2,7 @@ module CurrentUser
 	def current_user
 		# && logic
 			# If session[:authen] = nil then 
-				# Expression returns nil and @_corrent_user = nil
+				# Expression returns nil and @_current_user = nil
 				# Regardless if User.find_by(authen: session) !=nil
 			# If session[:authen] != nil and User.find_by(authen: session) = nil
 				# Expression returns nil

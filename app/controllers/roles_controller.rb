@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-  before_action :set_user, only: [:destroy]
+  # before_action :set_user, only: [:destroy]
 
   # GET /roles/
   def all_roles
@@ -19,17 +19,17 @@ class RolesController < ApplicationController
   end
 
   # DELETE /roles/1.json
-  def destroy
-    @role.destroy
-    respond_to do |format|
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @role.destroy
+  #   respond_to do |format|
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @role = Role.find(params[:id])
-    end
+    # def set_user
+    #   @role = Role.find(params[:id])
+    # end
 
 end
