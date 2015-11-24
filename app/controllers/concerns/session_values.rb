@@ -62,6 +62,7 @@ module SessionValues
 		end
 
 		def rfc_authorized?
+			# byebug
 			request.headers["HTTP_REMOTE_USER"].blank? ? false : true		
 	  	end
 	

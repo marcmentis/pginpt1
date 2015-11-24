@@ -10,6 +10,7 @@ class StaticPagesPolicy < Struct.new(:current_user, :static_pages)
 		current_user.has_role? :nav_trackers
 	end
 
+	# Nothing uses this now. ? use if more than one patient dropdown
 	def nav_patients?
 		current_user.has_role? :admin3 or
 		current_user.has_role? :nav_patients
