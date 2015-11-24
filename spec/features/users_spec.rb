@@ -1,23 +1,29 @@
-# require 'rails_helper'
 
 
-	# feature 'Home Page' do
- #    	# given(:valid_session){{confirmed: 'authen_and_in_db'}}
-    	
-	# 	scenario 'Visit Home Page' do
-	# 		page.set_rack_session(confirmed: 'authen_and_in_db')
-	# 		allow(view).to receive(:policy).and_return double(namv_notes?: true)
-	# 		visit root_path
-	# 		expect(page).to have_content "Inpatient"
-	# 	end
-	# end
+# feature "Signing in" do
+#   background do
+#     User.make(:email => 'user@example.com', :password => 'caplin')
+#   end
 
+#   scenario "Signing in with correct credentials" do
+#     visit '/sessions/new'
+#     within("#session") do
+#       fill_in 'Email', :with => 'user@example.com'
+#       fill_in 'Password', :with => 'caplin'
+#     end
+#     click_button 'Sign in'
+#     expect(page).to have_content 'Success'
+#   end
 
+#   given(:other_user) { User.make(:email => 'other@example.com', :password => 'rous') }
 
-# feature 'User management' do
-# 	scenario "adds a new user" do
-# 		visit users_path
-
-# 		# save_and_open_page
-# 	end
+#   scenario "Signing in as another user" do
+#     visit '/sessions/new'
+#     within("#session") do
+#       fill_in 'Email', :with => other_user.email
+#       fill_in 'Password', :with => other_user.password
+#     end
+#     click_button 'Sign in'
+#     expect(page).to have_content 'Invalid email or password'
+#   end
 # end
