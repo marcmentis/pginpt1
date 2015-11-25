@@ -9,6 +9,6 @@ RSpec.configure do |config|
 	  # end
 
   # Make 'Launchy' display page WITH CSS and JavaScript
-	  # Capybara.asset_host = 'http://localhost:3000'
+	  Capybara.asset_host = 'http://localhost:3000'
 
 end
