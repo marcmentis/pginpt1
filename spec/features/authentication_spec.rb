@@ -18,7 +18,7 @@ feature "FEATURE: Authentication" do
   context "RSA Valid but Application Authentication Invalid" do
     scenario "On open Home page: User_error page:'User has no privileges in this application'" do
       # Can't set 'request.headers["HTTP_REMOTE_USER"]' in feature test
-      # page.driver.browser.header("HTTP_REMOTE_USER", 'notBlank')
+        # Can set for all tests see support/capybara.rb
               
       visit root_path
       # expect(page).to have_content "User has no privileges in this application"

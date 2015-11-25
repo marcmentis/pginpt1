@@ -40,36 +40,28 @@ RSpec.configure do |config|
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
- # FROM EVERYDAYRAILSRSPEC BOOK
-  # change above 'config.use_transactional_fixtures = true' to false
-  # config.before(:suite) do DatabaseCleaner.strategy = :truncation
-  # end
-  # config.before(:each) do DatabaseCleaner.start
-  # end
-  # config.after(:each) do DatabaseCleaner.clean
-  # end
+  # instead of true. (SEE support/database_cleaner.rb)
+  # config.use_transactional_fixtures = true
 
   #HOWEVER EVERYDAYRAILSRSPEC CODE IS DIFFERENT
     # Configure DatabaseCleaner to reset data between tests
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.clean_with :truncation
-    end
+    # config.before(:suite) do
+    #   DatabaseCleaner.strategy = :transaction
+    #   DatabaseCleaner.clean_with :truncation
+    # end
 
-    config.around(:each) do |example|
-      DatabaseCleaner.cleaning do
-        example.run
-      end
-    end
+    # config.around(:each) do |example|
+    #   DatabaseCleaner.cleaning do
+    #     example.run
+    #   end
+    # end
 
-    config.after(:each) do
-      DatabaseCleaner.clean
-    end
+    # config.after(:each) do
+    #   DatabaseCleaner.clean
+    # end
 
   #Simplifying FactoryGirl syntax (i.e., drop 'FactoryGirl')
-  config.include FactoryGirl::Syntax::Methods
+  # config.include FactoryGirl::Syntax::Methods
 
 
 
