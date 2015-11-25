@@ -8,8 +8,9 @@ require 'rspec/rails'
   require 'capybara/rails'
   require 'capybara/rspec'
 # For poltergeist driver - headless Javascript
-require 'capybara/poltergeist'
-Capybara.javascript_driver = :poltergeist
+  require 'capybara/poltergeist'
+  Capybara.javascript_driver = :poltergeist
+# For shoulda matchers
 require 'shoulda/matchers'
 # Add access to rack session - to give session values to capybara in tests
 require "rack_session_access/capybara"
