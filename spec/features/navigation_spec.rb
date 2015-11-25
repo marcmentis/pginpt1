@@ -1,6 +1,6 @@
 
 
-feature "FEATURE: Navigation" do
+feature "FEATURE: Using Main Navigation Menu", js: true do
 	background do
       page.set_rack_session(confirmed: 'authen_and_in_db', authen: 'good_authen')
       @user1 = create(:user, authen: 'good_authen')
@@ -8,12 +8,12 @@ feature "FEATURE: Navigation" do
     end
 
     context "'home' menu item" do
-    	scenario "Visible to user without any privileges" do
+    	scenario "Visible to user without any privileges", js: true do
 	    	# @user1.add_role('admin3')
 	    	visit root_path
 	    	expect(page.find('#layoutNavigation')).to have_content('home')
 	    end
-	    scenario "Visible to user with any privilege" do
+	    scenario "Visible to user with any privilege", js: true do
 	    	@user1.add_role('nav_notes')
 	    	visit root_path
 	    	expect(page.find('#layoutNavigation')).to have_content('home')
@@ -108,63 +108,80 @@ feature "FEATURE: Navigation" do
     end
 
     context "notes - BioPsychoSocial Assessment" do
+    	background do
+    		@user1.add_role('nav_notes')
+    	end
     	scenario "Visible to user with 'bps_crud' privileges" do
 	    	@user1.add_role('bps_crud')
 	    	visit root_path
+	    	click_link('notes')
 	    	expect(page.find('#notesBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
 	    scenario "Visible to user with 'bps_cru' privileges" do
 	    	@user1.add_role('bps_cru')
 	    	visit root_path
+	    	click_link('notes')
 	    	expect(page.find('#notesBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
 	    scenario "Visible to user with 'admin3' privileges" do
 	    	@user1.add_role('admin3')
 	    	visit root_path
+	    	click_link('notes')
 	    	expect(page.find('#notesBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
 	    scenario "Visible to user with 'admin2' privileges" do
 	    	@user1.add_role('admin2')
 	    	visit root_path
+	    	click_link('notes')
 	    	expect(page.find('#notesBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
 	    scenario "Invisible to user without any of above privileges" do
 	    	# @user1 has no privileges
 	    	visit root_path
+	    	click_link('notes')
 	    	expect(page.find('#notesBPSAssessment')).not_to have_content('BioPsychoSocial Assessment')
 	    end
     end
 
     context "tracker - BioPsychoSocial Assessment" do
+    	background do
+    		@user1.add_role('nav_trackers')
+    	end
     	scenario "Visible to user with 'bps_track' privileges" do
 	    	@user1.add_role('bps_track')
 	    	visit root_path
+	    	click_link('trackers')
 	    	expect(page.find('#trackerBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
     	scenario "Visible to user with 'bps_crud' privileges" do
 	    	@user1.add_role('bps_crud')
 	    	visit root_path
+	    	click_link('trackers')
 	    	expect(page.find('#trackerBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
 	    scenario "Visible to user with 'bps_cru' privileges" do
 	    	@user1.add_role('bps_cru')
 	    	visit root_path
+	    	click_link('trackers')
 	    	expect(page.find('#trackerBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
 	    scenario "Visible to user with 'admin3' privileges" do
 	    	@user1.add_role('admin3')
 	    	visit root_path
+	    	click_link('trackers')
 	    	expect(page.find('#trackerBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
 	    scenario "Visible to user with 'admin2' privileges" do
 	    	@user1.add_role('admin2')
 	    	visit root_path
+	    	click_link('trackers')
 	    	expect(page.find('#trackerBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
 
 	    scenario "Invisible to user without any of above privileges" do
 	    	# @user1 has no privileges
 	    	visit root_path
+	    	click_link('trackers')
 	    	expect(page.find('#trackerBPSAssessment')).not_to have_content('BioPsychoSocial Assessment')
 	    end
     end
@@ -173,55 +190,70 @@ feature "FEATURE: Navigation" do
 	    scenario "Visible to user with 'admin3' privileges" do
 	    	@user1.add_role('admin3')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).to have_content('users')
 	    end
 	    scenario "Visible to user with 'admin2' privileges" do
 	    	@user1.add_role('admin2')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).to have_content('users')
 	    end
 	    scenario "Visible to user with 'admin1' privileges" do
 	    	@user1.add_role('admin1')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).to have_content('users')
 	    end
 	    scenario "Visible to user with 'for_select' privileges" do
 	    	@user1.add_role('for_select')
+	    	@user1.add_role('nav_admin')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).to have_content('users')
 	    end
 
 	    scenario "Invisible to user without any of above privileges" do
 	    	# @user1 has no privileges
+	    	@user1.add_role('nav_admin')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).not_to have_content('users')
 	    end
     end
+
     context "admin - for_select" do
 	    scenario "Visible to user with 'admin3' privileges" do
 	    	@user1.add_role('admin3')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).to have_content('for_select')
 	    end
 	    scenario "Visible to user with 'admin2' privileges" do
 	    	@user1.add_role('admin2')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).to have_content('for_select')
 	    end
 	    scenario "Visible to user with 'admin1' privileges" do
 	    	@user1.add_role('admin1')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).to have_content('for_select')
 	    end
 	    scenario "Visible to user with 'for_select' privileges" do
 	    	@user1.add_role('for_select')
+	    	@user1.add_role('nav_admin')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).to have_content('for_select')
 	    end
 
 	    scenario "Invisible to user without any of above privileges" do
 	    	# @user1 has no privileges
+	    	@user1.add_role('nav_admin')
 	    	visit root_path
+	    	click_link('admin')
 	    	expect(page.find('#layoutNavigation')).not_to have_content('for_select')
 	    end
     end

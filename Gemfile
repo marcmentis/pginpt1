@@ -58,6 +58,7 @@ group :test do
   gem 'launchy'		# Opens default browser on demand - show what app rendering - useful with debugging
   gem 'selenium-webdriver'	# for testing JavaScript-based browser interactions with Capybara
   gem 'rack_session_access'  # for setting session values in capybara/rspec
+  gem 'poltergeist'   # for headless RSpec Features (uses PhantomJS -a scripted headless browser)
 end
 
 group :development do

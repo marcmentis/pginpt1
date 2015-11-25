@@ -2,7 +2,7 @@
 
 feature "FEATURE: Authentication" do
   # No need to use 'js:true' as authentication all before javascript
-  context "RSA Invalid" do
+  context "RSA Invalid", js: true do
     scenario "On open Home page: User_error page:'... not passed RSA authentication'" do
       visit root_path
       # save_and_open_page
@@ -19,7 +19,7 @@ feature "FEATURE: Authentication" do
     scenario "On open Home page: User_error page:'User has no privileges in this application'" do
       # Can't set 'request.headers["HTTP_REMOTE_USER"]' in feature test
         # Can set for all tests see support/capybara.rb
-              
+      # page.driver.add_header("HTTP_REMOTE_USER", 'NotBlank')      
       visit root_path
       # expect(page).to have_content "User has no privileges in this application"
       expect(page).to have_content "User has not passed RSA authentication"
