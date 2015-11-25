@@ -7,6 +7,9 @@ require 'rspec/rails'
 # THis is from jnicklas/capybara
   require 'capybara/rails'
   require 'capybara/rspec'
+# For poltergeist driver - headless Javascript
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 require 'shoulda/matchers'
 # Add access to rack session - to give session values to capybara in tests
 require "rack_session_access/capybara"
@@ -41,28 +44,8 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true. (SEE support/database_cleaner.rb)
+
   # config.use_transactional_fixtures = true
-
-  #HOWEVER EVERYDAYRAILSRSPEC CODE IS DIFFERENT
-    # Configure DatabaseCleaner to reset data between tests
-    # config.before(:suite) do
-    #   DatabaseCleaner.strategy = :transaction
-    #   DatabaseCleaner.clean_with :truncation
-    # end
-
-    # config.around(:each) do |example|
-    #   DatabaseCleaner.cleaning do
-    #     example.run
-    #   end
-    # end
-
-    # config.after(:each) do
-    #   DatabaseCleaner.clean
-    # end
-
-  #Simplifying FactoryGirl syntax (i.e., drop 'FactoryGirl')
-  # config.include FactoryGirl::Syntax::Methods
-
 
 
   # RSpec Rails can automatically mix in different behaviours to your tests

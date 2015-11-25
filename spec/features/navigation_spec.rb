@@ -8,12 +8,12 @@ feature "FEATURE: Navigation" do
     end
 
     context "'home' menu item" do
-    	scenario "Visible to user without any privileges" do
+    	scenario "Visible to user without any privileges", js: true do
 	    	# @user1.add_role('admin3')
 	    	visit root_path
 	    	expect(page.find('#layoutNavigation')).to have_content('home')
 	    end
-	    scenario "Visible to user with any privilege" do
+	    scenario "Visible to user with any privilege", js: true do
 	    	@user1.add_role('nav_notes')
 	    	visit root_path
 	    	expect(page.find('#layoutNavigation')).to have_content('home')
@@ -111,6 +111,7 @@ feature "FEATURE: Navigation" do
     	scenario "Visible to user with 'bps_crud' privileges" do
 	    	@user1.add_role('bps_crud')
 	    	visit root_path
+	    	# expect(page).to have_css('#notesBPSAssessment')
 	    	expect(page.find('#notesBPSAssessment')).to have_content('BioPsychoSocial Assessment')
 	    end
 	    scenario "Visible to user with 'bps_cru' privileges" do
