@@ -8,12 +8,12 @@ feature "FEATURE: Using Main Navigation Menu", js: true do
     end
 
     context "'home' menu item" do
-    	scenario "Visible to user without any privileges", js: true do
+    	scenario "Visible to user without any privileges" do
 	    	# @user1.add_role('admin3')
 	    	visit root_path
 	    	expect(page.find('#layoutNavigation')).to have_content('home')
 	    end
-	    scenario "Visible to user with any privilege", js: true do
+	    scenario "Visible to user with any privilege" do
 	    	@user1.add_role('nav_notes')
 	    	visit root_path
 	    	expect(page.find('#layoutNavigation')).to have_content('home')
