@@ -152,7 +152,7 @@
 		//TO DO
 		  //If admin3  Facility must be -1 "All Facilities"
 		  //If not admin3, must show facility user belongs to
-			if ($('#session-admin3').val() == 'true') {
+			if ($('#all-facilities').val() == 'true') {
 				$('#slt_user_Rt_facility').val('-1');
 			}
 	};

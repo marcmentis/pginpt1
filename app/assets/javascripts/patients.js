@@ -47,7 +47,7 @@ if ($('body.patients').length) {
 
 	// SELECTS
 		//selects
-		if ($('#session-admin3').val() !== 'true') {
+		if ($('#all-facilities').val() !== 'true') {
 			$('#slt_S_facility, #slt_F_facility').attr("disabled", true);
 		};
 
@@ -134,7 +134,7 @@ if ($('body.patients').length) {
 
 	
 	// RUN ON OPENING
-	if ($('#session-admin3').val() == 'true') {
+	if ($('#all-facilities').val() == 'true') {
 		facility = '-1';
 		//Make sure 'facility' and ward selects are populated before running 'complex_search1'
 		$('#slt_S_facility').mjm_addOptions('facility', {

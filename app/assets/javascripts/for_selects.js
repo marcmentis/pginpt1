@@ -39,7 +39,7 @@ if($('body.for_selects').length) {
 		// $('[id^=dt]').datepicker().css({'width':'7em'});
 
 	//SELECTS
-		if ($('#session-admin3').val() !== 'true') {
+		if ($('#all-facilities').val() !== 'true') {
 			$('#slt_for_selects_S_facility, #slt_for_select_Rt_facility')
 					.attr("disabled", true);
 		};
@@ -137,7 +137,7 @@ if($('body.for_selects').length) {
 		});
 
 	// RUN ON OPENING
-	if ($('#session-admin3').val() == 'true') {
+	if ($('#all-facilities').val() == 'true') {
 		facility = '-1';
 	} else { 
 		facility = $('#session-facility').val();
@@ -148,7 +148,7 @@ if($('body.for_selects').length) {
 											complete: function(){
 												$('#slt_for_selects_S_facility').val(''+facility+'');
 												for_select_complex_search1();
-												// if ($('#session-admin3').val() !== 'true'){
+												// if ($('#all-facilities').val() !== 'true'){
 												// 	$('#slt_for_selects_S_facility').attr("disabled", true)
 												// };
 											}
@@ -324,7 +324,7 @@ if($('body.for_selects').length) {
 	function for_select_clearFields(){
 		$('#ftx_for_select_Rt_code, #ftx_for_select_Rt_value, #ftx_for_select_Rt_text, #ftx_for_select_Rt_grouper, #ftx_for_select_option_order').val('');
 		$('#ForSelectAsideRtErrors').html('').hide();
-		if ($('#session-admin3').val() == 'true') {
+		if ($('#all-facilities').val() == 'true') {
 			$('#slt_for_select_Rt_facility').val('-1');
 		}else{
 			facility = $('#session-facility').val();

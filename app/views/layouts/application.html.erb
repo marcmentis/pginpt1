@@ -10,7 +10,11 @@
 </head>
 <body class="<%= params[:controller] %>">
 	<%= render 'layouts/header.html.erb' %>
-	<input id="session-admin3" type="text" value="<%= session[:admin3] %>" />
+	<% if policy(:static_pages).all_facilities? %>
+		<input id="all-facilities" type="text" value="true" />
+	<% else %>
+		<input id="all-facilities" type="text" value="false" />
+	<% end %>
 	<input id="session-facility" value="<%= session[:facility] %>" />
 	<input id="session-authen" value="<%= session[:authen] %>" />
 	<input id="session-username" value="<%= session[:user_name] %>" />
@@ -30,7 +34,7 @@
 
 			$('#divFooterPageWrapper').addClass('pad_3_sides')
 			$('#layoutFooter').addClass('highest_level_blue_background')
-			$('[id^=session]').hide()
+			$('[id^=session], #all-facilities').hide()
 			$('#inpatient')
 				.css({'display': 'block'})
 			

@@ -19,7 +19,6 @@ RSpec.describe MxAssessmentsController, :type => :controller do
     confirmed: 'authen_and_in_db',
     # authen: 'pgmdmjm',
     # facility: '0013',
-    # admin3: true,
     # user_name: 'mentis'
     } }
 

@@ -70,7 +70,7 @@ if($('body.users').length) {
 		});
 
 	//SELECTS
-		if ($('#session-admin3').val() !== 'true'){
+		if ($('#all-facilities').val() !== 'true'){
 			$('#slt_user_S_facility, #slt_user_Rt_facility').prop("disabled", true)
 		};
 		$('#slt_User_roles').mjm_addOptions('Roles', {firstLine: 'add priv'});
@@ -178,7 +178,7 @@ if($('body.users').length) {
 
 
 	// RUN ON OPENING
-	if ($('#session-admin3').val() == 'true') {
+	if ($('#all-facilities').val() == 'true') {
 		facility = '-1';
 	} else { 
 		facility = $('#session-facility').val();

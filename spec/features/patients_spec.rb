@@ -1,5 +1,6 @@
 feature "FEATURE:'Patients' page", js: true do
 	background do
+		# For authentication, authorization
 		page.set_rack_session(confirmed: 'authen_and_in_db', authen: 'good_authen', admin3: true, facility: '0013', user_name: 'First Last')
 		# page.set_rack_session(confirmed: 'authen_and_in_db', authen: 'good_authen')
 	end
@@ -23,9 +24,14 @@ feature "FEATURE:'Patients' page", js: true do
 		end
 
 		scenario "can populate 'Ward' select after clicking in 'Facility'" do
-			# See if can find a "RSpec selector for the select"
-			page.select('Pilgrim', :from =>'slt_S_facility')			
+			# Works with Selenium
+			page.select('Pilgrim', :from =>'slt_S_facility')
 			expect(page).to have_select('slt_S_ward', :with_options => ['81/101'])
+			# For Poltergeist
+			
+			# find('#slt_S_facility').find('option[value = "0013"]').select_option
+			# page.find_by_id('slt_S_facility').find("option[value='0013']").select_option
+			# select_by_value('slt_S_facility', '0013') #Requires helper method http://stackoverflow.com/questions/12265174/select-an-option-by-value-not-text-in-capybara
 		end
 
 		# scenario "can open 'new' patient form" do

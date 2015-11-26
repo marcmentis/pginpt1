@@ -23,4 +23,9 @@ class StaticPagesPolicy < Struct.new(:current_user, :static_pages)
 		current_user.has_role? :nav_admin
 	end
 
+	def all_facilities?
+		current_user.has_role? :admin3 or
+		current_user.has_role? :all_fac
+	end
+
 end
