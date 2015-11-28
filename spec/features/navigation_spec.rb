@@ -1,6 +1,6 @@
 
 
-feature "FEATURE: Using Main Navigation Menu", js: true do
+feature "FEATURE: Using Main Navigation Menu", js: true, a_feature: true do
 	background do
       page.set_rack_session(confirmed: 'authen_and_in_db', authen: 'good_authen')
       @user1 = create(:user, authen: 'good_authen')

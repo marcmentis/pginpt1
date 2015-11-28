@@ -69,7 +69,6 @@ function refreshgrid(url){
 				// set_id(id);  //set the ID variable
 				$('#Pat_ID').val(id);  //set the ID variable
 				data_for_params = {patient: {id: id}}
-
 				$.ajax({ 
 						  // url: '/inpatient_show',
 						  url: '/patients/'+id+'',

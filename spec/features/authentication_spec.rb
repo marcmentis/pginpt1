@@ -1,6 +1,6 @@
 
 
-feature "FEATURE: Authentication" do
+feature "FEATURE: Authentication", a_feature: true do
   # No need to use 'js:true' as authentication all before javascript
   context "RSA Invalid", js: true do
     scenario "On open Home page: User_error page:'... not passed RSA authentication'" do
