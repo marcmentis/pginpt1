@@ -11,8 +11,11 @@ feature "FEATURE:'Patients' page", js: true do
 			create(:for_select, code: 'facility', facility: '9999', value: '0013', text: 'Pilgrim' )
 			create(:for_select, code: 'facility', facility: '9999', value: '0025', text: 'SCPS')
 			create(:for_select, code: 'ward', facility: '0013', value: '81/101', text: '81/101')
-			create(:patient, lastname: 'Apatient', facility: '0013', site: '81/101')
-			create(:patient, lastname: 'Bpatient', facility: '0013', site: '81/101')
+			create(:patient, lastname: 'Apatient', facility: '0013', site: '81/101', id: '1111')
+			create(:patient, lastname: 'Bpatient', facility: '0013', site: '81/101', id: '2222')
+			create(:patient, lastname: 'Apatient', facility: '0025', site: 'a_unit', id: '3333')
+			create(:patient, lastname: 'Bpatient', facility: '0025', site: 'a_unit', id: '4444')
+			
 			visit root_path
 			click_link('patients')
 		end
@@ -28,17 +31,27 @@ feature "FEATURE:'Patients' page", js: true do
 		end
 
 		context "Filtering 'Patients grid'" do
-			scenario "'lastname' filters with 'like' method" do
+			scenario "successfully 'like' filter with a single attribute" do
 				fill_in('ftx_S_lastname', with: 'Apatient')
 				page.execute_script("$('form#fPatientSearch').submit()")
 				expect(page).to have_content('Apatient')
 				expect(page).not_to have_content('Bpatient')
 				# save_and_open_page
 			end
+			scenario "successfull 'and' filter with multiple attributes" do			
+				fill_in('ftx_S_lastname', with: 'A')
+				page.select('SCPS', :from => 'slt_S_facility')
+				expect(page).to have_content('Apatient')
+				expect(page).to have_content('a_unit')
+				expect(page).not_to have_content('Bpatient')
+				expect(page).not_to have_content('0013')
+				# save_and_open_page
+			end
 		end
 
 		context "Adding New Patient" do
 			background do
+				# page.find(:css, ".ui-pg-div").click()
 				page.execute_script("
 					facility = $('#slt_F_facility').val();
 					clearFields();
@@ -52,6 +65,7 @@ feature "FEATURE:'Patients' page", js: true do
 					expect(page).to have_button('New')
 				end
 			end
+
 			scenario "Correctly filling all validated fields creates new Paient" do
 				within("#fPatientAsideRt") do
 						fill_in('txt_Pat_firstname', with: 'Joseph')
@@ -68,15 +82,106 @@ feature "FEATURE:'Patients' page", js: true do
 					# Will only be in this container if successfully added to database
 					# And then found and entered into grid
 					expect(page).to have_content('Joseph')
-				end
-				
-				
+				end		
 			end
+
 			scenario "Failing to fill all validated fields raises client-side error" do
 				within("#fPatientAsideRt") do
 					fill_in('txt_Pat_firstname', with: 'Firstname')
 					click_button('New')
 					expect(page).to have_content('Please enter Last Name')
+					# save_and_open_page
+				end
+			end
+		end
+
+		context "Editing existing Patient" do
+			background do
+				# clicks jqGrid row with id=1111
+				page.execute_script("$('#1111').click()")
+
+			# page.execute_script("
+			# 	id = 1111
+			# 	$('#Pat_ID').val(id);  //set the ID variable
+			# 	data_for_params = {patient: {id: id}}
+
+			# 	$.ajax({ 
+			# 			  // url: '/inpatient_show',
+			# 			  url: '/patients/'+id+'',
+			# 			  data: data_for_params,
+			# 			  //type: 'POST',
+			# 			  type: 'GET',
+			# 			  cache: false,
+			# 			  dataType: 'json'
+			# 		}).done(function(data){
+			# 			clearFields();
+			# 			$('#bPatientSubmit').attr('value','Edit');
+			# 			$('#divPatientAsideRt, #bPatientSubmit, #bPatientBack').show();
+			# 			$('#id').val(data.id);
+			# 			$('#txt_Pat_firstname').val(data.firstname);
+			# 			$('#txt_Pat_lastname').val(data.lastname);
+			# 			if ($('#all-facilities').val() !== 'true'){
+			# 				$('#txt_Pat_lastname').prop('disabled', true)
+			# 									.css({'background-color': '#E0E0E0'})
+			# 			};
+			# 			$('#txt_Pat_number').val(data.identifier);
+			# 			$('#slt_F_facility').val(data.facility);	
+			# 			if ($('#all-facilities').val() == 'true') {
+			# 				// IF ADMIN-3 - need to first populate slt_F_ward as table can include any facililty
+			# 				$('#slt_F_ward').mjm_addOptions('ward', {
+			# 					firstLine: 'All Wards', 
+			# 					facility: data.facility,
+			# 					complete: function(){
+			# 						$('#slt_F_ward').val(data.site);
+			# 				}
+			# 			});
+			# 			}else {
+			# 				//If not ADMIN-3, can populate slt_F_ward with session-facility in begining and so
+			# 					//just choose the ward here.
+			# 				$('#slt_F_ward').val(data.site);	
+			# 			};
+			# 			// $('#dt_Pat_DOA').val(data.doa)
+			# 			$('#dt_Pat_DOA').val(moment(data.doa,'YYYY-MM-DD').format('YYYY-MM-DD'));
+			# 			$('#dt_Pat_DOB').val(moment(data.dob, 'YYYY-MM-DD').format('YYYY-MM-DD'));
+			# 			$('#dt_Pat_DOD').val(moment(data.dod, 'YYYY-MM-DD').format('YYYY-MM-DD'));
+								  
+			# 		}).fail(function(){
+			# 			alert('Error in: /inpatient');
+			# 		});
+			# 	")
+			
+			end
+			scenario "Edit Patient Form appears to Right of Select/Grid" do				
+				within('#divPatientAsideRt') do
+					expect(page).to have_content('Patient Data')
+					expect(page).to have_button('Edit')
+				end
+			end
+
+			# scenario "Correctly filling all validated fields edits an existing Paient" do
+			# 	within("#fPatientAsideRt") do
+			# 			fill_in('txt_Pat_firstname', with: 'Joseph')
+			# 			fill_in('txt_Pat_lastname', with: 'Soap')
+			# 			fill_in('txt_Pat_number', with: '12345')
+			# 			# page.select('Pilgrim', :from =>'slt_F_facility')
+			# 			# page.select('81/101', :from =>'slt_F_ward')
+			# 			fill_in('dt_Pat_DOA', with: '2015-11-10')
+			# 			click_button('Edit')
+			# 			expect(page).not_to have_content('Please')
+			# 			# save_and_open_page
+			# 		end
+			# 	within("#divGrid") do
+			# 		# Will only be in this container if successfully added to database
+			# 		# And then found and entered into grid
+			# 		expect(page).to have_content('Joseph')
+			# 	end		
+			# end
+
+			scenario "Failing to fill all validated fields raises client-side error" do
+				within("#fPatientAsideRt") do
+					fill_in('txt_Pat_firstname', with: nil)
+					click_button('Edit')
+					expect(page).to have_content('Please enter First Name')
 					# save_and_open_page
 				end
 			end
