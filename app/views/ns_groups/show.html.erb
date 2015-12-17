@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @ns_group.duration %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ns_group.name %>
+</p>
+
+<p>
+  <strong>Leader:</strong>
+  <%= @ns_group.leader %>
+</p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @ns_group.site %>
+</p>
+
+<%= link_to 'Edit', edit_ns_group_path(@ns_group) %> |
+<%= link_to 'Back', ns_groups_path %>

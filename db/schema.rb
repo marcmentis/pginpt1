@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720175158) do
+ActiveRecord::Schema.define(version: 20151217173716) do
 
   create_table "for_selects", force: :cascade do |t|
     t.string   "code"
@@ -46,6 +46,28 @@ ActiveRecord::Schema.define(version: 20150720175158) do
     t.datetime "updated_at"
   end
 
+  create_table "ns_groups", force: :cascade do |t|
+    t.string   "duration"
+    t.string   "groupname"
+    t.string   "leader"
+    t.string   "groupsite"
+    t.string   "facility"
+    t.string   "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ns_groups", ["facility", "groupname"], name: "facility-groupname"
+  add_index "ns_groups", ["facility"], name: "index_ns_groups_on_facility"
+
+  create_table "ns_groups_patients", id: false, force: :cascade do |t|
+    t.integer "ns_group_id", precision: 38, null: false
+    t.integer "patient_id",  precision: 38, null: false
+  end
+
+  add_index "ns_groups_patients", ["ns_group_id", "patient_id"], name: "ns-patient-id"
+  add_index "ns_groups_patients", ["patient_id", "ns_group_id"], name: "patient-ns-id"
+
   create_table "patients", force: :cascade do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -66,6 +88,14 @@ ActiveRecord::Schema.define(version: 20150720175158) do
   add_index "patients", ["identifier"], name: "index_patients_on_identifier"
   add_index "patients", ["lastname"], name: "index_patients_on_lastname"
   add_index "patients", ["site"], name: "index_patients_on_site"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "price",       precision: 38
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ns_groups
   get 'static_pages/home'
   get "widgets" => 'widgets#index'
 
