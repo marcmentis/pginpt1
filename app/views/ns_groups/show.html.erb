@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @ns_group.name %>
+  <strong>GroupName:</strong>
+  <%= @ns_group.groupname %>
 </p>
 
 <p>
@@ -16,8 +16,16 @@
 </p>
 
 <p>
-  <strong>Site:</strong>
-  <%= @ns_group.site %>
+  <strong>GroupSite:</strong>
+  <%= @ns_group.groupsite %>
+</p>
+<p>
+  <strong>Facility:</strong>
+  <%= @ns_group.facility %>
+</p>
+<p>
+  <strong>Updated-By:</strong>
+  <%= @ns_group.updated_by %>
 </p>
 
 <%= link_to 'Edit', edit_ns_group_path(@ns_group) %> |

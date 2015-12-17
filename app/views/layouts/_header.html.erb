@@ -22,6 +22,10 @@
 							<%= link_to("BioPsychoSocial Assessment", mx_assessments_path) if policy(MxAssessment).create? %>
 
 						</li>
+						<li id="notesNsGroups">
+							<%= link_to("NonScheduled Groups", ns_groups_path) if policy(NsGroup).create?
+							%>
+						</li>
 					</ul>
 				</li>
 				<li class="current">

@@ -54,6 +54,9 @@ describe "Patient Model:" do
 		it " 'has_many' mx_assessments" do
 			expect(patient).to have_many :mx_assessments
 		end
+		it " 'has_and_belongs_to_many' (many-to-many with) ns_groups " do
+			expect(patient).to have_and_belong_to_many :ns_groups
+		end
 	end
 
 	context "jqGrid OBJECT ('complex_search' populates jqGrid tables)" do

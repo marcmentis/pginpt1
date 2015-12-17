@@ -69,6 +69,6 @@ class NsGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ns_group_params
-      params.require(:ns_group).permit(:duration, :name, :leader, :site)
+      params.require(:ns_group).permit(:duration, :groupname, :leader, :groupsite, :facility, :updated_by)
     end
 end
