@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :ns_groups
   get 'static_pages/home'
   get "widgets" => 'widgets#index'
 
@@ -30,6 +29,8 @@ Rails.application.routes.draw do
   get '/mxa_tracker_search_all/' => 'mxa_tracker#complex_search_all', as: :mxa_tracker_complex_search_all
   get '/mxa_tracker_get_reasons/:id' => 'mxa_tracker#get_reasons', as: :get_reasons
 
+  resources :ns_groups
+  get '/ns_groups_search' => 'ns_groups#complex_search', as: :complex_search_ns_groups
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

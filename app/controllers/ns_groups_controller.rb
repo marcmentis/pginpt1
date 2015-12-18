@@ -7,6 +7,19 @@ class NsGroupsController < ApplicationController
     @ns_groups = NsGroup.all
   end
 
+  # GET /ns_groups_search
+  def complex_search
+    
+    # Get instance of NsGroup so can run instance method 'get_jqGrid_obj'
+    ns_group = NsGroup.new
+    @jqGrid_obj = ns_group.get_jqGrid_obj(params)
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @jqGrid_obj}
+    end
+  end
+
   # GET /ns_groups/1
   # GET /ns_groups/1.json
   def show

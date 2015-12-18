@@ -20,6 +20,7 @@ class PatientsController < ApplicationController
     # Get instance of Patient so can run instance method 'get_jqGrid_obj'
     patient = Patient.new
 
+
     @jqGrid_obj = patient.get_jqGrid_obj(params)
     
     respond_to do |format|

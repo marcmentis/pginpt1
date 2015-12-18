@@ -1,37 +1,91 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Ns Groups</h1>
+<div id="divNsGroupPageWrapper">
+<div id="divNsGroupPageInnerWrapper" class="nsgroups_index"> <!-- class-media -->
 
-<table>
-  <thead>
-    <tr>
-      <th>Duration</th>
-      <th>GroupName</th>
-      <th>Leader</th>
-      <th>GroupSite</th>
-      <th>Facility</th>
-      <th>Updated_BY</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="grid">
 
-  <tbody>
-    <% @ns_groups.each do |ns_group| %>
+  <div class="col-11-20" >  <!-- style="background:red" -->
+    <div id="divNsGrpTitle">
+      Notes for Non-Scheduled Groups
+    </div>
+  </div>
+
+  <div class="col-9-20"> <!-- style="background:green" -->
+    <form id="fNsGrpDate">
+      <div>
+        <h2>Set Up a Date and Group
+          <input id="dt_NsGrp_g" type="text" />
+        </h2>
+      </div>
+    </form>
+
+    <div id="divSpacerDateSearch"></div>
+    <div id="divSearchAndGrid">
+      <form id="fNsGrpSearch">
+        <div id="NsGrpSearchTitle"><h2>Group Search Criteria</h2></div>
+        <div class="grid">
+          <div class="col-1-2">
+            <div >
+              <label>Group</label>
+              <input id="ftx_S_groupname" type="text" />
+            </div>
+          </div>
+          <div class="col-1-2">
+            <div >
+              <label>Leader</label>
+              <input id="ftx_S_leader" type="text" />
+            </div>
+          </div>
+        </div>
+        <input id="btnSubmit" type="submit" value="Search" />
+      </form>
+      <div id="divGrid"></div>
+    </div>
+    
+  </div>
+ 
+</div> <!-- <div class="grid"> Primary grid for whole page -->
+
+</div> <!-- <div id="divNsGroupPageInnerWrapper"> -->
+</div> <!-- <div id="divNsGroupPageWrapper"> -->
+
+
+
+<!-- Original
+  <p id="notice"><%= notice %></p>
+
+  <h1>Listing Ns Groups</h1>
+
+  <table>
+    <thead>
       <tr>
-        <td><%= ns_group.duration %></td>
-        <td><%= ns_group.groupname %></td>
-        <td><%= ns_group.leader %></td>
-        <td><%= ns_group.groupsite %></td>
-        <td><%= ns_group.facility %></td>
-        <td><%= ns_group.updated_by %></td>
-        <td><%= link_to 'Show', ns_group %></td>
-        <td><%= link_to 'Edit', edit_ns_group_path(ns_group) %></td>
-        <td><%= link_to 'Destroy', ns_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Duration</th>
+        <th>GroupName</th>
+        <th>Leader</th>
+        <th>GroupSite</th>
+        <th>Facility</th>
+        <th>Updated_BY</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @ns_groups.each do |ns_group| %>
+        <tr>
+          <td><%= ns_group.duration %></td>
+          <td><%= ns_group.groupname %></td>
+          <td><%= ns_group.leader %></td>
+          <td><%= ns_group.groupsite %></td>
+          <td><%= ns_group.facility %></td>
+          <td><%= ns_group.updated_by %></td>
+          <td><%= link_to 'Show', ns_group %></td>
+          <td><%= link_to 'Edit', edit_ns_group_path(ns_group) %></td>
+          <td><%= link_to 'Destroy', ns_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Ns group', new_ns_group_path %>
+  <br>
+
+  <%= link_to 'New Ns group', new_ns_group_path %> -->
