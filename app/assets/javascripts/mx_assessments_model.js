@@ -254,6 +254,7 @@
 			var pre_date_no_why = pat_assessments[i].pre_date_no_why
 			var pre_date = moment(pat_assessments[i].pre_date, "YYYY-MM-DD").format('YYYY-MM-DD')
 
+
 			
 
 			//Create and populate past Mx Assessments
@@ -265,15 +266,15 @@
 
 			if (dangerYesNo == 'Y') {
 				text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
-					if (drugs_last_changed == '0-8Weeks') {
+					if (drugs_last_changed == '0-4Weeks') {
 						text +='\n'+drugs_change_why+'';
-					}else if (drugs_last_changed == 'Gt8Weeks') {
+					}else if (drugs_last_changed == 'Gt4Weeks') {
 						text +='\n'+drugs_not_why+'';
 					};
 				text +='\n   PSYCHOSOCIAL LAST CHANGED: '+psychsoc_last_changed+'';
-					if (psychsoc_last_changed == '0-3Months') {
+					if (psychsoc_last_changed == '0-2Months') {
 						text +='\n'+psychsoc_change_why+'';
-					}else if (psychsoc_last_changed == 'Gt3Months') {
+					}else if (psychsoc_last_changed == 'Gt2Months') {
 						text +='\n'+psychsoc_not_why+'';
 					};
 			}else if (dangerYesNo == 'N') {
@@ -344,16 +345,16 @@
 			// $('#rd_MxA_danger_yes').attr('checked',true);
 			$('#slt_MxA_danger_yn').val('Y')
 				$('#slt_Mxa_drugsChanged').val(drugs_last_changed);
-				if (drugs_last_changed == '0-8Weeks') {					
+				if (drugs_last_changed == '0-4Weeks') {					
 					$('#txa_MxA_drugWhyChange').val(drugs_change_why);
-				}else if (drugs_last_changed == 'Gt8Weeks') {
+				}else if (drugs_last_changed == 'Gt4Weeks') {
 					$('#txa_MxA_drugNoChange').val(drugs_not_why);
 				};
 
 				$('#slt_Mxa_groupChanged').val(psychsoc_last_changed);
-			 	if (psychsoc_last_changed == '0-3Months') {
+			 	if (psychsoc_last_changed == '0-2Months') {
 					$('#txa_MxA_groupWhyChange').val(psychsoc_change_why);
-				}else if (psychsoc_last_changed == 'Gt3Months') {
+				}else if (psychsoc_last_changed == 'Gt2Months') {
 					$('#txa_MxA_groupNoChange').val(psychsoc_not_why);
 				};
 
@@ -405,17 +406,17 @@
 				//Dangerousness
 				if (dangerYesNo == 'Y') {
 						$('#div_MxA_dangerYes_drug').show();
-						if (drugs_last_changed == '0-8Weeks') {					
+						if (drugs_last_changed == '0-4Weeks') {					
 							$('#div_MxA_dangerYes_drugYes').show();
-						}else if (drugs_last_changed == 'Gt8Weeks') {
+						}else if (drugs_last_changed == 'Gt4Weeks') {
 							$('#div_MxA_dangerYes_drugNo').show();
 						};
 
 						$('#slt_Mxa_groupChanged').val(psychsoc_last_changed);
 						$('#div_MxA_dangerYes_group').show();
-					 	if (psychsoc_last_changed == '0-3Months') {
+					 	if (psychsoc_last_changed == '0-2Months') {
 							$('#div_MxA_dangerYes_groupYes').show();
-						}else if (psychsoc_last_changed == 'Gt3Months') {
+						}else if (psychsoc_last_changed == 'Gt2Months') {
 							$('#div_MxA_dangerYes_groupNo').show();
 						};
 

@@ -6,6 +6,7 @@ FactoryGirl.define do
 		grouper {Faker::Lorem.word}
 		option_order {Faker::Number.number(1)}
 		facility {Faker::Name.name}
+		id {Faker::Number.number(4)}
 
 		factory :invalid_for_select do
 			code nil

@@ -50,24 +50,24 @@ class MxaTracker3Pdf < Prawn::Document
 			text 'MUST REMAIN HOSPITALIZED (even if d/c disposition available): '+a.danger_yn+''
 
 			if a.danger_yn == 'Y'
-				if a.drugs_last_changed == '0-8Weeks' && @search == 'MedChange'
+				if a.drugs_last_changed == '0-4Weeks' && @search == 'MedChange'
 					text 'Meds Last Changed: '+a.drugs_last_changed+'', style: :bold
 						span(span_width, :position => :center) do
 						text ''+a.drugs_change_why+''
 					end
-				elsif a.drugs_last_changed == 'Gt8Weeks' && @search == 'MedNoChange'
+				elsif a.drugs_last_changed == 'Gt4Weeks' && @search == 'MedNoChange'
 					text 'Meds Last Changed: '+a.drugs_last_changed+'', style: :bold
 					span(span_width, :position => :center) do
 						text a.drugs_not_why
 					end
 				end
 
-				if a.psychsoc_last_changed == '0-3Months' && @search == 'GroupChange'
+				if a.psychsoc_last_changed == '0-2Months' && @search == 'GroupChange'
 					text 'Psychosocial last changed: '+a.psychsoc_last_changed+'', style: :bold
 						span(span_width, :position => :center) do
 						text ''+a.psychsoc_change_why+''
 					end
-				elsif a.drugs_last_changed == 'Gt8Weeks' && @search == 'GroupNoChange'
+				elsif a.psychsoc_last_changed == 'Gt2Months' && @search == 'GroupNoChange'
 					text 'Psychosocial last changed: '+a.psychsoc_last_changed+'', style: :bold
 					span(span_width, :position => :center) do
 						text a.psychsoc_not_why

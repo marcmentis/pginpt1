@@ -51,22 +51,22 @@ class MxaTracker2Pdf < Prawn::Document
 
 			if a.danger_yn == 'Y'
 				text 'Meds Last Changed: '+a.drugs_last_changed+'', style: :bold
-				if a.drugs_last_changed == '0-8Weeks'
+				if a.drugs_last_changed == '0-4Weeks'
 						span(span_width, :position => :center) do
 						text ''+a.drugs_change_why+''
 					end
-				elsif a.drugs_last_changed == 'Gt8Weeks'
+				elsif a.drugs_last_changed == 'Gt4Weeks'
 					span(span_width, :position => :center) do
 						text a.drugs_not_why
 					end
 				end
 				move_down 3
 				text 'Psychosocial last changed: '+a.psychsoc_last_changed+'', style: :bold
-				if a.psychsoc_last_changed == '0-3Months'
+				if a.psychsoc_last_changed == '0-2Months'
 						span(span_width, :position => :center) do
 						text ''+a.psychsoc_change_why+''
 					end
-				elsif a.psychsoc_last_changed == 'Gt3Months'
+				elsif a.psychsoc_last_changed == 'Gt2Months'
 					span(span_width, :position => :center) do
 						text a.psychsoc_not_why
 					end

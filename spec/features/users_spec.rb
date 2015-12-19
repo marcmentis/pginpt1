@@ -5,7 +5,7 @@ feature "FEATURE:'Users' page", js: true, a_feature: true do
 		# page.set_rack_session(confirmed: 'authen_and_in_db', authen: 'good_authen')
 	end
 
-	context "Open users' page by clicking on Main Menu 'patient' " do
+	context "Open users' page by clicking on Main Menu 'admin'/'users' " do
 		background do
 			@Auser = create(:user, lastname: 'Auser', authen: 'good_authen', facility: '0013', id: '1111')
 			@Auser = @Auser.add_role('admin3')
@@ -17,10 +17,6 @@ feature "FEATURE:'Users' page", js: true, a_feature: true do
 			create(:for_select, code: 'facility', facility: '9999', value: '0013', text: 'Pilgrim' )
 			create(:for_select, code: 'facility', facility: '9999', value: '0025', text: 'SCPS')
 			create(:for_select, code: 'ward', facility: '0013', value: '81/101', text: '81/101')
-			# create(:patient, lastname: 'Apatient', facility: '0013', site: '81/101', id: '1111')
-			# create(:patient, lastname: 'Bpatient', facility: '0013', site: '81/101', id: '2222')
-			# create(:patient, lastname: 'Apatient', facility: '0025', site: 'a_unit', id: '3333')
-			# create(:patient, lastname: 'Bpatient', facility: '0025', site: 'a_unit', id: '4444')
 			
 			visit root_path
 			click_link('admin')
@@ -55,7 +51,7 @@ feature "FEATURE:'Users' page", js: true, a_feature: true do
 				expect(page).not_to have_content('Cuser')
 				expect(page).not_to have_content('Auser')
 				expect(page).not_to have_content('0025')
-				save_and_open_page
+				# save_and_open_page
 			end
 		end
 

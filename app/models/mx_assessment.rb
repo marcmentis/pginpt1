@@ -141,13 +141,13 @@ class MxAssessment < ActiveRecord::Base
 		conditions = conditions.where("patient_id = :pid", {pid: params[:patient_id]})
 		case params[:reason]
 		when 'MedChange'
-			conditions = conditions.where("drugs_last_changed = :drugs_last_changed", {drugs_last_changed: '0-8Weeks'})
+			conditions = conditions.where("drugs_last_changed = :drugs_last_changed", {drugs_last_changed: '0-4Weeks'})
 		when 'MedNoChange'
-			conditions = conditions.where("drugs_last_changed = :drugs_last_changed", {drugs_last_changed: 'Gt8Weeks'})
+			conditions = conditions.where("drugs_last_changed = :drugs_last_changed", {drugs_last_changed: 'Gt4Weeks'})
 		when 'GroupChange'
-			conditions = conditions.where("psychsoc_last_changed = :psychsoc_last_changed", {psychsoc_last_changed: '0-3Months'})
+			conditions = conditions.where("psychsoc_last_changed = :psychsoc_last_changed", {psychsoc_last_changed: '0-2Months'})
 		when 'GroupNoChange'
-			conditions = conditions.where("psychsoc_last_changed = :psychsoc_last_changed", {psychsoc_last_changed: 'Gt3Months'})
+			conditions = conditions.where("psychsoc_last_changed = :psychsoc_last_changed", {psychsoc_last_changed: 'Gt2Months'})
 		when 'PreNoDate'
 			conditions = conditions.where("pre_date_yesno = :pre_date_yesno", {pre_date_yesno: 'N'})
 		else
