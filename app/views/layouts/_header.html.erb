@@ -18,7 +18,7 @@
 					<a href="#">notes</a>
 				<% end %>
 					<ul> 
-						<li>
+						<li id="notesBPSAssessment">
 							<%= link_to("BioPsychoSocial Assessment", mx_assessments_path) if policy(MxAssessment).create? %>
 
 						</li>
@@ -29,7 +29,7 @@
 					<a href="#">trackers</a>
 					<% end %>
 					<ul>
-						<li>
+						<li id="trackerBPSAssessment">
 							<%= link_to("BioPsychoSocial Assessment", mxa_tracker_index_path) if policy(:mxa_tracker).index? %>
 						</li>
 					</ul>

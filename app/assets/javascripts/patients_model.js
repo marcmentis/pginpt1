@@ -69,7 +69,6 @@ function refreshgrid(url){
 				// set_id(id);  //set the ID variable
 				$('#Pat_ID').val(id);  //set the ID variable
 				data_for_params = {patient: {id: id}}
-
 				$.ajax({ 
 						  // url: '/inpatient_show',
 						  url: '/patients/'+id+'',
@@ -85,13 +84,13 @@ function refreshgrid(url){
 						$('#id').val(data.id);
 						$('#txt_Pat_firstname').val(data.firstname);
 						$('#txt_Pat_lastname').val(data.lastname);
-						if ($('#session-admin3').val() !== 'true'){
+						if ($('#all-facilities').val() !== 'true'){
 							$('#txt_Pat_lastname').prop("disabled", true)
 												.css({'background-color': '#E0E0E0'})
 						};
 						$('#txt_Pat_number').val(data.identifier);
 						$('#slt_F_facility').val(data.facility);	
-						if ($('#session-admin3').val() == 'true') {
+						if ($('#all-facilities').val() == 'true') {
 							// IF ADMIN-3 - need to first populate slt_F_ward as table can include any facililty
 							$('#slt_F_ward').mjm_addOptions('ward', {
 								firstLine: 'All Wards', 
@@ -191,7 +190,7 @@ function clearFields(){
 	$('.error_message').hide();
 
 	$('#PatientAsideRtErrors').html('').hide();
-	if ($('#session-admin3').val() == 'true') {
+	if ($('#all-facilities').val() == 'true') {
 		$('#slt_F_facility').val('-1')
 		//ward must have no values
 		$('#slt_F_ward').mjm_addOptions('ward', {
@@ -222,7 +221,7 @@ function patients_ajax1 (url, type) {
 	var params_hash = {};
 	params_hash['updated_by'] = $('#session-username').val();
 	//Serialize does NOT generate disabled values
-	if ($('#session-admin3').val() !== 'true') {
+	if ($('#all-facilities').val() !== 'true') {
 		params_hash['facility'] = $('#slt_F_facility').val();
 	};
 	

@@ -175,13 +175,13 @@ if ($('body.mx_assessments').length) {
 				$('#txa_MxA_drugNoChange, #txa_MxA_drugWhyChange').val('');
 				return true;
 			};
-			if(value == '0-8Weeks'){
+			if(value == '0-4Weeks'){
 				$('#div_MxA_dangerYes_drugYes').show();
                 $('#div_MxA_dangerYes_drugNo').hide();
 				$('#txa_MxA_drugNoChange').val('');
 				return true;
 			};
-			if(value == 'Gt8Weeks'){
+			if(value == 'Gt4Weeks'){
 				$('#div_MxA_dangerYes_drugNo').show();
 				$('#div_MxA_dangerYes_drugYes').hide();
 				$('#txa_MxA_drugWhyChange').val('');
@@ -198,12 +198,12 @@ if ($('body.mx_assessments').length) {
 				$ ('#txa_MxA_groupNoChange, txa_MxA_groupWhyChange').val('');
 				return true;
 			};
-			if (value == '0-3Months') {
+			if (value == '0-2Months') {
 				$('#div_MxA_dangerYes_groupNo').hide();
 				$('#div_MxA_dangerYes_groupYes').show();
 				$ ('#txa_MxA_groupWhyChange').val('');
 			};
-			if (value == 'Gt3Months') {
+			if (value == 'Gt2Months') {
 				$('#div_MxA_dangerYes_groupYes').hide();
 				$('#div_MxA_dangerYes_groupNo').show();
 				$ ('#txa_MxA_groupNoChange').val('');
@@ -258,9 +258,9 @@ if ($('body.mx_assessments').length) {
 						return true;
 					};
 
-					//Danger yes, Drugs changed 0-8Weeks but reason not given
+					//Danger yes, Drugs changed 0-4Weeks but reason not given
 					if ($('#slt_MxA_danger_yn').val() == 'Y' 
-							&& $('#slt_Mxa_drugsChanged').val() == '0-8Weeks'
+							&& $('#slt_Mxa_drugsChanged').val() == '0-4Weeks'
 							&& $('#txa_MxA_drugWhyChange').val() == '') {	
 						// alert('Please give reason why drugs were changed');
 						$('#txa_MxA_drugWhyChange')
@@ -269,9 +269,9 @@ if ($('body.mx_assessments').length) {
 						return true;
 					};
 
-					//Danger yes, Drugs changed Gt8Weeks but reason not given
+					//Danger yes, Drugs changed Gt4Weeks but reason not given
 					if ($('#slt_MxA_danger_yn').val() == 'Y' 
-							&& $('#slt_Mxa_drugsChanged').val() == 'Gt8Weeks'
+							&& $('#slt_Mxa_drugsChanged').val() == 'Gt4Weeks'
 							&& $('#txa_MxA_drugNoChange').val() == '') {	
 						// alert('Please give reason why drugs were NOT changed');
 						$('#txa_MxA_drugNoChange')
@@ -292,7 +292,7 @@ if ($('body.mx_assessments').length) {
 
 					//Danger yes and group/indiv changed 0-3 months reason not given
 					if ($('#slt_MxA_danger_yn').val() == 'Y' 
-							&& $('#slt_Mxa_groupChanged').val() == '0-3Months'
+							&& $('#slt_Mxa_groupChanged').val() == '0-2Months'
 							&& $('#txa_MxA_groupWhyChange').val() == '') {
 						// alert('Please give reason group/indiv therapy WAS changed');
 						$('#txa_MxA_groupWhyChange')
@@ -301,9 +301,9 @@ if ($('body.mx_assessments').length) {
 						return true;
 					};
 
-					//Danger yes and group/indiv changed Gt3Months reason not given
+					//Danger yes and group/indiv changed Gt2Months reason not given
 					if ($('#slt_MxA_danger_yn').val() == 'Y' 
-							&& $('#slt_Mxa_groupChanged').val() == 'Gt3Months'
+							&& $('#slt_Mxa_groupChanged').val() == 'Gt2Months'
 							&& $('#txa_MxA_groupNoChange').val() == '') {
 						// alert('Please give reason group/indiv therapy was NOT changed');
 						$('#txa_MxA_groupNoChange')

@@ -156,15 +156,15 @@ function MxAW_refreshgrid(url){
 
 							if (dangerYesNo == 'Y') {
 								text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
-									if (drugs_last_changed == '0-8Weeks') {
+									if (drugs_last_changed == '0-4Weeks') {
 										text +='\n'+drugs_change_why+'';
-									}else if (drugs_last_changed == 'Gt8Weeks') {
+									}else if (drugs_last_changed == 'Gt4Weeks') {
 										text +='\n'+drugs_not_why+'';
 									};
 								text +='\n   PSYCHOSOCIAL LAST CHANGED: '+psychsoc_last_changed+'';
-									if (psychsoc_last_changed == '0-3Months') {
+									if (psychsoc_last_changed == '0-2Months') {
 										text +='\n'+psychsoc_change_why+'';
-									}else if (psychsoc_last_changed == 'Gt3Months') {
+									}else if (psychsoc_last_changed == 'Gt2Months') {
 										text +='\n'+psychsoc_not_why+'';
 									};
 							}else if (dangerYesNo == 'N') {
@@ -312,18 +312,18 @@ function get_reasons_from_note (patient_id, reason) {
 					text += '\n\nMUST REMAIN HOSPITALIZED (even if d/c disposition available):  '+dangerYesNo+''
 
 					if (dangerYesNo == 'Y') {	
-						if (drugs_last_changed == '0-8Weeks' && reason == 'MedChange') {
+						if (drugs_last_changed == '0-4Weeks' && reason == 'MedChange') {
 							text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
 							text +='\n'+drugs_change_why+'';
-						}else if (drugs_last_changed == 'Gt8Weeks' && reason == 'MedNoChange') {
+						}else if (drugs_last_changed == 'Gt4Weeks' && reason == 'MedNoChange') {
 							text +='\n   MEDS LAST CHANGED: '+drugs_last_changed+'';
 							text +='\n'+drugs_not_why+'';
 						};
 					
-						if (psychsoc_last_changed == '0-3Months' && reason == 'GroupChange') {
+						if (psychsoc_last_changed == '0-2Months' && reason == 'GroupChange') {
 							text +='\n   PSYCHOSOCIAL LAST CHANGED: '+psychsoc_last_changed+'';
 							text +='\n'+psychsoc_change_why+'';
-						}else if (psychsoc_last_changed == 'Gt3Months' && reason == 'GroupNoChange') {
+						}else if (psychsoc_last_changed == 'Gt2Months' && reason == 'GroupNoChange') {
 							text +='\n   PSYCHOSOCIAL LAST CHANGED: '+psychsoc_last_changed+'';
 							text +='\n'+psychsoc_not_why+'';
 						};

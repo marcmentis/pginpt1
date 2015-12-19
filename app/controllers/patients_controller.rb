@@ -9,7 +9,7 @@ class PatientsController < ApplicationController
 
   # GET /patients
   # GET /patients.json
-  def index
+  def index 
     authorize Patient
     @patients = Patient.all
   end
