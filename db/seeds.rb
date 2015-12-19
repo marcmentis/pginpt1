@@ -72,10 +72,10 @@ ForSelect.find_or_initialize_by(value: 'GroupNoChange').update_attributes(facili
 ForSelect.find_or_initialize_by(value: 'PreNoDate').update_attributes(facility: '9999', code: 'MxTracker', value: 'PreNoDate', text: 'd/c NoDate', option_order: 5, grouper: '')
 
 # Bio-Psycho-Social Mx Assessment
-ForSelect.find_or_initialize_by(value: '0-8Weeks').update_attributes(facility: '9999', code: 'DrugsChanged', value: '0-8Weeks', text: '0-8Weeks', option_order: 1, grouper: '')
-ForSelect.find_or_initialize_by(value: 'Gt8Weeks').update_attributes(facility: '9999', code: 'DrugsChanged', value: 'Gt8Weeks', text: 'Gt8Weeks', option_order: 2, grouper: '')
-ForSelect.find_or_initialize_by(value: '0-3Months').update_attributes(facility: '9999', code: 'GroupsChanged', value: '0-3Months', text: '0-3Months', option_order: 1, grouper: '')
-ForSelect.find_or_initialize_by(value: 'Gt3Months').update_attributes(facility: '9999', code: 'GroupsChanged', value: 'Gt3Months', text: 'Gt3Months', option_order: 2, grouper: '')
+ForSelect.find_or_initialize_by(value: '0-4Weeks').update_attributes(facility: '9999', code: 'DrugsChanged', value: '0-4Weeks', text: '0-4Weeks', option_order: 1, grouper: '')
+ForSelect.find_or_initialize_by(value: 'Gt4Weeks').update_attributes(facility: '9999', code: 'DrugsChanged', value: 'Gt4Weeks', text: 'Gt4Weeks', option_order: 2, grouper: '')
+ForSelect.find_or_initialize_by(value: '0-2Months').update_attributes(facility: '9999', code: 'GroupsChanged', value: '0-2Months', text: '0-2Months', option_order: 1, grouper: '')
+ForSelect.find_or_initialize_by(value: 'Gt2Months').update_attributes(facility: '9999', code: 'GroupsChanged', value: 'Gt2Months', text: 'Gt2Months', option_order: 2, grouper: '')
 
 
 # *****************************************
