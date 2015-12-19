@@ -26,7 +26,7 @@ function refreshgrid_NsGrp(url){
 		colNames:["id","Duration","GrpName","Leader","Site","Facility"],
 		colModel:[
 			{name:"id",index:"id",width:55, hidden:true},
-			{name:"duration",index:"duration",width:15,align:"center",editable:true},
+			{name:"duration",index:"duration",width:25,align:"center",editable:true},
 			{name:"groupname",index:"groupname",width:150,align:"center"},
 			{name:"leader",index:"leader",width:100,align:"center"},
 			{name:"groupsite",index:"groupsite",width:100,align:"center"},
@@ -35,7 +35,7 @@ function refreshgrid_NsGrp(url){
 		editurl:"/patient/update",
 		pager:"#divPager",
 		height:235,
-		width: 435,
+		width: 535,
 		altRows: true,
 		rowNum:10,
 		rowList:[15,25,40],
@@ -118,14 +118,23 @@ function refreshgrid_NsGrp(url){
 	.navButtonAdd('#divPager', {
 		caption: 'New',
 		buttonicon: '',
-		onClickButton: function(){	
-			alert('new')
+		onClickButton: function(){
+			$('#btNsGrpNewSubmit').attr('value', 'New')	
+			$('#divNsGrpNewEdit').show();
 			// facility = $('#slt_F_facility').val();
 			// clearFields();
 			// $('#divPatientAsideRt, #bPatientSubmit, #bPatientBack').show();
 			// $('#bPatientSubmit').attr('value','New');
 		},
 		position:'last'
+	})
+	.navButtonAdd('#divPager', {
+		caption: 'Edit',
+		buttonicon: '',
+		onClickButton: function(){
+			$('#btNsGrpNewSubmit').attr('value', 'Edit')	
+			$('#divNsGrpNewEdit').show();
+		},
 	})
 	.navButtonAdd('#divPager', {
 		caption: 'Del',

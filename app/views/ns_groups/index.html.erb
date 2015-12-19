@@ -4,7 +4,7 @@
 
 <div class="grid">
 
-  <div class="col-11-20" >  <!-- style="background:red" -->
+  <div class="col-11-20">  <!-- style="background:red" -->
     <div id="divNsGrpTitle">
       Notes for Non-Scheduled Groups
     </div>
@@ -19,7 +19,7 @@
       </div>
     </form>
 
-    <div id="divSpacerDateSearch"></div>
+    <!-- <div class="nsgroup_div_spacer1"></div> -->
     <div id="divSearchAndGrid">
       <form id="fNsGrpSearch">
         <div id="NsGrpSearchTitle"><h2>Group Search Criteria</h2></div>
@@ -40,9 +40,36 @@
         <input id="btnSubmit" type="submit" value="Search" />
       </form>
       <div id="divGrid"></div>
+    </div>  
+
+    <div id="divNsGrpNewEdit">
+      <form id="fNsGrpNewEdit">
+        <div><h2>Patient Data</h2></div>
+        <div class="field">
+          <label for="slt_NsGrp_duration">Duration</label><span class="text-14-alert">*</span>
+          <select id="slt_NsGrp_duration" name="slt_NsGrp_duration"></select>
+        </div>
+        <div class="field">
+          <label for="txt_NsGrp_group_name">Group Name</label><span class="text-14-alert">*</span>
+          <input id="txt_NsGrp_group_name" name="txt_NsGrp_group_name" type="text" />
+        </div>
+        <div class="field">
+          <label for="txt_NsGrp_leader">Leader Name</label><span class="text-14-alert">*</span>
+          <input id="txt_NsGrp_leader" name="txt_NsGrp_leader" type="text" />
+        </div>
+        <div class="field">
+          <label for="txt_NsGrp_group_site">Group Site</label><span class="text-14-alert">*</span>
+          <input id="txt_NsGrp_group_site" name="txt_NsGrp_group_site" type="text" />
+        </div>
+
+        <div>
+          <input id="btNsGrpNewSubmit" type="submit" value="x" />
+          <input id="btNsGrpBack" type="button" value="Back" />
+        </div>
+      </form>
     </div>
-    
   </div>
+
  
 </div> <!-- <div class="grid"> Primary grid for whole page -->
 

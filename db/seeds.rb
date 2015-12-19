@@ -79,6 +79,13 @@ ForSelect.find_or_initialize_by(value: 'Gt4Weeks').update_attributes(facility: '
 ForSelect.find_or_initialize_by(value: '0-2Months').update_attributes(facility: '9999', code: 'GroupsChanged', value: '0-2Months', text: '0-2Months', option_order: 1, grouper: '')
 ForSelect.find_or_initialize_by(value: 'Gt2Months').update_attributes(facility: '9999', code: 'GroupsChanged', value: 'Gt2Months', text: 'Gt2Months', option_order: 2, grouper: '')
 
+# Non-Scheduled Notes
+ForSelect.find_or_initialize_by(value: '0.5').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '0.5', text: '0.5', option_order: 1, grouper: '')
+ForSelect.find_or_initialize_by(value: '1.0').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '1.0', text: '1.0', option_order: 2, grouper: '')
+ForSelect.find_or_initialize_by(value: '1.5').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '1.5', text: '1.5', option_order: 3, grouper: '')
+ForSelect.find_or_initialize_by(value: '2.0').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '2.0', text: '2.0', option_order: 4, grouper: '')
+ForSelect.find_or_initialize_by(value: '2.5').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '2.5', text: '2.5', option_order: 5, grouper: '')
+ForSelect.find_or_initialize_by(value: '3.0').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '3.0', text: '3.0', option_order: 6, grouper: '')
 
 # *****************************************
 # SPECIFIC TO HOSPITALS
