@@ -51,6 +51,9 @@ function refreshgrid_NsGrp(url){
 	        },
 
 			onSelectRow:function(id) { 
+				clearFields_patientData1();
+				$('#divNsGrpNewEdit').hide();
+				$('#nsGrp_ID').val(id);
 				// set_id(id);  //set the ID variable
 				// $('#Pat_ID').val(id);  //set the ID variable
 				// data_for_params = {patient: {id: id}}
@@ -97,7 +100,7 @@ function refreshgrid_NsGrp(url){
 				// 	}).fail(function(){
 				// 		alert('Error in: /inpatient');
 				// 	});
-				$('#nsGrp_ID').val(id);
+				
 			},
 
 			loadError: function (jqXHR, textStatus, errorThrown) {
@@ -118,12 +121,12 @@ function refreshgrid_NsGrp(url){
 		caption: 'New',
 		buttonicon: '',
 		onClickButton: function(){
+			//TO DO   Remove focus from any Group row
+			$('#nsGrp_ID').val('');
+			clearFields_patientData1();
 			$('#btNsGrpNewSubmit').attr('value', 'New')	
 			$('#divNsGrpNewEdit').show();
-			// facility = $('#slt_F_facility').val();
-			// clearFields();
-			// $('#divPatientAsideRt, #bPatientSubmit, #bPatientBack').show();
-			// $('#bPatientSubmit').attr('value','New');
+			//THINK ABOUT CLEARING FIELDS etc. HERE
 		},
 		position:'last'
 	})
@@ -131,31 +134,62 @@ function refreshgrid_NsGrp(url){
 		caption: 'Edit',
 		buttonicon: '',
 		onClickButton: function(){
-			$('#btNsGrpNewSubmit').attr('value', 'Edit')	
-			$('#divNsGrpNewEdit').show();
+			id = $('#nsGrp_ID').val();
+			//Check that group has been selected
+			if (id.length < 1) {
+				clearFields_patientData1();
+				alert('Please select a group')
+				return true;
+			};
+
+			data_for_params = {ns_group: {id: id}}
+			$.ajax({ 
+				// This is the 'show' route
+				url: '/ns_groups/'+id+'',
+				data: data_for_params,
+				//type: 'POST',
+				type: 'GET',
+				cache: false,
+				dataType: 'json'
+				}).done(function(data){
+					//CLEAR FIELDS
+					$('#btNsGrpNewSubmit').attr('value', 'Edit')
+
+					$('#slt_NsGrp_duration').val(data.duration);
+					$('#txt_NsGrp_group_name').val(data.groupname);
+					$('#txt_NsGrp_leader').val(data.leader);
+					$('#txt_NsGrp_group_site').val(data.groupsite);
+	
+					$('#divNsGrpNewEdit').show();	  
+				}).fail(function(){
+					alert('Error in: /ns_group/id');
+					alert('HTTP status code: ' + jqXHR.status + '\n' +
+					'textStatus: ' + textStatus + '\n' +
+					'errorThrown: ' + errorThrown);
+					alert('HTTP message body (jqXHR.responseText): ' + '\n' + jqXHR.responseText);
+				});					
 		},
 	})
 	.navButtonAdd('#divPager', {
 		caption: 'Del',
 		buttonicon: '',
 		onClickButton: function(){	
-			alert('delete')
-			// for_delete = $('#forDelete').val();
-			// if (for_delete == 'true') {
-			// 	ID = $('#Pat_ID').val(); 
-			// 	if (ID.length > 0) {	
-			// 		if(confirm("Are you sure you want to delete this patient")){
-			// 			patients_ajax1('/patients/'+ID+'', 'DELETE');	
-			// 		} else {
-			// 			return true;
-			// 		};
-			// 	} else{
-			// 		alert('No patient has been selected.')
-			// 	};
-			// }else {
-			// 	alert("Sorry, you do not have privileges to delete patients");
-			// 	return true;
-			// };
+			for_delete = $('#forDelete').val();
+			if (for_delete == 'true') {
+				ID = $('#nsGrp_ID').val(); 
+				if (ID.length > 0) {	
+					if(confirm("Are you sure you want to delete this patient")){
+						nsGrp_ajax1('/ns_groups/'+ID+'', 'DELETE');	
+					} else {
+						return true;
+					};
+				} else{
+					alert('No patient has been selected.')
+				};
+			}else {
+				alert("Sorry, you do not have privileges to delete patients");
+				return true;
+			};
 		},
 		position:'last'
 	});
@@ -228,5 +262,4 @@ function clearFields_patientData1 () {
 	$('#txt_NsGrp_group_name, #txt_NsGrp_leader, #txt_NsGrp_group_site')
 		.val('');
 	$('.error_message').hide();
-	$('#nsGrp_ID').val('');
 };

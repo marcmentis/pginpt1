@@ -79,7 +79,7 @@ if($('body.ns_groups').length) {
 
  			//Get value of submit button to determine which AJAX call to make
 			submit_value = $(this).find('input[type=submit]').attr('value')
-			alert(submit_value)
+			// alert(submit_value)
 			switch(submit_value){
 				case 'New':
 					nsGrp_ajax1('/ns_groups/', 'POST');
@@ -92,6 +92,12 @@ if($('body.ns_groups').length) {
 					alert('submit_id not found');
 					return false;
 			};
+		});
+
+		//Close PatientData and clear fields
+		$('#btNsGrpBack').click(function(){
+			clearFields_patientData1();
+			$('#divNsGrpNewEdit').hide();
 		});
 
 	// RUN ON OPENING

@@ -1,6 +1,11 @@
 
 <div id="divNsGroupPageWrapper">
 <div id="divNsGroupPageInnerWrapper" class="nsgroups_index"> <!-- class-media -->
+<% if policy(NsGroup).destroy? %>
+    <input id="forDelete" type="hidden" name="forDelete" value="true">
+  <% else %>
+    <input id="forDelete" type="hidden" name="forDelete" value="false">
+  <% end %>
 
 <div class="grid">
 
