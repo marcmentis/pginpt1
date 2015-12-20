@@ -19,6 +19,9 @@ if($('body.ns_groups').length) {
 		$('#divSearchAndGrid, #divNsGrpNewEdit')
 			.addClass('nsgroup_div_spacer1')
 			.hide();
+		$('#NsGrpsNewEditErrors')
+			.addClass('error_explanation')
+			.hide();
 
 		//forms
 		$('#fNsGrpDate, #fNsGrpSearch, #fNsGrpNewEdit')
@@ -48,7 +51,7 @@ if($('body.ns_groups').length) {
 			// $('#btnSubmit').click(function(e){
 			$('#fNsGrpSearch').submit(function(e){
 				e.preventDefault();
-				complex_search_NsGrp();
+				complex_search_nsGrp();
 			});
 
 		//DATES
@@ -62,10 +65,9 @@ if($('body.ns_groups').length) {
 			e.preventDefault();
 			// VALIDATE that the form properly filled out
 			validation_array = [
-				['slt_F_facility','-1','Please choose Facility'],
-				['txt_NsGrp_duration','','Please enter Duration (hours)'],
+				['slt_NsGrp_duration','-1','Please choose Group Duration'],
 				['txt_NsGrp_group_name','','Please enter Group Name'],
-				['txt_NsGrp_leader','','Please enter Group Leader (Smith P)'],
+				['txt_NsGrp_leader','','Please enter Group Leader'],
 				['txt_NsGrp_group_site','','Please enter Group Site']
 			]
 
@@ -80,11 +82,11 @@ if($('body.ns_groups').length) {
 			alert(submit_value)
 			switch(submit_value){
 				case 'New':
-					// patients_ajax1('/patients/', 'POST');
+					nsGrp_ajax1('/ns_groups/', 'POST');
 					break;
 				case 'Edit':
-					// ID = $('#Pat_ID').val();
-					// patients_ajax1('/patients/'+ID+'', 'PATCH');
+					ID = $('#nsGrp_ID').val();
+					nsGrp_ajax1('/ns_groups/'+ID+'', 'PATCH');
 					break;
 				default:
 					alert('submit_id not found');
@@ -93,6 +95,6 @@ if($('body.ns_groups').length) {
 		});
 
 	// RUN ON OPENING
-	complex_search_NsGrp()
+	complex_search_nsGrp()
 }
 })

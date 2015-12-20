@@ -3,9 +3,9 @@ class NsGroupsController < ApplicationController
 
   # GET /ns_groups
   # GET /ns_groups.json
-  def index
-    @ns_groups = NsGroup.all
-  end
+  # def index
+  #   @ns_groups = NsGroup.all
+  # end
 
   # GET /ns_groups_search
   def complex_search

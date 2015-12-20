@@ -1,4 +1,4 @@
-function complex_search_NsGrp (){
+function complex_search_nsGrp (){
 	// facility = -1
 	var groupname = $('#ftx_S_groupname').val();
 	var leader = $('#ftx_S_leader').val();
@@ -97,8 +97,7 @@ function refreshgrid_NsGrp(url){
 				// 	}).fail(function(){
 				// 		alert('Error in: /inpatient');
 				// 	});
-				groupID = id;
-				alert(groupID)
+				$('#nsGrp_ID').val(id);
 			},
 
 			loadError: function (jqXHR, textStatus, errorThrown) {
@@ -160,4 +159,74 @@ function refreshgrid_NsGrp(url){
 		},
 		position:'last'
 	});
+};
+
+
+function nsGrp_ajax1 (url, type) {
+	// var firstname = $('#firstname').val();
+	// var lastname = $('#lastname').val();
+	// var number = $('#number').val();
+	// var facility = $('#slt_F_facility').val();
+	// var ward = $('#slt_F_ward').val();
+
+	var params_string = $('#fNsGrpNewEdit').serialize();
+	params_string_replace = params_string.replace(/&/g,',')
+	params_string_replace = params_string_replace.replace(/%2F/g,'/')
+	params_array = params_string_replace.split(',');
+	
+
+	var params_hash = {};
+	params_hash['updated_by'] = $('#session-username').val();
+	params_hash['facility'] = $('#session-facility').val();
+	//Serialize does NOT generate disabled values
+	// if ($('#all-facilities').val() !== 'true') {
+	// 	params_hash['facility'] = $('#slt_F_facility').val();
+	// };
+	
+	for(var i=0, l = params_array.length; i<l; i++){
+		string = params_array[i]
+		array = string.split('=')
+		key = array[0];
+		value = array[1]
+		params_hash[key] = value;
+	}
+	//Make strong params
+	data_for_params = {ns_group: params_hash}
+
+	$.ajax({
+		url: url,
+		type: type,
+		data: data_for_params,
+		cache: false,
+		dataType: 'json'
+	}).done(function(data){
+		clearFields_patientData1();
+		complex_search_nsGrp();
+		// clearFields();
+		// $('#divPatientAsideRt, #bEdit, #bNew, #bDelete, #bBack').hide();
+		// $('#divPatientAsideRt, #bPatientSubmit, #bPatientBack').hide();
+
+	}).fail(function(jqXHR,textStatus,errorThrown){
+		// alert('HTTP status code: ' + jqXHR.status + '\n' +
+  //             'textStatus: ' + textStatus + '\n' +
+  //             'errorThrown: ' + errorThrown);
+  //       alert('HTTP message body (jqXHR.responseText): ' + '\n' + jqXHR.responseText);
+        var msg = JSON.parse(jqXHR.responseText)
+        var newHTML;
+        newHTML = '<h3>Validation Error</h3>';	
+        newHTML += '<ul>';        
+        $.each(msg, function(key, value){
+        	newHTML += '<li>'+ value +'</li>';
+        });
+        newHTML += '</ul>';
+        $('#NsGrpsNewEditErrors').show().html(newHTML)
+	});
+};
+
+function clearFields_patientData1 () {
+	$('#slt_NsGrp_duration').val('-1');
+	$('#txt_NsGrp_group_name, #txt_NsGrp_leader, #txt_NsGrp_group_site')
+		.val('');
+	$('.error_message').hide();
+	$('#nsGrp_ID').val('');
 };
