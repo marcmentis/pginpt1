@@ -51,9 +51,39 @@ function refreshgrid_NsGrp(url){
 	        },
 
 			onSelectRow:function(id) { 
-				clearFields_patientData1();
-				$('#divNsGrpNewEdit').hide();
+				//Store the group id in the hidden field
 				$('#nsGrp_ID').val(id);
+
+			data_for_params = {ns_group: {id: id}}
+			$.ajax({ 
+				// This is the 'show' route
+				url: '/ns_groups/'+id+'',
+				data: data_for_params,
+				//type: 'POST',
+				type: 'GET',
+				cache: false,
+				dataType: 'json'
+				}).done(function(data){
+					var input_date = $('#dt_NsGrp_input').val();
+					var full_group_name = ''+data.groupname+': '+data.leader+': '+data.groupsite+'';
+					//Clear and hide New/Edit if showing 
+					clearFields_patientData1();
+					$('#divNsGrpNewEdit').hide();
+					
+					//Fill out and show Current Group
+					$('#ftx_GrpDate_display').val(input_date);
+					$('#ftx_GrpName_display').val(full_group_name);	
+					$('#divFormNsGrpCurrentGrp, #divNsGrpToDoDone').show();
+						  
+				}).fail(function(){
+					alert('Error in: /ns_group/id');
+					alert('HTTP status code: ' + jqXHR.status + '\n' +
+					'textStatus: ' + textStatus + '\n' +
+					'errorThrown: ' + errorThrown);
+					alert('HTTP message body (jqXHR.responseText): ' + '\n' + jqXHR.responseText);
+				});	
+
+				
 				// set_id(id);  //set the ID variable
 				// $('#Pat_ID').val(id);  //set the ID variable
 				// data_for_params = {patient: {id: id}}

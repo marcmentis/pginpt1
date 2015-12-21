@@ -12,6 +12,30 @@
   <div class="col-11-20">  <!-- style="background:red" -->
     <div id="divNsGrpTitle">
       Notes for Non-Scheduled Groups
+      <!-- <input id="txt-NsGrp-ShowFacility" type="text" /> -->
+    </div>
+    <div id="divFormNsGrpCurrentGrp">
+      <form id="fNsGrpCurrentGrp">
+        <div><h2>Current Group:
+          <input id="ftx_GrpName_display" type="text" readonly />
+          on <input id="ftx_GrpDate_display" type="text" readonly />
+        </h2></div>  
+      </form>
+    </div>
+    <div id="divNsGrpListAndNotes" class="grid">
+      <div id="divNsGrpToDoDone" class="col-1-2">
+        <form id="fToDoDone">
+          <div><h3>To Do</h3></div>
+          <select id="slt_NsGrp_to_do"></select>
+          <div><h3>Done</h3></div>
+          <select id="slt_NsGrp_done"></select>
+        </form>
+      </div>
+      <div id="divNsGrpNotes" class="col-1-2">
+        <form id="fNotes">
+          
+        </form>
+      </div>
     </div>
   </div>
 
@@ -19,7 +43,7 @@
     <form id="fNsGrpDate">
       <div>
         <h2>Set Up a Date and Group
-          <input id="dt_NsGrp_g" type="text" />
+          <input id="dt_NsGrp_input" type="text" />
         </h2>
       </div>
     </form>

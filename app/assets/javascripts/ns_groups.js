@@ -16,7 +16,7 @@ if($('body.ns_groups').length) {
 					'font-weight': 'bold',
 					'margin': '0 0 7px 0'});
 
-		$('#divSearchAndGrid, #divNsGrpNewEdit')
+		$('#divSearchAndGrid, #divNsGrpNewEdit, #divFormNsGrpCurrentGrp, #divNsGrpToDoDone, #divNsGrpNotes')
 			.addClass('nsgroup_div_spacer1')
 			.hide();
 		$('#NsGrpsNewEditErrors')
@@ -24,12 +24,16 @@ if($('body.ns_groups').length) {
 			.hide();
 
 		//forms
-		$('#fNsGrpDate, #fNsGrpSearch, #fNsGrpNewEdit')
+		$('#fNsGrpDate, #fNsGrpSearch, #fNsGrpNewEdit, #divFormNsGrpCurrentGrp, #fToDoDone, #fNotes')
 			.addClass('form_container')
 			// .css({'width': '275px'})
 
 		//selects
 		$('#slt_NsGrp_duration').mjm_addOptions('NsGrpDuration', {firstLine: 'Choose'})
+		$('#slt_NsGrp_to_do, #slt_NsGrp_done')
+			.attr({'size': '10',
+				'multiple': 'no'})
+			.css({'width': '100%'});
 
 		//button
 		$('[id^=bt]').button().addClass('reduce_button')
@@ -46,6 +50,31 @@ if($('body.ns_groups').length) {
 			.addClass('texts')
 			.css({'width':'7em'});
 
+		$('#dt_NsGrp_display')
+			.css({'background-color': '#E4E4E4',
+				'color': '#5D5D5D',
+				'border-color': '#949494'})
+
+
+		//textboxes
+		$('#ftx_GrpName_display')
+			.css({'width': '25em',
+					'background-color': '#E4E4E4',
+					'color': '#5D5D5D',
+					'border-color': '#B5B5B5'})
+		$('#ftx_GrpDate_display')
+			.css({'width': '7em',
+					'background-color': '#E4E4E4',
+					'color': '#5D5D5D',
+					'border-color': '#B5B5B5'})
+
+			// $('#txt-NsGrp-ShowFacility')
+			// 	.prop('readonly', true)
+			// 	.css({'width': '7em', 
+			// 			'background-color': '#F5F5F5',
+			// 			'text-align': 'center',
+			// 			'color': '#2e6e9e'})
+
 		// BUTTONS
 		//Submit complex search on fPatientSearch using hidden submit button
 			// $('#btnSubmit').click(function(e){
@@ -55,11 +84,16 @@ if($('body.ns_groups').length) {
 			});
 
 		//DATES
-		$('#dt_NsGrp_g').change(function(){
+		$('#dt_NsGrp_input').change(function(){
 			$('#divSearchAndGrid').show();
 		})
 
+
+
 	//BUTTONS
+		//Show Facility in title
+			// facility = $('#session-facility').val()
+			// $('#txt-NsGrp-ShowFacility').val(facility)
 		//Submit New/Edit information from input form fNsGrpNewEdit
 		$('#fNsGrpNewEdit').submit(function(e){
 			e.preventDefault();
