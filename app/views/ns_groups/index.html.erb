@@ -16,12 +16,15 @@
     </div>
     <div id="divFormNsGrpCurrentGrp">
       <form id="fNsGrpCurrentGrp">
-        <div><h2>Current Group:
-          <input id="ftx_GrpName_display" type="text" readonly />
-          on <input id="ftx_GrpDate_display" type="text" readonly />
-        </h2></div>  
+        <div>
+          <h2>Current Group:
+            <input id="ftx_GrpName_display" type="text" readonly />
+            on <input id="ftx_GrpDate_display" type="text" readonly />
+          </h2>
+        </div>  
       </form>
     </div>
+
     <div id="divNsGrpListAndNotes" class="grid">
       <div id="divNsGrpToDoDone" class="col-1-2">
         <form id="fToDoDone">
@@ -30,6 +33,20 @@
           <div><h3>Done</h3></div>
           <select id="slt_NsGrp_done"></select>
         </form>
+
+        <form id="fNsGrpWardPatients">
+          <div>
+            <h3>Add 
+              <select id="slt_NsGrp_ward"></select>
+              <select id="slt_NsGrp_patient"></select>
+            </h3>        
+          </div>
+          <div>
+            <input type="button" id="bt_NsGrp_remove" value="Remove">
+            <label>(Patient selected in ToDo list)</label>
+          </div>
+        </form>
+
       </div>
       <div id="divNsGrpNotes" class="col-1-2">
         <form id="fNotes">
@@ -37,6 +54,9 @@
         </form>
       </div>
     </div>
+
+
+
   </div>
 
   <div class="col-9-20"> <!-- style="background:green" -->

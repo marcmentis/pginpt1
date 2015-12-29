@@ -1,5 +1,9 @@
 $(function(){
 if($('body.ns_groups').length) {
+	//VARIABLES
+		var user_facility = $('#session-facility').val();
+		var user_id = $('#session-authen').val();
+		var user_name = $('#session-username').val();
 
 	//STYLING
 		//DIV
@@ -23,10 +27,13 @@ if($('body.ns_groups').length) {
 			.addClass('error_explanation')
 			.hide();
 
+
 		//forms
-		$('#fNsGrpDate, #fNsGrpSearch, #fNsGrpNewEdit, #divFormNsGrpCurrentGrp, #fToDoDone, #fNotes')
+		$('#fNsGrpDate, #fNsGrpSearch, #fNsGrpNewEdit, #divFormNsGrpCurrentGrp, #fToDoDone, #fNotes, #fNsGrpWardPatients')
 			.addClass('form_container')
 			// .css({'width': '275px'})
+		$('#fNsGrpWardPatients')
+			.addClass('nsgroup_div_spacer1')
 
 		//selects
 		$('#slt_NsGrp_duration').mjm_addOptions('NsGrpDuration', {firstLine: 'Choose'})
@@ -74,23 +81,28 @@ if($('body.ns_groups').length) {
 			// 			'background-color': '#F5F5F5',
 			// 			'text-align': 'center',
 			// 			'color': '#2e6e9e'})
-
-		// BUTTONS
-		//Submit complex search on fPatientSearch using hidden submit button
-			// $('#btnSubmit').click(function(e){
-			$('#fNsGrpSearch').submit(function(e){
-				e.preventDefault();
-				complex_search_nsGrp();
-			});
+		
 
 		//DATES
 		$('#dt_NsGrp_input').change(function(){
 			$('#divSearchAndGrid').show();
 		})
 
+	//SELECCT HANDLERS
+		//populate selects
+			$('#slt_NsGrp_ward').mjm_addOptions('ward', {firstLine: 'All Wards', facility: user_facility, group: true})
+		//populate patient on ward change
+		$('#slt_NsGrp_ward').change(function(e){
+			var ward = $(this).val()
+			popSelectWard(user_facility, ward)
+		})
 
-
-	//BUTTONS
+	//BUTTON HANDLERS
+		//Submit complex search on fPatientSearch using hidden submit button
+		$('#fNsGrpSearch').submit(function(e){
+			e.preventDefault();
+			complex_search_nsGrp();
+		});
 		//Show Facility in title
 			// facility = $('#session-facility').val()
 			// $('#txt-NsGrp-ShowFacility').val(facility)

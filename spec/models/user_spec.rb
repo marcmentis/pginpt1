@@ -57,6 +57,23 @@ describe "User Model:" do
 			expect(user.errors[:email]).to include("has already been taken")
 		end
 
+		it "is invalid if email does not contain '@' " do
+			user.email = "test1mail.com"
+			user.valid?
+			expect(user.errors[:email]).to include("Please enter valid eMail")
+		end
+
+		it "is invalid if email does not contain '.' after '@'" do
+			user.email = "test1@mailcom"
+			user.valid?
+			expect(user.errors[:email]).to include("Please enter valid eMail")
+		end
+
+		it "is valid if email contains '.' before '@' " do
+			user.email = "test.1@mail.com"
+			expect(user).to be_valid
+		end
+
 		it "is invalid without a first initial" do
 			user.firstinitial = nil
 			user.valid?

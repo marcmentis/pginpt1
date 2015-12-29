@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   validates :facility, presence: true
   validates :email,
               presence: true,
-              uniqueness: true
+              uniqueness: true,
+              format: {with: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i,
+                        message: "Please enter valid eMail"}
   validates :firstinitial, presence: true
 
 

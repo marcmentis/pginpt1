@@ -287,6 +287,35 @@ function nsGrp_ajax1 (url, type) {
 	});
 };
 
+function popSelectWard(user_facility, ward) {
+	var url = '/ns_groups_ward_patients/'
+	//create strong parameter
+	data_for_params = {ns_group: {'site': ward, 'facility': user_facility}}
+
+	$.ajax({
+		url: url,
+		type: 'GET',
+		data: data_for_params,
+		cache: false,
+		dataType: 'json'
+	}).done(function(data){
+		$('#slt_NsGrp_patient').find('option').remove();
+		var html = '<option value="">ChoosePat </option>';
+		for(var i = 0; i < data.length; i++){
+			if (data[i] !== 'null'){
+				text = data[i]["lastname"]
+				value = data[i]["id"]
+			};
+
+			html += '<option value="'+value+'">' + text + ' </option>'	
+		}
+		$('#slt_NsGrp_patient').append(html);
+	}).fail(function(jqXHR,textStatus,errorThrown){
+		alert('jqXHR: '+jqXHR+'/n textStatus: '+textStatus+' errorThrown: '+errorThrown+'')
+	});
+
+};
+
 function clearFields_patientData1 () {
 	$('#slt_NsGrp_duration').val('-1');
 	$('#txt_NsGrp_group_name, #txt_NsGrp_leader, #txt_NsGrp_group_site')
