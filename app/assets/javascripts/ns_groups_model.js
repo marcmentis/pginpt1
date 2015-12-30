@@ -316,6 +316,23 @@ function popSelectWard(user_facility, ward) {
 
 };
 
+function popGroupPatientJoinTable(group_id, pat_id) {
+	var url = '/ns_groups_add_join/'
+	//create strong parameter
+	data_for_params = {ns_group: {'group_id': group_id, 'pat_id': pat_id}}
+	$.ajax({
+		url: url,
+		type: 'POST',
+		data: data_for_params,
+		cache: false,
+		dataType: 'json'
+	}).done(function(data){
+		alert(data['success'])
+	}).fail(function(jqXHR,textStatus,errorThrown){
+		alert('Likely this patient already in group:/n jqXHR: '+jqXHR+'/n textStatus: '+textStatus+' errorThrown: '+errorThrown+'')
+	});
+};
+
 function clearFields_patientData1 () {
 	$('#slt_NsGrp_duration').val('-1');
 	$('#txt_NsGrp_group_name, #txt_NsGrp_leader, #txt_NsGrp_group_site')

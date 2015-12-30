@@ -13,6 +13,20 @@
 
 ActiveRecord::Schema.define(version: 20151217173716) do
 
+  create_table "accessauditlog", primary_key: "accessaudittrail_id", force: :cascade do |t|
+    t.datetime "access_dt",                                   null: false
+    t.string   "action_cd",        limit: 45
+    t.string   "facility_stamp",   limit: 4
+    t.string   "ip_addr",          limit: 22
+    t.string   "workstation_id",   limit: 200
+    t.string   "auth_method",      limit: 1
+    t.string   "user_id",          limit: 20
+    t.integer  "user_num",                     precision: 38
+    t.integer  "application_num",              precision: 38
+    t.string   "application_name", limit: 50
+    t.string   "profile_desc",     limit: 200
+  end
+
   create_table "for_selects", force: :cascade do |t|
     t.string   "code"
     t.string   "value"
@@ -65,8 +79,8 @@ ActiveRecord::Schema.define(version: 20151217173716) do
     t.integer "patient_id",  precision: 38, null: false
   end
 
-  add_index "ns_groups_patients", ["ns_group_id", "patient_id"], name: "ns-patient-id"
-  add_index "ns_groups_patients", ["patient_id", "ns_group_id"], name: "patient-ns-id"
+  add_index "ns_groups_patients", ["ns_group_id", "patient_id"], name: "ns-patient-id", unique: true
+  add_index "ns_groups_patients", ["patient_id", "ns_group_id"], name: "patient-ns-id", unique: true
 
   create_table "patients", force: :cascade do |t|
     t.string   "firstname"

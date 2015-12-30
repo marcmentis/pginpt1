@@ -95,7 +95,17 @@ if($('body.ns_groups').length) {
 		$('#slt_NsGrp_ward').change(function(e){
 			var ward = $(this).val()
 			popSelectWard(user_facility, ward)
-		})
+		});
+		//add selected patient to ns_groups_patients table
+		$('#slt_NsGrp_patient').change(function(e){
+			var pat_id = $(this).val();
+			var group_id = $('#nsGrp_ID').val();
+			//Validation
+			if (pat_id.length < 1) {
+				return true;
+				};
+			popGroupPatientJoinTable(group_id, pat_id)
+		});
 
 	//BUTTON HANDLERS
 		//Submit complex search on fPatientSearch using hidden submit button

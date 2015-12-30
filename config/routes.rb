@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :ns_groups
   get '/ns_groups_search' => 'ns_groups#complex_search', as: :complex_search_ns_groups
   get '/ns_groups_ward_patients/' => 'ns_groups#ward_patients'
+  post '/ns_groups_add_join/' => 'ns_groups#create_group_patient_join'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
