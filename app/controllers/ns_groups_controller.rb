@@ -74,25 +74,24 @@ class NsGroupsController < ApplicationController
     end
   end
 
-  # GET /ns_groups_ward_patients.json
-  def ward_patients
-    @patients = Patient.where('facility = :facility', {facility: ns_group_params[:facility]})
-                        .where('site = :site', {site: ns_group_params[:site]})
-                        .order(lastname: :asc)
-    # byebug
-    respond_to do |format|
-      format.json {render json: @patients}
-    end
-  end
-
   # POST /ns_groups_add_join/.json
   def create_group_patient_join
-    group = NsGroup.find(ns_group_params[:group_id])
+    group = NsGroup.find(ns_group_params[:ns_group_id])
     patient = Patient.find(ns_group_params[:pat_id])
     group.patients << patient
 
     respond_to do |format|
         format.json { render json: {success: true}}  
+    end
+  end
+
+  # GET /ns_groups_pat_lists.json
+  def patient_lists
+    # @all_lists = NsGroup.all()
+    @all_lists = NsGroup.get_pat_lists(ns_group_params)
+
+    respond_to do |format|
+      format.json {render json: @all_lists}
     end
   end
 
@@ -105,6 +104,6 @@ class NsGroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ns_group_params
       params.require(:ns_group).permit(:duration, :groupname, :leader, :groupsite, :facility, :updated_by,
-                                        :site, :group_id, :pat_id)
+                                        :site, :ns_group_id, :pat_id, :group_date)
     end
 end

@@ -39,5 +39,8 @@ describe "NsGroup Model:" do
 		it " 'has-and-belongs-to-many' (many-to-many with) patients " do
 			expect(ns_group).to have_and_belong_to_many :patients
 		end
+		it " 'has-many (many-to-one) with ns_notes" do
+			expect(ns_group).to have_many :ns_notes
+		end
 	end
 end

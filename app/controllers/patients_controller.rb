@@ -108,6 +108,17 @@ class PatientsController < ApplicationController
     end
   end
 
+  # GET /patients_by_ward.json
+  def patients_by_ward
+    @patients = Patient.where('facility = :facility', {facility: patient_params[:facility]})
+                        .where('site = :site', {site: patient_params[:site]})
+                        .order(lastname: :asc)
+    # byebug
+    respond_to do |format|
+      format.json {render json: @patients}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_patient

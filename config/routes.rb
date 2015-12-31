@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :patients
   get '/patients_search' => 'patients#complex_search', as: :complex_search_patients
   get '/patients_site_search' => 'patients#patients_site_search', as: :patients_site_search
+  get '/patients_by_ward/' => 'patients#patients_by_ward'
 
   resources :mx_assessments
   get '/mxa_date_history/' => 'mx_assessments#date_history', as: :mxa_date_history
@@ -31,9 +32,10 @@ Rails.application.routes.draw do
 
   resources :ns_groups
   get '/ns_groups_search' => 'ns_groups#complex_search', as: :complex_search_ns_groups
-  get '/ns_groups_ward_patients/' => 'ns_groups#ward_patients'
+  get '/ns_groups_pat_lists/' => 'ns_groups#patient_lists'
   post '/ns_groups_add_join/' => 'ns_groups#create_group_patient_join'
 
+  resources :ns_notes
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

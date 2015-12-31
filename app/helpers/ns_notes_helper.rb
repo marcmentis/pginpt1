@@ -1,0 +1,2 @@
+module NsNotesHelper
+end

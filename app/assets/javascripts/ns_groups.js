@@ -99,12 +99,13 @@ if($('body.ns_groups').length) {
 		//add selected patient to ns_groups_patients table
 		$('#slt_NsGrp_patient').change(function(e){
 			var pat_id = $(this).val();
-			var group_id = $('#nsGrp_ID').val();
+			var ns_group_id = $('#nsGrp_ID').val();
 			//Validation
+			// Don't send request if at "ChoosePat"
 			if (pat_id.length < 1) {
 				return true;
 				};
-			popGroupPatientJoinTable(group_id, pat_id)
+			popGroupPatientJoinTable(ns_group_id, pat_id)
 		});
 
 	//BUTTON HANDLERS
