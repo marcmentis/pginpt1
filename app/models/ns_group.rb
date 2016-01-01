@@ -1,7 +1,7 @@
 class NsGroup < ActiveRecord::Base
 	include Jqgridconcern
 	has_and_belongs_to_many :patients
-	has_many :ns_notes, dependent: :destroy
+	has_many :ns_notes
 
 	validates :duration, presence: true
 	validates :groupname, presence: true
@@ -21,15 +21,21 @@ class NsGroup < ActiveRecord::Base
 	end
 
 	def self.pat_all_done(params)
-		# Get all notes for given group and date
-		notes = NsNote.where(ns_group_id: params[:ns_group_id])
-						.where(group_date: params[:group_date])
+		# # Get all notes for given group and date
+		# notes = NsNote.where(ns_group_id: params[:ns_group_id])
+		# 				.where(group_date: params[:group_date])
 
-		# Create an array of patient_id's to use in .where IN in all_done
-		pat_ids = notes.each.map{|n| n.patient_id}
+		# # Create an array of patient_id's to use in .where IN in all_done
+		# pat_ids = notes.each.map{|n| n.patient_id}
 
-		# Get Patients from the pat_ids array
-		all_done =Patient.where(id: pat_ids)
+		# # Get Patients from the pat_ids array
+		# all_done =Patient.where(id: pat_ids)
+		# 					.order(lastname: :asc)
+
+		# Using patient-to-ns-notes many-to-one relationship
+		all_done = Patient.joins(:ns_notes)
+							.where(ns_notes: {ns_group_id: params[:ns_group_id]})
+							.where(ns_notes: {group_date: params[:group_date]})
 							.order(lastname: :asc)
 	end
 
@@ -43,7 +49,7 @@ class NsGroup < ActiveRecord::Base
 		all_pat_in_group = group.patients
 		# Make an array of all the patients in the group
 		all_pat_ids = all_pat_in_group.each.map{|p| p.id}
-		# Get patients in group excluding those with notes
+		# Get patients in group excluding those with a note
 		all_to_do = Patient.where(id: all_pat_ids)
 							.where.not(id: not_these_ids)
 							.order(lastname: :asc)

@@ -1,5 +1,6 @@
 class NsNote < ActiveRecord::Base
 	belongs_to :ns_group
+	belongs_to :patient
 
 	validates :ns_group_id, presence: true
 	validates :patient_id, presence: true

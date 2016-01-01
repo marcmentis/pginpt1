@@ -62,5 +62,9 @@ describe "NsNote Model:" do
 		it " 'belongs_to' (many-to-one with) ns_group " do
 			expect(ns_note).to belong_to :ns_group
 		end
+		it " 'belongs_to' (many-to-one with) patient " do
+			expect(ns_note).to belong_to :patient
+		end
+
 	end
 end
