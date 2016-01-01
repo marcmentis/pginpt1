@@ -86,6 +86,17 @@ ForSelect.find_or_initialize_by(value: '1.5').update_attributes(facility: '9999'
 ForSelect.find_or_initialize_by(value: '2.0').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '2.0', text: '2.0', option_order: 4, grouper: '')
 ForSelect.find_or_initialize_by(value: '2.5').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '2.5', text: '2.5', option_order: 5, grouper: '')
 ForSelect.find_or_initialize_by(value: '3.0').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '3.0', text: '3.0', option_order: 6, grouper: '')
+	# Behavior Evaluation in Group1
+ForSelect.find_or_initialize_by(value: 'never').update_attributes(facility: '9999', code: 'NsNote1', value: 'never', text: 'never', option_order: 1, grouper: '')
+ForSelect.find_or_initialize_by(value: 'sometimes').update_attributes(facility: '9999', code: 'NsNote1', value: 'sometimes', text: 'sometimes', option_order: 2, grouper: '')
+ForSelect.find_or_initialize_by(value: 'frequently').update_attributes(facility: '9999', code: 'NsNote1', value: 'frequently', text: 'frequently', option_order: 3, grouper: '')
+ForSelect.find_or_initialize_by(value: 'always').update_attributes(facility: '9999', code: 'NsNote1', value: 'always', text: 'always', option_order: 4, grouper: '')
+	# Behavior Evaluation in Group2
+ForSelect.find_or_initialize_by(value: 'much worse').update_attributes(facility: '9999', code: 'NsNote2', value: 'much worse', text: 'much worse', option_order: 1, grouper: '')
+ForSelect.find_or_initialize_by(value: 'somewhat worse').update_attributes(facility: '9999', code: 'NsNote2', value: 'somewhat worse', text: 'somewhat worse', option_order: 2, grouper: '')
+ForSelect.find_or_initialize_by(value: 'no change').update_attributes(facility: '9999', code: 'NsNote2', value: 'no change', text: 'no change', option_order: 3, grouper: '')
+ForSelect.find_or_initialize_by(value: 'improved').update_attributes(facility: '9999', code: 'NsNote2', value: 'improved', text: 'improved', option_order: 4, grouper: '')
+ForSelect.find_or_initialize_by(value: 'much improved').update_attributes(facility: '9999', code: 'NsNote2', value: 'much improved', text: 'much improved', option_order: 5, grouper: '')
 
 # *****************************************
 # SPECIFIC TO HOSPITALS

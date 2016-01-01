@@ -26,8 +26,8 @@
     </div>
 
     <div id="divNsGrpListAndNotes" class="grid">
-      <div id="divNsGrpToDoDone" class="col-1-2">
-        <form id="fToDoDone">
+      <div id="divNsGrpToDoDone" class="col-2-5">
+        <form id="fNsGrpToDoDone">
           <div><h3>To Do</h3></div>
           <select id="slt_NsGrp_to_do"></select>
           <div><h3>Done</h3></div>
@@ -35,22 +35,64 @@
         </form>
 
         <form id="fNsGrpWardPatients">
+          <div><h3>Add Patient to Group: </h3></div>
           <div>
-            <h3>Add 
-              <select id="slt_NsGrp_ward"></select>
-              <select id="slt_NsGrp_patient"></select>
-            </h3>        
+            <select id="slt_NsGrp_ward"></select>
+            <select id="slt_NsGrp_patient"></select>
           </div>
+          <div class="field"></div>
+          <div><h3>Remove Patient From Group:</h3></div>
           <div>
             <input type="button" id="bt_NsGrp_remove" value="Remove">
-            <label>(Patient selected in ToDo list)</label>
+            <label>(Select from ToDo List)</label>
           </div>
         </form>
 
       </div>
-      <div id="divNsGrpNotes" class="col-1-2">
-        <form id="fNotes">
-          
+      <div id="divNsGrpNotes" class="col-3-5">
+        <form id="fNsGrpNotes">
+          <div>
+            <h3>
+              Note for:
+              <input id="ftx_PatNote_display" type="text" readonly />
+            </h3>
+          </div>
+          <div id="divGrpsPatNoteErrors"></div>
+          <div class="field100"></div>
+          <div class="field100">
+            <label for="slt_NsGrp_participate">Participates in Group Activity</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_participate" name="participate"></select>
+          </div> 
+          <div class="field100">
+            <label for="slt_NsGrp_respond">Responds relevantly in the group:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_respond" name="respond"></select>
+          </div> 
+          <div class="field100">
+            <label for="slt_NsGrp_interact_leader">Interacts with the Group Leader:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_interact_leader" name="interact_leader"></select>
+          </div> 
+          <div class="field100">
+            <label for="slt_NsGrp_interact_peers">Interacts with Peers:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_interact_peers" name="interact_peers"></select>
+          </div>
+          <div class="field100">
+            <label for="slt_NsGrp_discussion_init">Initiates discussion:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_discussion_init" name="discussion_init"></select>
+          </div> 
+          <div class="field100">
+            <label for="slt_NsGrp_discussion_understand">Understands Discussion in Group:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_discussion_understand" name="discussion_understand"></select>
+          </div>
+          <div >
+            <label for="txa_NsGrp_comment">Comment on Behavior in Group</label><span class="text-14-alert">*</span>
+            <textarea id="txa_NsGrp_comment" name="comment"></textarea>
+          </div> 
+
+          <div>
+            <input id="btNsGrpNoteSubmit" type="submit" value="x" />
+            <input id="btNsGrpNoteBack" type="button" value="Back" />
+          </div>         
+
         </form>
       </div>
     </div>

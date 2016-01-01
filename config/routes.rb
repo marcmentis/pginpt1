@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get '/ns_groups_search' => 'ns_groups#complex_search', as: :complex_search_ns_groups
   get '/ns_groups_pat_lists/' => 'ns_groups#patient_lists'
   post '/ns_groups_add_join/' => 'ns_groups#create_group_patient_join'
+  delete '/ns_groups_remove_join/' => 'ns_groups#destroy_group_patient_join'
 
   resources :ns_notes
   # The priority is based upon order of creation: first created -> highest priority.

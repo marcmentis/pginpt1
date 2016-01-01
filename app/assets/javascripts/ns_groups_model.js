@@ -337,7 +337,7 @@ function popGroupPatientJoinTable(ns_group_id, pat_id) {
 		cache: false,
 		dataType: 'json'
 	}).done(function(data){
-		alert(data['success'])
+		// alert(data['success'])
 		var ns_group_id = $('#nsGrp_ID').val();
 		var group_date = $('#dt_NsGrp_input').val();
 		popNsGrpLists(ns_group_id, group_date)
@@ -384,7 +384,27 @@ function populatePatientListSelects (slt_name, data) {
 				html += '<option value="'+id+'">' + lastname + ' '+firstname+': '+identifier+'</option>'
 			}
 			$('#'+slt_name+'').append(html);
-	}
+};
+
+function removePatient(ns_group_id, pat_id) {
+	var url = '/ns_groups_remove_join/'
+	//create strong parameter
+	data_for_params = {ns_group: {'ns_group_id': ns_group_id, 'pat_id': pat_id}}
+	$.ajax({
+		url: url,
+		type: 'DELETE',
+		data: data_for_params,
+		cache: false,
+		dataType: 'json'
+	}).done(function(data){
+		// alert(data['success'])
+		var ns_group_id = $('#nsGrp_ID').val();
+		var group_date = $('#dt_NsGrp_input').val();
+		popNsGrpLists(ns_group_id, group_date)
+	}).fail(function(jqXHR,textStatus,errorThrown){
+		alert(' jqXHR: '+jqXHR+'/n textStatus: '+textStatus+' errorThrown: '+errorThrown+'')
+	});
+};
 
 function clearFields_patientData1 () {
 	$('#slt_NsGrp_duration').val('-1');
