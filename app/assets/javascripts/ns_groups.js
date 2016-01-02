@@ -111,33 +111,42 @@ if($('body.ns_groups').length) {
 		});
 		//add selected patient to ns_groups_patients table
 		$('#slt_NsGrp_patient').change(function(e){
-			var pat_id = $(this).val();
+			var patient_id = $(this).val();
 			var ns_group_id = $('#nsGrp_ID').val();
 			//Validation
 			// Don't send request if at "ChoosePat"
-			if (pat_id.length < 1) {
+			if (patient_id.length < 1) {
 				return true;
 				};
-			popGroupPatientJoinTable(ns_group_id, pat_id)
+			popGroupPatientJoinTable(ns_group_id, patient_id)
 		});
 
 		//On choosing patient show form for note
 		$('#slt_NsGrp_to_do, #slt_NsGrp_done').change(function(e){
-			var new_patient_id = $(this).val();
+			var patient_id_arrray = $(this).val();
+			var patient_id = patient_id_arrray[0]
 			var element_id = $(this).attr('id');
+			var patientname = $('#'+element_id+' option:selected').text();
 
-			//? set_patient_id(new_patient_id)
+			// Set hiddent Patient_id texbox
+			$('#ftx_Patient_id').val(patient_id);
 
 			//If to-do - display new form
 			if (element_id == 'slt_NsGrp_to_do') {
 				// Display new form
+				$('#ftx_PatNote_display').val(patientname);
+				$('#btNsGrpNoteSubmit').attr('value', 'New')
 				$('#divNsGrpNotes').show();
-				$('#ftx_PatNote_display').val(new_patient_id);
+				
 
 			} else if (element_id == 'slt_NsGrp_done') {
-				// Get data from previous form and enter it
-				$('#divNsGrpNotes').show();
-				$('#ftx_PatNote_display').val(new_patient_id);
+				var group_date = $('#ftx_GrpDate_display')
+				var ns_group_id = $('#nsGrp_ID').val();
+				var group_date = $('#ftx_GrpDate_display').val();
+
+				// Get note for this patient_id, group and date
+				get_patient_note(patient_id, ns_group_id, group_date);
+				
 			};
 		});
 
@@ -192,26 +201,66 @@ if($('body.ns_groups').length) {
 
 		// Remove patient from Group (to-do list)
 		$('#bt_NsGrp_remove').click(function(e){
-			var pat_id = $('#slt_NsGrp_to_do').val();
-				pat_id = pat_id[0];
+			var patient_id = $('#slt_NsGrp_to_do').val();
 			var patient_text = $('#slt_NsGrp_to_do option:selected').text();
 			var ns_group_id = $('#nsGrp_ID').val();
-			// alert(pat_id)
+			// alert(patient_id)
 			//Validation
 			//Check that a patient is selected from todo list
-				if (pat_id == null) {
+				// N.B. 'patient_id' is an ARRAY, therefore in 'else' select value from array
+				if (patient_id == null) {
 					alert('Please select a patient from "To Do" list')
 					return true;
+				} else {
+					patient_id = patient_id[0];
 				};
 			//Confirm want to delete
 			var r = confirm('Are you sure you want to delete "'+patient_text+'"?' )
 			if (r == true) {
-				removePatient(ns_group_id, pat_id)
+				removePatient(ns_group_id, patient_id)
 			} else{
 				alert('no')
 				return true;
+			};			
+		});
+
+		//Submit New/Edit information from input form fNsGrpNotes
+		$('#fNsGrpNotes').submit(function(e){
+			e.preventDefault();
+			// VALIDATE that the form properly filled out
+			validation_array = [
+				['slt_NsGrp_participate','-1','Please choose "participation"'],
+				['slt_NsGrp_respond','-1','Please choose "respond"'],
+				['slt_NsGrp_interact_leader','-1','Please choose "Interact with Leader"'],
+				['slt_NsGrp_interact_peers','-1','Please choose "Interact with Peers"'],
+				['slt_NsGrp_discussion_init','-1','Please choose "initiates discussion"'],
+				['slt_NsGrp_discussion_understand','-1','Please choose "understands discussion"'],			
+				['txa_NsGrp_comment','','Please enter Comment']
+			]
+
+			//Loop through array and remove error messages if corrected
+			remove_error_divs_if_corrected(validation_array)
+ 			//Loop through array and show error message if '', '-1' etc.
+ 			exit = validate_elements(validation_array)
+ 			if (exit) {return true};
+
+ 			//Get value of submit button to determine which AJAX call to make
+			submit_value = $(this).find('input[type=submit]').attr('value')
+			// alert(submit_value)
+			switch(submit_value){
+				case 'New':
+					// rails convention 'create' route
+					nsGrp_newedit_note('/ns_notes/', 'POST');
+					break;
+				case 'Edit':
+					ID = $('#ftx_Note_id').val();
+					// rails convention 'update' route
+					nsGrp_newedit_note('/ns_notes/'+ID+'', 'PATCH')
+					break;
+				default:
+					alert('submit_id not found');
+					return false;
 			};
-			
 		});
 
 	// RUN ON OPENING

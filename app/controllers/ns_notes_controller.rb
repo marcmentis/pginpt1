@@ -19,6 +19,10 @@ class NsNotesController < ApplicationController
 
   # GET /ns_notes/1/edit
   def edit
+
+    respond_to do |format|
+      format.json {render json: @ns_note}
+    end
   end
 
   # POST /ns_notes
@@ -29,7 +33,8 @@ class NsNotesController < ApplicationController
     respond_to do |format|
       if @ns_note.save
         format.html { redirect_to @ns_note, notice: 'Ns note was successfully created.' }
-        format.json { render :show, status: :created, location: @ns_note }
+        # format.json { render :show, status: :created, location: @ns_note }
+        format.json {render json: @ns_note}
       else
         format.html { render :new }
         format.json { render json: @ns_note.errors, status: :unprocessable_entity }
@@ -61,6 +66,17 @@ class NsNotesController < ApplicationController
     end
   end
 
+  # GET /ns_groups_pat_lists.json/
+  def note_by_pat_group_date
+    @ns_note = NsNote.where(patient_id: ns_note_params[:patient_id])
+                      .where(ns_group_id: ns_note_params[:ns_group_id])
+                      .where(group_date: ns_note_params[:group_date])
+
+    respond_to do |format|
+      format.json {render json: @ns_note}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ns_note
@@ -69,6 +85,8 @@ class NsNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ns_note_params
-      params.require(:ns_note).permit(:group_id, :patient_id, :participate, :respond, :interact_leader, :interact_peers, :discussion_init, :discussion_understand, :comment, :updated_by)
+      params.require(:ns_note).permit(:ns_group_id, :patient_id, :participate, :respond, 
+                                      :interact_leader, :interact_peers, :discussion_init, 
+                                      :discussion_understand, :comment, :updated_by, :group_date)
     end
 end

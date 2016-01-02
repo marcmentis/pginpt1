@@ -90,7 +90,7 @@ function refreshgrid_NsGrp(url){
 
 				
 				// set_id(id);  //set the ID variable
-				// $('#Pat_ID').val(id);  //set the ID variable
+				// $('#patient_id').val(id);  //set the ID variable
 				// data_for_params = {patient: {id: id}}
 				// $.ajax({ 
 				// 		  // url: '/inpatient_show',
@@ -230,7 +230,11 @@ function refreshgrid_NsGrp(url){
 	});
 };
 
+function popNsForm(patient_id, newEdit) {
 
+};
+
+//This is the group 'newEdit' function
 function nsGrp_ajax1 (url, type) {
 	// var firstname = $('#firstname').val();
 	// var lastname = $('#lastname').val();
@@ -292,6 +296,72 @@ function nsGrp_ajax1 (url, type) {
 	});
 };
 
+function nsGrp_newedit_note (url, type) {
+	// var firstname = $('#firstname').val();
+	// var lastname = $('#lastname').val();
+	// var number = $('#number').val();
+	// var facility = $('#slt_F_facility').val();
+	// var ward = $('#slt_F_ward').val();
+
+
+	var params_string = $('#fNsGrpNotes').serialize();
+	params_string_replace = params_string.replace(/&/g,',')
+	params_string_replace = params_string_replace.replace(/%2F/g,'/')
+	params_array = params_string_replace.split(',');
+
+	var params_hash = {};
+	params_hash['updated_by'] = $('#session-username').val();
+	params_hash['ns_group_id'] = $('#nsGrp_ID').val();
+	params_hash['group_date'] = $('#ftx_GrpDate_display').val();
+
+	
+	for(var i=0, l = params_array.length; i<l; i++){
+		string = params_array[i]
+		array = string.split('=')
+		key = array[0];
+		value = array[1]
+		params_hash[key] = value;
+	}
+	//Make strong params
+	data_for_params = {ns_note: params_hash}
+
+	$.ajax({
+		url: url,
+		type: type,
+		data: data_for_params,
+		cache: false,
+		dataType: 'json'
+	}).done(function(data){
+		var ns_group_id = $('#nsGrp_ID').val();
+		var group_date = $('#dt_NsGrp_input').val();
+		// clearFields_patientData1();
+		// complex_search_nsGrp();
+
+		// clearFields();
+		// $('#divPatientAsideRt, #bEdit, #bNew, #bDelete, #bBack').hide();
+		// $('#divPatientAsideRt, #bPatientSubmit, #bPatientBack').hide();
+
+		//Populate ToDo and Done Lists
+		popNsGrpLists(ns_group_id, group_date)
+
+	}).fail(function(jqXHR,textStatus,errorThrown){
+		// alert('HTTP status code: ' + jqXHR.status + '\n' +
+  //             'textStatus: ' + textStatus + '\n' +
+  //             'errorThrown: ' + errorThrown);
+  //       alert('HTTP message body (jqXHR.responseText): ' + '\n' + jqXHR.responseText);
+
+        var msg = JSON.parse(jqXHR.responseText)
+        var newHTML;
+        newHTML = '<h3>Validation Error</h3>';	
+        newHTML += '<ul>';        
+        $.each(msg, function(key, value){
+        	newHTML += '<li>'+ value +'</li>';
+        });
+        newHTML += '</ul>';
+        $('#divGrpsPatNoteErrors').show().html(newHTML)
+	});
+};
+
 function popSelectWard(user_facility, ward) {
 	// var url = '/ns_groups_ward_patients/'
 	var url = '/patients_by_ward/'
@@ -326,10 +396,10 @@ function popSelectWard(user_facility, ward) {
 
 };
 
-function popGroupPatientJoinTable(ns_group_id, pat_id) {
+function popGroupPatientJoinTable(ns_group_id, patient_id) {
 	var url = '/ns_groups_add_join/'
 	//create strong parameter
-	data_for_params = {ns_group: {'ns_group_id': ns_group_id, 'pat_id': pat_id}}
+	data_for_params = {ns_group: {'ns_group_id': ns_group_id, 'patient_id': patient_id}}
 	$.ajax({
 		url: url,
 		type: 'POST',
@@ -344,6 +414,33 @@ function popGroupPatientJoinTable(ns_group_id, pat_id) {
 	}).fail(function(jqXHR,textStatus,errorThrown){
 		alert('Likely this patient already in group:/n jqXHR: '+jqXHR+'/n textStatus: '+textStatus+' errorThrown: '+errorThrown+'')
 	});
+};
+
+function get_patient_note(patient_id, ns_group_id, group_date) {
+	var url = 'ns_notes_pat_group_date'
+	var data_for_params = {ns_note: {'patient_id': patient_id,
+										'ns_group_id': ns_group_id,
+										'group_date': group_date}};
+
+	$.ajax({
+			url: url,
+			type: 'GET',
+			data: data_for_params,
+			cache: false,
+			dataType: 'json'
+		}).done(function(data){
+			var patientname = $('#slt_NsGrp_done option:selected').text();
+			note_id = data[0]['id']
+			alert(note_id)
+			$('#ftx_Note_id').val(data[0]['id'])
+			$('#ftx_PatNote_display').val(patientname);
+			$('#btNsGrpNoteSubmit').attr('value', 'Edit')
+
+
+			$('#divNsGrpNotes').show();
+		}).fail(function(jqXHR,textStatus,errorThrown){
+			alert(''+jqXHR+': '+textStatus+':'+errorThrown+'')
+		});
 };
 
 function popNsGrpLists(ns_group_id, group_date) {
@@ -386,10 +483,10 @@ function populatePatientListSelects (slt_name, data) {
 			$('#'+slt_name+'').append(html);
 };
 
-function removePatient(ns_group_id, pat_id) {
+function removePatient(ns_group_id, patient_id) {
 	var url = '/ns_groups_remove_join/'
 	//create strong parameter
-	data_for_params = {ns_group: {'ns_group_id': ns_group_id, 'pat_id': pat_id}}
+	data_for_params = {ns_group: {'ns_group_id': ns_group_id, 'patient_id': patient_id}}
 	$.ajax({
 		url: url,
 		type: 'DELETE',

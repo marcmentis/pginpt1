@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   delete '/ns_groups_remove_join/' => 'ns_groups#destroy_group_patient_join'
 
   resources :ns_notes
+  get '/ns_notes_pat_group_date' => 'ns_notes#note_by_pat_group_date'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -77,7 +77,7 @@ class NsGroupsController < ApplicationController
   # POST /ns_groups_add_join/.json
   def create_group_patient_join
     group = NsGroup.find(ns_group_params[:ns_group_id])
-    patient = Patient.find(ns_group_params[:pat_id])
+    patient = Patient.find(ns_group_params[:patient_id])
     group.patients << patient
 
     respond_to do |format|
@@ -88,7 +88,7 @@ class NsGroupsController < ApplicationController
   #DELETE /ns_groups_remove_join.json
   def destroy_group_patient_join
     group = NsGroup.find(ns_group_params[:ns_group_id])
-    patient = Patient.find(ns_group_params[:pat_id])
+    patient = Patient.find(ns_group_params[:patient_id])
     group.patients.destroy(patient)
 
     respond_to do |format|
@@ -115,6 +115,6 @@ class NsGroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ns_group_params
       params.require(:ns_group).permit(:duration, :groupname, :leader, :groupsite, :facility, :updated_by,
-                                        :site, :ns_group_id, :patient_id, :pat_id, :group_date)
+                                        :site, :ns_group_id, :patient_id, :group_date)
     end
 end
