@@ -26,6 +26,7 @@ if($('body.ns_groups').length) {
 		$('#NsGrpsNewEditErrors, #divGrpsPatNoteErrors')
 			.addClass('error_explanation')
 			.hide();
+		$('#div_NsGrp_success_message').hide();
 
 
 		//forms
@@ -133,16 +134,29 @@ if($('body.ns_groups').length) {
 
 			//If to-do - display new form
 			if (element_id == 'slt_NsGrp_to_do') {
+				// Clear note, and hidden note_id, patient_id
+				clearFields_note1();
+				//remove selection from done select
+				$('#slt_NsGrp_done').val('-1')
+
 				// Display new form
 				$('#ftx_PatNote_display').val(patientname);
 				$('#btNsGrpNoteSubmit').attr('value', 'New')
 				$('#divNsGrpNotes').show();
+				
 				
 
 			} else if (element_id == 'slt_NsGrp_done') {
 				var group_date = $('#ftx_GrpDate_display')
 				var ns_group_id = $('#nsGrp_ID').val();
 				var group_date = $('#ftx_GrpDate_display').val();
+
+				// Clear note, and hidden note_id, patient_id
+					// Not really necessary as all field should be filled but clear anyway
+				clearFields_note1();
+
+				//remove selection from to-do select
+				$('#slt_NsGrp_to_do').val('-1')
 
 				// Get note for this patient_id, group and date
 				get_patient_note(patient_id, ns_group_id, group_date);
@@ -219,7 +233,6 @@ if($('body.ns_groups').length) {
 			if (r == true) {
 				removePatient(ns_group_id, patient_id)
 			} else{
-				alert('no')
 				return true;
 			};			
 		});
@@ -253,14 +266,33 @@ if($('body.ns_groups').length) {
 					nsGrp_newedit_note('/ns_notes/', 'POST');
 					break;
 				case 'Edit':
-					ID = $('#ftx_Note_id').val();
+					id = $('#ftx_Note_id').val();
 					// rails convention 'update' route
-					nsGrp_newedit_note('/ns_notes/'+ID+'', 'PATCH')
+					nsGrp_newedit_note('/ns_notes/'+id+'', 'PATCH')
 					break;
 				default:
 					alert('submit_id not found');
 					return false;
 			};
+		});
+
+		//Close Notes and clear fields
+		$('#btNsGrpNoteBack').click(function(e){
+			//Clear notes and hide div remove todo done selections
+			clear_notes_div_selections()
+		});
+
+		//Delete note
+		$('#btNsGrpDelete').click(function(e){
+			var ns_note_id = $('#ftx_Note_id').val();
+
+			//Confirm that want to delete
+			var r = confirm('Are you sure you want to delete this note?' )
+			if (r == true) {
+				deleteNote(ns_note_id)
+			} else{
+				return true;
+			};	
 		});
 
 	// RUN ON OPENING

@@ -48,7 +48,7 @@ class NsNotesController < ApplicationController
     respond_to do |format|
       if @ns_note.update(ns_note_params)
         format.html { redirect_to @ns_note, notice: 'Ns note was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ns_note }
+        format.json { render json: @ns_note }
       else
         format.html { render :edit }
         format.json { render json: @ns_note.errors, status: :unprocessable_entity }

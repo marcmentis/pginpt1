@@ -230,10 +230,6 @@ function refreshgrid_NsGrp(url){
 	});
 };
 
-function popNsForm(patient_id, newEdit) {
-
-};
-
 //This is the group 'newEdit' function
 function nsGrp_ajax1 (url, type) {
 	// var firstname = $('#firstname').val();
@@ -297,13 +293,6 @@ function nsGrp_ajax1 (url, type) {
 };
 
 function nsGrp_newedit_note (url, type) {
-	// var firstname = $('#firstname').val();
-	// var lastname = $('#lastname').val();
-	// var number = $('#number').val();
-	// var facility = $('#slt_F_facility').val();
-	// var ward = $('#slt_F_ward').val();
-
-
 	var params_string = $('#fNsGrpNotes').serialize();
 	params_string_replace = params_string.replace(/&/g,',')
 	params_string_replace = params_string_replace.replace(/%2F/g,'/')
@@ -313,6 +302,9 @@ function nsGrp_newedit_note (url, type) {
 	params_hash['updated_by'] = $('#session-username').val();
 	params_hash['ns_group_id'] = $('#nsGrp_ID').val();
 	params_hash['group_date'] = $('#ftx_GrpDate_display').val();
+	// Can't use 'serialize' for these as have formatting that needs to be kept
+	params_hash['comment'] = $('#txa_NsGrp_comment').val();
+	params_hash['discussion_understand'] = $('#slt_NsGrp_discussion_understand').val();
 
 	
 	for(var i=0, l = params_array.length; i<l; i++){
@@ -334,15 +326,30 @@ function nsGrp_newedit_note (url, type) {
 	}).done(function(data){
 		var ns_group_id = $('#nsGrp_ID').val();
 		var group_date = $('#dt_NsGrp_input').val();
-		// clearFields_patientData1();
-		// complex_search_nsGrp();
+		var submitButtonValue = $('#btNsGrpNoteSubmit').val();
 
-		// clearFields();
-		// $('#divPatientAsideRt, #bEdit, #bNew, #bDelete, #bBack').hide();
-		// $('#divPatientAsideRt, #bPatientSubmit, #bPatientBack').hide();
-
-		//Populate ToDo and Done Lists
-		popNsGrpLists(ns_group_id, group_date)
+		// If 'edit' show message as edit-function doesn't change group
+		if (submitButtonValue == 'Edit') {
+			text = 'Successful Save'
+			$('#div_NsGrp_success_message').html(text)
+			$('#div_NsGrp_success_message').show();
+			setTimeout(function(){
+				$('#divNsGrpNotes, #div_NsGrp_success_message')
+					.hide();
+				$('.error_message').hide();
+				//Clear notes, hide div, remove any selection dodo or done
+				clear_notes_div_selections();
+				//Populate ToDo and Done Lists
+				popNsGrpLists(ns_group_id, group_date)
+			},1000);
+		} else{
+			//Clear notes, hide div, remove any selection dodo or done
+			clear_notes_div_selections();
+			//Populate ToDo and Done Lists
+			popNsGrpLists(ns_group_id, group_date)
+		};
+			
+		
 
 	}).fail(function(jqXHR,textStatus,errorThrown){
 		// alert('HTTP status code: ' + jqXHR.status + '\n' +
@@ -430,11 +437,19 @@ function get_patient_note(patient_id, ns_group_id, group_date) {
 			dataType: 'json'
 		}).done(function(data){
 			var patientname = $('#slt_NsGrp_done option:selected').text();
-			note_id = data[0]['id']
-			alert(note_id)
-			$('#ftx_Note_id').val(data[0]['id'])
+
+
+			//Set hidden and visible elements with note data
+			$('#ftx_Note_id').val(data[0]['id']);
 			$('#ftx_PatNote_display').val(patientname);
-			$('#btNsGrpNoteSubmit').attr('value', 'Edit')
+			$('#btNsGrpNoteSubmit').attr('value', 'Edit');
+			$('#slt_NsGrp_participate').val(data[0].participate);
+			$('#slt_NsGrp_respond').val(data[0].respond);
+			$('#slt_NsGrp_interact_leader').val(data[0].interact_leader);
+			$('#slt_NsGrp_interact_peers').val(data[0].interact_peers);
+			$('#slt_NsGrp_discussion_init').val(data[0].discussion_init);
+			$('#slt_NsGrp_discussion_understand').val(data[0].discussion_understand);
+			$('#txa_NsGrp_comment').val(data[0].comment);
 
 
 			$('#divNsGrpNotes').show();
@@ -503,9 +518,45 @@ function removePatient(ns_group_id, patient_id) {
 	});
 };
 
+function deleteNote(ns_note_id) {
+	var url = '/ns_notes/'+ns_note_id+''
+	var ns_group_id = $('#nsGrp_ID').val();
+	var group_date = $('#ftx_GrpDate_display').val();
+	$.ajax({
+		url: url,
+		type: 'DELETE',
+		// data: data_for_params,
+		cache: false,
+		dataType: 'json'
+	}).done(function(data){
+		//Clear notes and hide div remove todo done selections
+		clear_notes_div_selections()
+
+		//Populates lists
+		popNsGrpLists(ns_group_id, group_date)
+		
+	}).fail(function(jqXHR,textStatus,errorThrown){
+		alert(' jqXHR: '+jqXHR+'/n textStatus: '+textStatus+' errorThrown: '+errorThrown+'')
+	});
+};
+
 function clearFields_patientData1 () {
 	$('#slt_NsGrp_duration').val('-1');
 	$('#txt_NsGrp_group_name, #txt_NsGrp_leader, #txt_NsGrp_group_site')
 		.val('');
 	$('.error_message').hide();
 };
+
+function clearFields_note1 () {
+	$('#slt_NsGrp_participate, #slt_NsGrp_respond, #slt_NsGrp_interact_leader, #slt_NsGrp_interact_peers, #slt_NsGrp_discussion_init, #slt_NsGrp_discussion_understand')
+		.val('-1')
+	$('#txa_NsGrp_comment, #ftx_Note_id, #ftx_PatNote_display').val('')
+};
+
+function clear_notes_div_selections() {
+	$('#divNsGrpNotes').hide();
+	clearFields_note1();
+	$('#slt_NsGrp_to_do, #slt_NsGrp_done')
+		.val('-1')
+};
+
