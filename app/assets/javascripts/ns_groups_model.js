@@ -385,7 +385,7 @@ function popSelectWard(user_facility, ward) {
 		dataType: 'json'
 	}).done(function(data){
 		$('#slt_NsGrp_patient').find('option').remove();
-		var html = '<option value="">ChoosePat </option>';
+		var html = '<option value="-1">ChoosePat </option>';
 		for(var i = 0; i < data.length; i++){
 			firstname = data[i]["firstname"]
 			lastname = data[i]["lastname"]
@@ -419,6 +419,9 @@ function popGroupPatientJoinTable(ns_group_id, patient_id) {
 		// alert(data['success'])
 		var ns_group_id = $('#nsGrp_ID').val();
 		var group_date = $('#dt_NsGrp_input').val();
+		//Reset Choose Pat
+		$('#slt_NsGrp_patient').val('-1')
+		//Populate Group Lists after patient added to group
 		popNsGrpLists(ns_group_id, group_date)
 	}).fail(function(jqXHR,textStatus,errorThrown){
 		alert('Likely this patient already in group:/n jqXHR: '+jqXHR+'/n textStatus: '+textStatus+' errorThrown: '+errorThrown+'')
@@ -514,6 +517,9 @@ function removePatient(ns_group_id, patient_id) {
 		// alert(data['success'])
 		var ns_group_id = $('#nsGrp_ID').val();
 		var group_date = $('#dt_NsGrp_input').val();
+		// Clear and hide Note fr:
+		clear_notes_div_selections()
+		// Populate Todo Done after patient removal
 		popNsGrpLists(ns_group_id, group_date)
 	}).fail(function(jqXHR,textStatus,errorThrown){
 		alert(' jqXHR: '+jqXHR+'/n textStatus: '+textStatus+' errorThrown: '+errorThrown+'')
@@ -549,10 +555,14 @@ function clearFields_patientData1 () {
 	$('.error_message').hide();
 };
 
+function clear_current_group_headings() {
+	$('#ftx_GrpName_display, #ftx_GrpDate_display').val('');
+};
+
 function clearFields_note1 () {
 	$('#slt_NsGrp_participate, #slt_NsGrp_respond, #slt_NsGrp_interact_leader, #slt_NsGrp_interact_peers, #slt_NsGrp_discussion_init, #slt_NsGrp_discussion_understand')
 		.val('-1')
-	$('#txa_NsGrp_comment, #ftx_Note_id, #ftx_PatNote_display').val('')
+	$('#txa_NsGrp_comment, #ftx_Note_id, #ftx_PatNote_display, #ftx_Patient_id').val('')
 };
 
 function clear_notes_div_selections() {
@@ -566,7 +576,5 @@ function clear_add_patient_to_group() {
 	$('#slt_NsGrp_ward, #slt_NsGrp_patient').val('-1');
 };
 
-function clear_current_group_headings() {
-	$('#ftx_GrpName_display, #ftx_GrpDate_display').val('');
-};
+
 

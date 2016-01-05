@@ -104,8 +104,8 @@ if($('body.ns_groups').length) {
 		clear_add_patient_to_group();
 		clear_current_group_headings();
 
-		// $('#')
-		// 	.hide()
+		$('#divFormNsGrpCurrentGrp, #divNsGrpToDoDone')
+			.hide()
 	})
 
 	//SELECCT HANDLERS
@@ -137,8 +137,7 @@ if($('body.ns_groups').length) {
 			var element_id = $(this).attr('id');
 			var patientname = $('#'+element_id+' option:selected').text();
 
-			// Set hiddent Patient_id texbox
-			$('#ftx_Patient_id').val(patient_id);
+			
 
 			//If to-do - display new form
 			if (element_id == 'slt_NsGrp_to_do') {
@@ -146,6 +145,8 @@ if($('body.ns_groups').length) {
 				clearFields_note1();
 				//remove selection from done select
 				$('#slt_NsGrp_done').val('-1')
+				// Set hiddent Patient_id texbox
+				$('#ftx_Patient_id').val(patient_id);
 
 				// Display new form
 				$('#ftx_PatNote_display').val(patientname);
@@ -162,6 +163,8 @@ if($('body.ns_groups').length) {
 				// Clear note, and hidden note_id, patient_id
 					// Not really necessary as all field should be filled but clear anyway
 				clearFields_note1();
+				// Set hiddent Patient_id texbox
+				$('#ftx_Patient_id').val(patient_id);
 
 				//remove selection from to-do select
 				$('#slt_NsGrp_to_do').val('-1')
