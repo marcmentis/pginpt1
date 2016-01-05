@@ -76,6 +76,8 @@ function refreshgrid_NsGrp(url){
 					$('#ftx_GrpDate_display').val(input_date);
 					$('#ftx_GrpName_display').val(full_group_name);	
 					$('#divFormNsGrpCurrentGrp, #divNsGrpToDoDone').show();
+					//Hide Grid 
+					$('#divSearchAndGrid').hide();
 
 					//Populate ToDo and Done Lists
 					popNsGrpLists(ns_group_id, group_date)
@@ -558,5 +560,13 @@ function clear_notes_div_selections() {
 	clearFields_note1();
 	$('#slt_NsGrp_to_do, #slt_NsGrp_done')
 		.val('-1')
+};
+
+function clear_add_patient_to_group() {
+	$('#slt_NsGrp_ward, #slt_NsGrp_patient').val('-1');
+};
+
+function clear_current_group_headings() {
+	$('#ftx_GrpName_display, #ftx_GrpDate_display').val('');
 };
 

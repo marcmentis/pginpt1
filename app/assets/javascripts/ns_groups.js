@@ -98,6 +98,14 @@ if($('body.ns_groups').length) {
 	//DATES
 	$('#dt_NsGrp_input').change(function(){
 		$('#divSearchAndGrid').show();
+		//Clear and Hide Current Group, Todo/done, Note for, add Patient if any open
+		clear_notes_div_selections();
+		clearFields_note1();
+		clear_add_patient_to_group();
+		clear_current_group_headings();
+
+		// $('#')
+		// 	.hide()
 	})
 
 	//SELECCT HANDLERS
