@@ -77,7 +77,7 @@ function refreshgrid_NsGrp(url){
 					$('#ftx_GrpName_display').val(full_group_name);	
 					$('#divFormNsGrpCurrentGrp, #divNsGrpToDoDone').show();
 					//Hide Grid 
-					$('#divSearchAndGrid').hide();
+					// $('#divSearchAndGrid').hide();
 
 					//Populate ToDo and Done Lists
 					popNsGrpLists(ns_group_id, group_date)
@@ -163,7 +163,6 @@ function refreshgrid_NsGrp(url){
 			clearFields_patientData1();
 			$('#btNsGrpNewSubmit').attr('value', 'New')	
 			$('#divNsGrpNewEdit').show();
-			//THINK ABOUT CLEARING FIELDS etc. HERE
 		},
 		position:'last'
 	})
@@ -215,16 +214,16 @@ function refreshgrid_NsGrp(url){
 			if (for_delete == 'true') {
 				ID = $('#nsGrp_ID').val(); 
 				if (ID.length > 0) {	
-					if(confirm("Are you sure you want to delete this patient")){
+					if(confirm("Are you sure you want to delete this group")){
 						nsGrp_ajax1('/ns_groups/'+ID+'', 'DELETE');	
 					} else {
 						return true;
 					};
 				} else{
-					alert('No patient has been selected.')
+					alert('No group has been selected.')
 				};
 			}else {
-				alert("Sorry, you do not have privileges to delete patients");
+				alert("Sorry, you do not have privileges to delete groups");
 				return true;
 			};
 		},
@@ -234,12 +233,6 @@ function refreshgrid_NsGrp(url){
 
 //This is the group 'newEdit' function
 function nsGrp_ajax1 (url, type) {
-	// var firstname = $('#firstname').val();
-	// var lastname = $('#lastname').val();
-	// var number = $('#number').val();
-	// var facility = $('#slt_F_facility').val();
-	// var ward = $('#slt_F_ward').val();
-
 	var params_string = $('#fNsGrpNewEdit').serialize();
 	params_string_replace = params_string.replace(/&/g,',')
 	params_string_replace = params_string_replace.replace(/%2F/g,'/')
@@ -247,6 +240,10 @@ function nsGrp_ajax1 (url, type) {
 	
 
 	var params_hash = {};
+	params_hash['duration'] = $('#slt_NsGrp_duration').val();
+	params_hash['groupname'] = $('#txt_NsGrp_group_name').val();
+	params_hash['leader'] = $('#txt_NsGrp_leader').val();
+	params_hash['groupsite'] = $('#txt_NsGrp_group_site').val();
 	params_hash['updated_by'] = $('#session-username').val();
 	params_hash['facility'] = $('#session-facility').val();
 	//Serialize does NOT generate disabled values
@@ -254,13 +251,13 @@ function nsGrp_ajax1 (url, type) {
 	// 	params_hash['facility'] = $('#slt_F_facility').val();
 	// };
 	
-	for(var i=0, l = params_array.length; i<l; i++){
-		string = params_array[i]
-		array = string.split('=')
-		key = array[0];
-		value = array[1]
-		params_hash[key] = value;
-	}
+	// for(var i=0, l = params_array.length; i<l; i++){
+	// 	string = params_array[i]
+	// 	array = string.split('=')
+	// 	key = array[0];
+	// 	value = array[1]
+	// 	params_hash[key] = value;
+	// }
 	//Make strong params
 	data_for_params = {ns_group: params_hash}
 
@@ -273,6 +270,8 @@ function nsGrp_ajax1 (url, type) {
 	}).done(function(data){
 		clearFields_patientData1();
 		complex_search_nsGrp();
+		// Hide new/edit Patient Data
+		$('#divNsGrpNewEdit').hide();
 		// clearFields();
 		// $('#divPatientAsideRt, #bEdit, #bNew, #bDelete, #bBack').hide();
 		// $('#divPatientAsideRt, #bPatientSubmit, #bPatientBack').hide();

@@ -55,8 +55,8 @@
             <h3>
               Note for:
               <input id="ftx_PatNote_display" type="text" readonly />
-              <input id="ftx_Patient_id" name="patient_id" />
-              <input id="ftx_Note_id" />
+              <input id="ftx_Patient_id" name="patient_id" type="hidden" />
+              <input id="ftx_Note_id" type="hidden" />
             </h3>
           </div>
           <div id="divGrpsPatNoteErrors"></div>
@@ -117,7 +117,7 @@
     <!-- <div class="nsgroup_div_spacer1"></div> -->
     <div id="divSearchAndGrid">
       <form id="fNsGrpSearch">
-        <input id="nsGrp_ID" type="text" />
+        <input id="nsGrp_ID" type="hidden" />
         <div id="NsGrpSearchTitle"><h2>Group Search Criteria</h2></div>
         <div class="grid">
           <div class="col-1-2">
@@ -140,7 +140,7 @@
 
     <div id="divNsGrpNewEdit">
       <form id="fNsGrpNewEdit">
-        <div><h2>Patient Data</h2></div>
+        <div><h2>Group Data</h2></div>
         <div id="NsGrpsNewEditErrors"></div>
         <div class="field">
           <label for="slt_NsGrp_duration">Duration</label><span class="text-14-alert">*</span>

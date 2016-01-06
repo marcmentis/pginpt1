@@ -143,6 +143,8 @@ if($('body.ns_groups').length) {
 			if (element_id == 'slt_NsGrp_to_do') {
 				// Clear note, and hidden note_id, patient_id
 				clearFields_note1();
+				// Hide Group grid and Group Data if present
+				$('#divSearchAndGrid, #divNsGrpNewEdit').hide();
 				//remove selection from done select
 				$('#slt_NsGrp_done').val('-1')
 				// Set hiddent Patient_id texbox
@@ -163,6 +165,8 @@ if($('body.ns_groups').length) {
 				// Clear note, and hidden note_id, patient_id
 					// Not really necessary as all field should be filled but clear anyway
 				clearFields_note1();
+				// Hide Group grid and Group Data if present
+				$('#divSearchAndGrid, #divNsGrpNewEdit').hide();
 				// Set hiddent Patient_id texbox
 				$('#ftx_Patient_id').val(patient_id);
 
