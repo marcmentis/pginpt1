@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720175158) do
+ActiveRecord::Schema.define(version: 20151230214847) do
+
+  create_table "accessauditlog", primary_key: "accessaudittrail_id", force: :cascade do |t|
+    t.datetime "access_dt",                                   null: false
+    t.string   "action_cd",        limit: 45
+    t.string   "facility_stamp",   limit: 4
+    t.string   "ip_addr",          limit: 22
+    t.string   "workstation_id",   limit: 200
+    t.string   "auth_method",      limit: 1
+    t.string   "user_id",          limit: 20
+    t.integer  "user_num",                     precision: 38
+    t.integer  "application_num",              precision: 38
+    t.string   "application_name", limit: 50
+    t.string   "profile_desc",     limit: 200
+  end
 
   create_table "for_selects", force: :cascade do |t|
     t.string   "code"
@@ -46,6 +60,50 @@ ActiveRecord::Schema.define(version: 20150720175158) do
     t.datetime "updated_at"
   end
 
+  create_table "ns_groups", force: :cascade do |t|
+    t.string   "duration"
+    t.string   "groupname"
+    t.string   "leader"
+    t.string   "groupsite"
+    t.string   "facility"
+    t.string   "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ns_groups", ["facility", "groupname"], name: "facility-groupname"
+  add_index "ns_groups", ["facility"], name: "index_ns_groups_on_facility"
+
+  create_table "ns_groups_patients", id: false, force: :cascade do |t|
+    t.integer "ns_group_id", precision: 38, null: false
+    t.integer "patient_id",  precision: 38, null: false
+  end
+
+  add_index "ns_groups_patients", ["ns_group_id", "patient_id"], name: "ns-patient-id", unique: true
+  add_index "ns_groups_patients", ["patient_id", "ns_group_id"], name: "patient-ns-id", unique: true
+
+  create_table "ns_notes", force: :cascade do |t|
+    t.integer  "ns_group_id",           precision: 38
+    t.integer  "patient_id",            precision: 38
+    t.string   "participate"
+    t.string   "respond"
+    t.string   "interact_leader"
+    t.string   "interact_peers"
+    t.string   "discussion_init"
+    t.string   "discussion_understand"
+    t.text     "comment"
+    t.string   "updated_by"
+    t.datetime "group_date"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "ns_notes", ["group_date"], name: "nsnote-groupdate"
+  add_index "ns_notes", ["ns_group_id", "group_date"], name: "nsnote-groupid-date"
+  add_index "ns_notes", ["ns_group_id"], name: "nsnote-groupid"
+  add_index "ns_notes", ["patient_id", "ns_group_id"], name: "nsnote-patid-groupid"
+  add_index "ns_notes", ["patient_id"], name: "nsnote-patientid"
+
   create_table "patients", force: :cascade do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -66,6 +124,14 @@ ActiveRecord::Schema.define(version: 20150720175158) do
   add_index "patients", ["identifier"], name: "index_patients_on_identifier"
   add_index "patients", ["lastname"], name: "index_patients_on_lastname"
   add_index "patients", ["site"], name: "index_patients_on_site"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "price",       precision: 38
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

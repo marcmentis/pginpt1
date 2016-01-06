@@ -1,0 +1,41 @@
+<%= form_for(@ns_group) do |f| %>
+  <% if @ns_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ns_group.errors.count, "error") %> prohibited this ns_group from being saved:</h2>
+
+      <ul>
+      <% @ns_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :duration %><br>
+    <%= f.text_field :duration %>
+  </div>
+  <div class="field">
+    <%= f.label :groupname %><br>
+    <%= f.text_field :groupname %>
+  </div>
+  <div class="field">
+    <%= f.label :leader %><br>
+    <%= f.text_field :leader %>
+  </div>
+  <div class="field">
+    <%= f.label :groupsite %><br>
+    <%= f.text_field :groupsite %>
+  </div>
+  <div class="field">
+    <%= f.label :facility %><br>
+    <%= f.text_field :facility %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br>
+    <%= f.text_field :updated_by %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,178 @@
+
+<div id="divNsGroupPageWrapper">
+<div id="divNsGroupPageInnerWrapper" class="nsgroups_index"> <!-- class-media -->
+<% if policy(NsGroup).destroy? %>
+    <input id="forDelete" type="hidden" name="forDelete" value="true">
+  <% else %>
+    <input id="forDelete" type="hidden" name="forDelete" value="false">
+  <% end %>
+
+<div class="grid">
+
+  <div class="col-11-20">  <!-- style="background:red" -->
+    <div id="divNsGrpTitle">
+      Notes for Non-Scheduled Groups
+      <!-- <input id="txt-NsGrp-ShowFacility" type="text" /> -->
+    </div>
+    <div id="divFormNsGrpCurrentGrp">
+      <form id="fNsGrpCurrentGrp">
+        <div>
+          <h2>Current Group:
+            <input id="ftx_GrpName_display" type="text" readonly />
+            on <input id="ftx_GrpDate_display" type="text" readonly />
+          </h2>
+        </div>  
+      </form>
+    </div>
+
+    <div id="divNsGrpListAndNotes" class="grid">
+      <div id="divNsGrpToDoDone" class="col-2-5">
+        <form id="fNsGrpToDoDone">
+          <div><h3>To Do</h3></div>
+          <select id="slt_NsGrp_to_do"></select>
+          <div><h3>Done</h3></div>
+          <select id="slt_NsGrp_done"></select>
+        </form>
+
+        <form id="fNsGrpWardPatients">
+          <div><h3>Add Patient to Group: </h3></div>
+          <div>
+            <select id="slt_NsGrp_ward"></select>
+            <select id="slt_NsGrp_patient"></select>
+          </div>
+          <div class="field"></div>
+          <div><h3>Remove Patient From Group:</h3></div>
+          <div>
+            <input type="button" id="bt_NsGrp_remove" value="Remove">
+            <label>(Select from ToDo List)</label>
+          </div>
+        </form>
+
+      </div>
+      <div id="divNsGrpNotes" class="col-3-5">
+        <form id="fNsGrpNotes">
+          <div>
+            <h3>
+              Note for:
+              <input id="ftx_PatNote_display" type="text" readonly />
+              <input id="ftx_Patient_id" name="patient_id" type="hidden" />
+              <input id="ftx_Note_id" type="hidden" />
+            </h3>
+          </div>
+          <div id="divGrpsPatNoteErrors"></div>
+          <div class="field100"></div>
+          <div class="field100">
+            <label for="slt_NsGrp_participate">Participates in Group Activity</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_participate" name="participate"></select>
+          </div> 
+          <div class="field100">
+            <label for="slt_NsGrp_respond">Responds relevantly in the group:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_respond" name="respond"></select>
+          </div> 
+          <div class="field100">
+            <label for="slt_NsGrp_interact_leader">Interacts with the Group Leader:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_interact_leader" name="interact_leader"></select>
+          </div> 
+          <div class="field100">
+            <label for="slt_NsGrp_interact_peers">Interacts with Peers:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_interact_peers" name="interact_peers"></select>
+          </div>
+          <div class="field100">
+            <label for="slt_NsGrp_discussion_init">Initiates discussion:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_discussion_init" name="discussion_init"></select>
+          </div> 
+          <div class="field100">
+            <label for="slt_NsGrp_discussion_understand">Understands Discussion in Group:</label><span class="text-14-alert">*</span>
+            <select id="slt_NsGrp_discussion_understand"></select>
+          </div>
+          <div >
+            <label for="txa_NsGrp_comment">Comment on Behavior in Group</label><span class="text-14-alert">*</span>
+            <textarea id="txa_NsGrp_comment" ></textarea>
+          </div> 
+
+          <div>
+            <input id="btNsGrpNoteSubmit" type="submit" value="x" />
+            <input id="btNsGrpNoteBack" type="button" value="Back" />
+            <input id="btNsGrpDelete" type="button" value="Delete">
+          </div> 
+          <div class="success_message" id="div_NsGrp_success_message"></div>
+
+        </form>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="col-9-20"> <!-- style="background:green" -->
+    <form id="fNsGrpDate">
+      <div>
+        <h2>Set Up a Date and Group
+          <input id="dt_NsGrp_input" type="text" />
+        </h2>
+      </div>
+    </form>
+
+    <!-- <div class="nsgroup_div_spacer1"></div> -->
+    <div id="divSearchAndGrid">
+      <form id="fNsGrpSearch">
+        <input id="nsGrp_ID" type="hidden" />
+        <div id="NsGrpSearchTitle"><h2>Group Search Criteria</h2></div>
+        <div class="grid">
+          <div class="col-1-2">
+            <div >
+              <label>Group</label>
+              <input id="ftx_S_groupname" type="text" />
+            </div>
+          </div>
+          <div class="col-1-2">
+            <div >
+              <label>Leader</label>
+              <input id="ftx_S_leader" type="text" />
+            </div>
+          </div>
+        </div>
+        <input id="btnSubmit" type="submit" value="Search" />
+      </form>
+      <div id="divGrid"></div>
+    </div>  
+
+    <div id="divNsGrpNewEdit">
+      <form id="fNsGrpNewEdit">
+        <div><h2>Group Data</h2></div>
+        <div id="NsGrpsNewEditErrors"></div>
+        <div class="field">
+          <label for="slt_NsGrp_duration">Duration</label><span class="text-14-alert">*</span>
+          <select id="slt_NsGrp_duration" name="duration"></select>
+        </div>
+        <div class="field">
+          <label for="txt_NsGrp_group_name">Group Name</label><span class="text-14-alert">*</span>
+          <input id="txt_NsGrp_group_name" name="groupname" type="text" />
+        </div>
+        <div class="field">
+          <label for="txt_NsGrp_leader">Leader Name</label><span class="text-14-alert">*</span>
+          <input id="txt_NsGrp_leader" name="leader" type="text" />
+        </div>
+        <div class="field">
+          <label for="txt_NsGrp_group_site">Group Site</label><span class="text-14-alert">*</span>
+          <input id="txt_NsGrp_group_site" name="groupsite" type="text" />
+        </div>
+
+        <div>
+          <input id="btNsGrpNewSubmit" type="submit" value="x" />
+          <input id="btNsGrpBack" type="button" value="Back" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+ 
+</div> <!-- <div class="grid"> Primary grid for whole page -->
+
+</div> <!-- <div id="divNsGroupPageInnerWrapper"> -->
+</div> <!-- <div id="divNsGroupPageWrapper"> -->
+
+
+
+

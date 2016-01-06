@@ -20,6 +20,7 @@ class PatientsController < ApplicationController
     # Get instance of Patient so can run instance method 'get_jqGrid_obj'
     patient = Patient.new
 
+
     @jqGrid_obj = patient.get_jqGrid_obj(params)
     
     respond_to do |format|
@@ -104,6 +105,17 @@ class PatientsController < ApplicationController
     respond_to do |format|
       # format.html
       format.json {render json: @patients }
+    end
+  end
+
+  # GET /patients_by_ward.json
+  def patients_by_ward
+    @patients = Patient.where('facility = :facility', {facility: patient_params[:facility]})
+                        .where('site = :site', {site: patient_params[:site]})
+                        .order(lastname: :asc)
+    # byebug
+    respond_to do |format|
+      format.json {render json: @patients}
     end
   end
 

@@ -14,7 +14,7 @@ RSpec.configure do |config|
 # Run/Exclude tagged specs
     # Will run ONLY 'a_feature' tags
 	    # config.filter_run a_feature: true 
-	    # config.filter_run a_test:true
+	    #config.filter_run a_test:true
     # Will NOT run 'a_feature' tags
       # config.filter_run_excluding a_failure: true  
 
