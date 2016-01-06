@@ -52,9 +52,11 @@ ForSelect.find_or_initialize_by(value: 'nav_admin').update_attributes(facility: 
 ForSelect.find_or_initialize_by(value: 'nav_notes').update_attributes(facility: '9999', code: 'Roles', value: 'nav_notes', text: 'nav_notes', option_order: 9, grouper: '')
 ForSelect.find_or_initialize_by(value: 'nav_patients').update_attributes(facility: '9999', code: 'Roles', value: 'nav_patients', text: 'nav_patients', option_order: 10, grouper: '')
 ForSelect.find_or_initialize_by(value: 'nav_trackers').update_attributes(facility: '9999', code: 'Roles', value: 'nav_trackers', text: 'nav_trackers', option_order: 11, grouper: '')
-ForSelect.find_or_initialize_by(value: 'pat_crud').update_attributes(facility: '9999', code: 'Roles', value: 'pat_crud', text: 'pat_crud', option_order: 12, grouper: '')
-ForSelect.find_or_initialize_by(value: 'pat_cru').update_attributes(facility: '9999', code: 'Roles', value: 'pat_cru', text: 'pat_cru', option_order: 13, grouper: '')
-ForSelect.find_or_initialize_by(value: 'r_and_d').update_attributes(facility: '9999', code: 'Roles', value: 'r_and_d', text: 'r_and_d', option_order: 14, grouper: '')
+ForSelect.find_or_initialize_by(value: 'nsgroup_crud').update_attributes(facility: '9999', code: 'Roles', value: 'nsgroup_crud', text: 'nsgroup_crud', option_order: 12, grouper: '')
+ForSelect.find_or_initialize_by(value: 'nsgroup_cru').update_attributes(facility: '9999', code: 'Roles', value: 'nsgroup_cru', text: 'nsgroup_cru', option_order: 13, grouper: '')
+ForSelect.find_or_initialize_by(value: 'pat_crud').update_attributes(facility: '9999', code: 'Roles', value: 'pat_crud', text: 'pat_crud', option_order: 14, grouper: '')
+ForSelect.find_or_initialize_by(value: 'pat_cru').update_attributes(facility: '9999', code: 'Roles', value: 'pat_cru', text: 'pat_cru', option_order: 15, grouper: '')
+ForSelect.find_or_initialize_by(value: 'r_and_d').update_attributes(facility: '9999', code: 'Roles', value: 'r_and_d', text: 'r_and_d', option_order: 16, grouper: '')
 
 #YesNo
 ForSelect.find_or_initialize_by(value: 'Y').update_attributes(facility: '9999', code: 'YesNo', value: 'Y', text: 'Yes', option_order: 1, grouper: '')
@@ -77,6 +79,24 @@ ForSelect.find_or_initialize_by(value: 'Gt4Weeks').update_attributes(facility: '
 ForSelect.find_or_initialize_by(value: '0-2Months').update_attributes(facility: '9999', code: 'GroupsChanged', value: '0-2Months', text: '0-2Months', option_order: 1, grouper: '')
 ForSelect.find_or_initialize_by(value: 'Gt2Months').update_attributes(facility: '9999', code: 'GroupsChanged', value: 'Gt2Months', text: 'Gt2Months', option_order: 2, grouper: '')
 
+# Non-Scheduled Notes
+ForSelect.find_or_initialize_by(value: '0.5').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '0.5', text: '0.5', option_order: 1, grouper: '')
+ForSelect.find_or_initialize_by(value: '1.0').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '1.0', text: '1.0', option_order: 2, grouper: '')
+ForSelect.find_or_initialize_by(value: '1.5').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '1.5', text: '1.5', option_order: 3, grouper: '')
+ForSelect.find_or_initialize_by(value: '2.0').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '2.0', text: '2.0', option_order: 4, grouper: '')
+ForSelect.find_or_initialize_by(value: '2.5').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '2.5', text: '2.5', option_order: 5, grouper: '')
+ForSelect.find_or_initialize_by(value: '3.0').update_attributes(facility: '9999', code: 'NsGrpDuration', value: '3.0', text: '3.0', option_order: 6, grouper: '')
+	# Behavior Evaluation in Group1
+ForSelect.find_or_initialize_by(value: 'never').update_attributes(facility: '9999', code: 'NsNote1', value: 'never', text: 'never', option_order: 1, grouper: '')
+ForSelect.find_or_initialize_by(value: 'sometimes').update_attributes(facility: '9999', code: 'NsNote1', value: 'sometimes', text: 'sometimes', option_order: 2, grouper: '')
+ForSelect.find_or_initialize_by(value: 'frequently').update_attributes(facility: '9999', code: 'NsNote1', value: 'frequently', text: 'frequently', option_order: 3, grouper: '')
+ForSelect.find_or_initialize_by(value: 'always').update_attributes(facility: '9999', code: 'NsNote1', value: 'always', text: 'always', option_order: 4, grouper: '')
+	# Behavior Evaluation in Group2
+ForSelect.find_or_initialize_by(value: 'much worse').update_attributes(facility: '9999', code: 'NsNote2', value: 'much worse', text: 'much worse', option_order: 1, grouper: '')
+ForSelect.find_or_initialize_by(value: 'somewhat worse').update_attributes(facility: '9999', code: 'NsNote2', value: 'somewhat worse', text: 'somewhat worse', option_order: 2, grouper: '')
+ForSelect.find_or_initialize_by(value: 'no change').update_attributes(facility: '9999', code: 'NsNote2', value: 'no change', text: 'no change', option_order: 3, grouper: '')
+ForSelect.find_or_initialize_by(value: 'improved').update_attributes(facility: '9999', code: 'NsNote2', value: 'improved', text: 'improved', option_order: 4, grouper: '')
+ForSelect.find_or_initialize_by(value: 'much improved').update_attributes(facility: '9999', code: 'NsNote2', value: 'much improved', text: 'much improved', option_order: 5, grouper: '')
 
 # *****************************************
 # SPECIFIC TO HOSPITALS

@@ -200,7 +200,7 @@
 				set_nonselected_todo_done_to_null(element_id);			
 			
 		}).fail(function(jqXHR,textStatus,errorThrown){
-			alert(''+jqXHR+': '+textStatus+':'+errotThrown+'')
+			alert(''+jqXHR+': '+textStatus+':'+errorThrown+'')
 		});
 	};
 
