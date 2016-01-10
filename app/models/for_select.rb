@@ -1,6 +1,6 @@
 class ForSelect < ActiveRecord::Base
 	include Jqgridconcern
-	resourcify
+	# resourcify
 
 	validates :code, presence: true
 	validates :value, presence: true
