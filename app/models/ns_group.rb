@@ -1,7 +1,7 @@
 class NsGroup < ActiveRecord::Base
 	include Jqgridconcern
 	has_and_belongs_to_many :patients
-	has_many :ns_notes
+	has_many :ns_notes, dependent: :destroy
 
 	validates :duration, presence: true
 	validates :groupname, presence: true
