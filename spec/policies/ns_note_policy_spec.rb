@@ -1,24 +1,14 @@
-describe NsGroupPolicy do
+describe NsNotePolicy do
 	# Equivalent to: subject {described_class}
-	subject {NsGroupPolicy}
+	subject {NsNotePolicy}
 
-	context "AUTHORIZATION for view/altering 'ns_group' table" do
+	context "AUTHORIZATION for view/altering 'ns_note' note" do
 		permissions :create? do
 			context "Grants access if user has following roles/privileges" do
 				it "admin3" do
 					user_admin3 = create(:user)
 					user_admin3.add_role("admin3")
 					expect(subject).to permit(user_admin3)
-				end
-				it "nsgroup_crud" do
-					user_nsgroup_crud = create(:user)
-					user_nsgroup_crud.add_role("nsgroup_crud")
-					expect(subject).to permit(user_nsgroup_crud)
-				end
-				it "nsgroup_cru" do
-					user_nsgroup_cru = create(:user)
-					user_nsgroup_cru.add_role("nsgroup_cru")
-					expect(subject).to permit(user_nsgroup_cru)
 				end
 				it "nsnote_crud" do
 					user_nsnote_crud = create(:user)
@@ -47,17 +37,17 @@ describe NsGroupPolicy do
 					user_admin3.add_role("admin3")
 					expect(subject).to permit(user_admin3)
 				end
-				it "nsgroup_crud" do
-					user_nsgroup_crud = create(:user)
-					user_nsgroup_crud.add_role("nsgroup_crud")
-					expect(subject).to permit(user_nsgroup_crud)
+				it "nsnote_crud" do
+					user_nsnote_crud = create(:user)
+					user_nsnote_crud.add_role("nsnote_crud")
+					expect(subject).to permit(user_nsnote_crud)
 				end
 			end
 			context "Denies access if user has other roles/privileges:" do
-				it "nsgroup_cru" do
-					user_nsgroup_cru = create(:user)
-					user_nsgroup_cru.add_role("nsgroup_cru")
-					expect(subject).not_to permit(user_nsgroup_cru)
+				it "nsnote_cru" do
+					user_nsnote_cru = create(:user)
+					user_nsnote_cru.add_role("nsnote_cru")
+					expect(subject).not_to permit(user_nsnote_cru)
 				end
 				it "other" do
 					user_other = create(:user)

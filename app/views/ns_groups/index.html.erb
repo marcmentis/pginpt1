@@ -93,7 +93,10 @@
           <div>
             <input id="btNsGrpNoteSubmit" type="submit" value="x" />
             <input id="btNsGrpNoteBack" type="button" value="Back" />
-            <input id="btNsGrpDelete" type="button" value="Delete">
+            <% if policy(NsNote).destroy? %>
+              <input id="btNsGrpDelete" type="button" value="Delete">
+            <% end %>
+            
           </div> 
           <div class="success_message" id="div_NsGrp_success_message"></div>
 
