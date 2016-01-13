@@ -50,7 +50,7 @@ class NsGroupsController < ApplicationController
     respond_to do |format|
       if @ns_group.save
         # format.html { redirect_to @ns_group, notice: 'Ns group was successfully created.' }
-        format.json { render :show, status: :created, location: @ns_group }
+        format.json { render json: @ns_group}
       else
         # format.html { render :new }
         format.json { render json: @ns_group.errors, status: :unprocessable_entity }
@@ -63,8 +63,7 @@ class NsGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @ns_group.update(ns_group_params)
-        # format.html { redirect_to @ns_group, notice: 'Ns group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ns_group }
+        format.json { render json: @ns_group}
       else
         # format.html { render :edit }
         format.json { render json: @ns_group.errors, status: :unprocessable_entity }
