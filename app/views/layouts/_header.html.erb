@@ -23,7 +23,7 @@
 
 						</li>
 						<li id="notesNsGroups">
-							<%= link_to("NonScheduled Groups", ns_groups_path) if policy(NsNote).create?
+							<%= link_to("NonScheduled Notes", ns_groups_path) if policy(NsNote).create?
 							%>
 						</li>
 					</ul>
@@ -35,6 +35,9 @@
 					<ul>
 						<li id="trackerBPSAssessment">
 							<%= link_to("BioPsychoSocial Assessment", mxa_tracker_index_path) if policy(:mxa_tracker).index? %>
+						</li>
+						<li id="trackerNsnAssessment">
+							<%= link_to("NonScheduled Notes", nsn_tracker_index_path) if policy(NsNote).track?  %>
 						</li>
 					</ul>
 				</li>

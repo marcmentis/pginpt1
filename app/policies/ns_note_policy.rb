@@ -16,4 +16,11 @@ class NsNotePolicy
 		@current_user.has_role? :admin3 or
 		@current_user.has_role? :nsnote_crud
 	end
+
+	def track?
+		@current_user.has_role? :admin3 or
+		@current_user.has_role? :nsnote_track or
+		@current_user.has_role? :nsnote_crud or
+		@current_user.has_role? :nsnote_cru
+	end
 end

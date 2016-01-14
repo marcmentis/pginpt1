@@ -56,7 +56,7 @@ ForSelect.find_or_initialize_by(value: 'nsgroup_crud').update_attributes(facilit
 ForSelect.find_or_initialize_by(value: 'nsgroup_cru').update_attributes(facility: '9999', code: 'Roles', value: 'nsgroup_cru', text: 'nsgroup_cru', option_order: 13, grouper: '')
 ForSelect.find_or_initialize_by(value: 'nsnote_crud').update_attributes(facility: '9999', code: 'Roles', value: 'nsnote_crud', text: 'nsnote_crud', option_order: 14, grouper: '')
 ForSelect.find_or_initialize_by(value: 'nsnote_cru').update_attributes(facility: '9999', code: 'Roles', value: 'nsnote_cru', text: 'nsnote_cru', option_order: 15, grouper: '')
-ForSelect.find_or_initialize_by(value: 'nsgroup_track').update_attributes(facility: '9999', code: 'Roles', value: 'nsgroup_track', text: 'nsgroup_track', option_order: 16, grouper: '')
+ForSelect.find_or_initialize_by(value: 'nsnote_track').update_attributes(facility: '9999', code: 'Roles', value: 'nsnote_track', text: 'nsnote_track', option_order: 16, grouper: '')
 ForSelect.find_or_initialize_by(value: 'pat_crud').update_attributes(facility: '9999', code: 'Roles', value: 'pat_crud', text: 'pat_crud', option_order: 17, grouper: '')
 ForSelect.find_or_initialize_by(value: 'pat_cru').update_attributes(facility: '9999', code: 'Roles', value: 'pat_cru', text: 'pat_cru', option_order: 18, grouper: '')
 ForSelect.find_or_initialize_by(value: 'r_and_d').update_attributes(facility: '9999', code: 'Roles', value: 'r_and_d', text: 'r_and_d', option_order: 19, grouper: '')

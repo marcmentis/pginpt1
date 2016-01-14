@@ -88,6 +88,33 @@ function ajax_error1 (header, msg, divname, msec) {
     };
   };
 
+  // Get patients from a site and place in given select
+  function get_site_pats_pop_pat_select (site, slt_name) {  
+    var url = '/patients_site_search'
+    var data_for_params = {'site': site}
+    $.ajax({
+      url: url,
+      type: 'GET',
+      data: data_for_params,
+      cache: false,
+      dataType: 'json'
+    }).done(function(data){
+      $('#'+slt_name+'').find('option').remove();
+      // var html = '';
+      var html ='<option value="-1">Patients</option>';
+      for(var i = 0; i < data.length; i++){
+        id = data[i].id;
+        lastname = data[i].lastname;
+        firstname = data[i].firstname;
+        identifier = data[i].identifier;
+        html += '<option value="'+id+'">' + lastname + ' '+firstname+'</option>'
+      }
+      $('#'+slt_name+'').append(html);
+    }).fail(function(jqXHR,textStatus,errorThrown){
+      alert('jqXHR: '+jqXHR+'/n textStatus: '+textStatus+' errorThrown: '+errorThrown+'')
+    });
+  };
+
   
 
 
