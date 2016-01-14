@@ -6,9 +6,9 @@ if ($('body.nsn_tracker').length) {
 		var user_name = $('#session-username').val();
 
 		//textareas
-		var heightS1 = '90';
-		var heightL1 = '180';
-		var heightEL1 = '360';
+		var heightS1 = '360';
+		var heightL1 = '560';
+		var heightEL1 = '760';
 
 	//STYLING
 		//divs
@@ -37,8 +37,13 @@ if ($('body.nsn_tracker').length) {
 		//texts
 
 		//textareas
+		$('[id^=txa]')
+			.addClass('text-content left')
+			.width('92%')
+			.height(heightS1);
 
 		//buttons
+		$('[id^=bt_]').button().addClass('reduce_button')
 
 		//dates
 		$('[id^=dt]')
@@ -63,6 +68,34 @@ if ($('body.nsn_tracker').length) {
 			//Get Pat C# and name and populate ward select
 			get_site_pats_pop_pat_select (site, slt_name)
 		});	
+
+	//BUTTON HANDLERS
+		//Toggle handlers
+		$('#bt_NsnT_togAggregate').click(function(){
+			element = $('#txa_NsnT_Aggregate');
+			tripleToggle(element, heightS1, heightL1, heightEL1)
+		});
+		$('#bt_NsnT_togComments').click(function(){
+			element = $('#txa_NsnT_Comments');
+			tripleToggle(element, heightS1, heightL1, heightEL1)
+		});
+
+		// Note Search for Patient
+		$('#slt_NsnT_ward, #slt_NsnT_patient, #dt_NsnT_after, #dt_NsnT_before').change(function(e){		
+			//Validate - no empty inputs
+			var ward = $('#slt_NsnT_ward').val();
+			var patient_id = $('#slt_NsnT_patient').val();
+			var date_after = $('#dt_NsnT_after').val();
+			var date_before = $('#dt_NsnT_before').val();
+			if ((ward == '-1') ||(date_after == '') || (date_before == '')
+			 || (patient_id == '-1') || (patient_id == null) ){
+				return true
+			};
+			//Get all patient notes
+			NsnT_pat_notes_groups(patient_id, date_after, date_before)
+			// MxAw_complex_search1(user_facility);
+		});
+
 
 };  //if ($('body.nsn_tracker').length) {
 }); //$(function(){

@@ -39,8 +39,8 @@ Rails.application.routes.draw do
   resources :ns_notes
   get '/ns_notes_pat_group_date' => 'ns_notes#note_by_pat_group_date'
 
-  get 'nxn_tracker/index' => 'nsn_tracker#index', as: :nsn_tracker_index
-  get 'nsn_tracker/:id' => 'nsn_tracker#show', as: :nsn_tracker
+  get 'nsn_tracker/index' => 'nsn_tracker#index', as: :nsn_tracker_index
+  get 'nsn_tracker_pat_notes_grps/' => 'nsn_tracker#pat_notes_grps', as: :pat_notes_groups
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
