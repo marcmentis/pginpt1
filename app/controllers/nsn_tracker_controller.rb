@@ -1,5 +1,4 @@
 class NsnTrackerController < ApplicationController
-	# before_action :set_nsn_tracker, only: [:show]
 
 	def index
 		authorize NsNote, :track?
@@ -8,25 +7,16 @@ class NsnTrackerController < ApplicationController
 	# GET /nsn_tracker_pat_notes/1.json
 	def pat_notes_grps
 		# byebug
-		@pat_notes = NsNote.all
-
+		@pat_notes = NsNote.joins(:ns_group)
+							.select('ns_groups.*', 'ns_notes.*')
+							.where(patient_id: params[:patient_id])
+							.where("group_date > :date_after AND group_date < :date_before", 
+						 		{date_before: params[:date_before], date_after: params[:date_after]})
+							.order('groupname ASC', 'group_date DESC')
+						
 		respond_to do |format|
 			format.json {render json: @pat_notes}
 		end
 	end
-
-
-	private
-    # Use callbacks to share common setup or constraints between actions.
-    # def set_nsn_tracker
-    #   @nsn_note = NsNote.find(params[:id])
-    # end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def nsn_tracker_params
-      params.require(:nsn_tracker).permit(:ns_group_id, :patient_id, :participate, :respond, 
-                                      :interact_leader, :interact_peers, :discussion_init, 
-                                      :discussion_understand, :comment, :updated_by, :group_date)
-    end	
 
 end
