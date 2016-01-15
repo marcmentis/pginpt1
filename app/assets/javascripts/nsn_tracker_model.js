@@ -11,6 +11,8 @@ function NsnT_pat_notes_groups(patient_id, date_after, date_before) {
 		dataType: 'json'
 	}).done(function(data){
 		var text = '';
+		var current_group = '';
+		var last_group = '';
 		//Clear text area
 		$('#txa_NsnT_Comments').val('');
 
@@ -18,14 +20,24 @@ function NsnT_pat_notes_groups(patient_id, date_after, date_before) {
 			var group_date = moment(data[i].group_date, "YYYY-MM-DD").format('YYYY-MM-DD')
 			var groupname = data[i].groupname
 			var groupleader = data[i].leader
+			var duration = ''+data[i].duration+' hours'
+			var groupsite = data[i].groupsite
+
+			var current_group = ''+groupname+': '+groupleader+': '+groupsite+': '+duration+''
 
 			var comment = data[i].comment
 
+			var current_group
+
 			//create the text
-			text += '\n'+groupname+': '+group_date+' '+groupleader+''
+			if (current_group != last_group) {
+				text += '\n\n****************************'
+				text += '\n'+current_group+''
+			};
+			text += '\n\n'+group_date+':'
 			text += '\n'+comment+''
 
-			text += '\n'
+			last_group = current_group;
 		};
 
 		//Enter text into text area
