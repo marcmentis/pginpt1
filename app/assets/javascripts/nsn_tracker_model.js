@@ -21,12 +21,21 @@ function NsnT_pat_notes_groups(patient_id, date_after, date_before) {
 		//Clear text area
 		$('#txa_NsnT_Aggregate').val('');
 		//Get text for aggregate textarea
-		text = create_aggregate_text(data);	
-		// Get text for individual groups
-		text_grps = get_group_totals(data)
+		text = create_aggregate_text(data);
+
+		//Get array of group names
+		grp_name_array = get_array_of_groupnames(data)
+
+		//Get array of number of instances of each group
+		grp_instances_array = get_array_of_instances_of_groups (data)
+
+		//Get aggregate totals for each group
+
+		alert(grp_name_array)
+		alert(grp_instances_array)
 
 		full_text = ''+text+''	
-		full_text += '\n'+text_grps+''
+		// full_text += '\n'+text_grps+''
 		//Enter text into textarea
 		$('#txa_NsnT_Aggregate').val(full_text)
 
@@ -122,7 +131,7 @@ function get_group_totals(data) {
 	var current_group = '';
 	var last_group = '';
 	var grp_text = '';
-	var no_this_grp = 0;
+	var no_this_grp = 1;
 
 	for (var i = 0; i < data.length; i++) {
 		var duration = parseFloat(data[i].duration)
@@ -147,17 +156,17 @@ function get_group_totals(data) {
 		if (i == 0) {
 			last_group = current_group
 			//Get grand totals
-			gtot_hrs += duration;
-			gtot_Q1 += (participate);
-			gtot_Q2 += (respond);
-			gtot_Q3 += (interact_leader);
-			gtot_Q4 += (interact_peers);
-			gtot_Q5 += (discussion_init);
-			gtot_Q6 += (discussion_understand);
+			gtot_hrs = parseFloat(duration);
+			gtot_Q1 = participate;
+			gtot_Q2 = respond;
+			gtot_Q3 = interact_leader;
+			gtot_Q4 = interact_peers;
+			gtot_Q5 = discussion_init;
+			gtot_Q6 = discussion_understand;
 		};
 
 		if (current_group == last_group) {
-			gtot_hrs
+			gtot_hrs = parseFloat(gtot_hrs);
 			gtot_Q1 = gtot_Q1/no_this_grp;
 			gtot_Q2 = gtot_Q2/no_this_grp;
 			gtot_Q3 = gtot_Q3/no_this_grp;
@@ -165,12 +174,19 @@ function get_group_totals(data) {
 			gtot_Q5 = gtot_Q5/no_this_grp;
 			gtot_Q6 = gtot_Q6/no_this_grp;
 		} else {
-			grp_text += '\n '+no_this_grp+'  '+gtot_hrs+'  '+gtot_Q1.toFixed(1)+'  '+gtot_Q2.toFixed(1)+'  '+gtot_Q3 .toFixed(1)+'  '+gtot_Q4.toFixed(1)+'  '+gtot_Q5.toFixed(1)+'  '+gtot_Q6.toFixed(1)+'  '+Qave.toFixed(1)+' '+current_group+''
+			grp_text += '\n '+no_this_grp+'  '+gtot_hrs.toFixed(1)+'  '+gtot_Q1.toFixed(1)+'  '+gtot_Q2.toFixed(1)+'  '+gtot_Q3 .toFixed(1)+'  '+gtot_Q4.toFixed(1)+'  '+gtot_Q5.toFixed(1)+'  '+gtot_Q6.toFixed(1)+'  '+Qave.toFixed(1)+' '+current_group+''
 			no_this_grp = 0;
+			gtot_hrs = 0;
+			gtot_Q1 = 0;
+			gtot_Q2 = 0;
+			gtot_Q3 = 0;
+			gtot_Q4 = 0;
+			gtot_Q5 = 0;
+			gtot_Q6 = 0;
 		};
 
 		//Get grand totals
-		gtot_hrs += duration;
+		gtot_hrs += parseFloat(duration);
 		gtot_Q1 += (participate);
 		gtot_Q2 += (respond);
 		gtot_Q3 += (interact_leader);
@@ -180,12 +196,66 @@ function get_group_totals(data) {
 
 		last_group = current_group
 		no_this_grp += +1;
-		alert(''+current_group+' '+last_group+'')
-		alert(grp_text)
 	};
 
 	return grp_text;
 };
+
+function get_array_of_groupnames(data) {
+	var groupname = '';
+	var groupleader = '';
+	var duration = '';
+	var groupsite = '';
+	var current_group = '';
+
+	var grp_name_array = [];
+	var last_group = '';
+
+	//Get array of groupnames
+	for (var i = 0; i < data.length; i++) {
+		 groupname = data[i].groupname
+		 groupleader = data[i].leader
+		 duration = ''+data[i].duration+''
+		 groupsite = data[i].groupsite
+		 current_group = ''+groupname+': '+groupleader+': '+groupsite+': '+duration+''
+
+
+		 if (current_group != last_group) {
+		 	grp_name_array.push(current_group)
+		 };
+
+		 last_group = current_group
+		 
+	};
+
+	return grp_name_array
+};
+
+function get_array_of_instances_of_groups (data) {
+	var groupname = ''
+	var groupleader = ''
+	var duration = ''
+	var groupsite = ''
+
+	var grp_number_array = []
+	//Get number of instances of each group
+	var arrayLength = grp_name_array.length;
+	for (var x = 0; x < arrayLength; x++) {
+		number_in_group = 0;
+		for (var i = 0; i < data.length; i++) {
+			groupname = data[i].groupname
+			groupleader = data[i].leader
+			duration = ''+data[i].duration+''
+			groupsite = data[i].groupsite
+			current_group = ''+groupname+': '+groupleader+': '+groupsite+': '+duration+''
+			if (current_group == grp_name_array[x]) {
+				number_in_group += 1
+			};
+		};
+		grp_number_array.push(number_in_group);
+	};
+	return grp_number_array
+}
 
 function convert_Q1_Q5_to_float(q) {
 	switch(q) {
