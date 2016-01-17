@@ -37,7 +37,11 @@ if ($('body.nsn_tracker').length) {
 		//texts
 
 		//textareas
-		$('[id^=txa]')
+		$('#txa_NsnT_Comments')
+			.addClass('text-content left')
+			.width('92%')
+			.height(heightS1);
+		$('#txa_NsnT_Aggregate')
 			.addClass('text-content left')
 			.width('92%')
 			.height(heightS1);

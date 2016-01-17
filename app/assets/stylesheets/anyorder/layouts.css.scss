@@ -17,6 +17,7 @@
 /* FONT FAMILIES*/
 //From Rails scaffold
 $s_font_family: verdana, arial, helvetica, sans-serif;
+$s_font_family_monospace: "Courier New", Courier, monospace;
 //From jQuery Redmond theme
 $r_font_family: 'Lucida Grande', 'Lucida Sans', Arial,sans-serif;
 // $r_font_family: verdana, arial, helvetica, sans-serif;
@@ -296,6 +297,20 @@ $background_light_gray: #F5F5F5;
 	}
 	& .text-content {
 		font-family: $s_font_family;
+		text-align: center;
+		border: 1px solid $r_content_border;
+		background: $r_content_background;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		// color: $r_content_text;
+		-webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+		-moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+		box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+		padding:3px;
+	}
+	& .text-content-monospace {
+		font-family: $s_font_family_monospace;
 		text-align: center;
 		border: 1px solid $r_content_border;
 		background: $r_content_background;
