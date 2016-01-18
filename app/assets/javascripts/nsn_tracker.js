@@ -30,7 +30,7 @@ if ($('body.nsn_tracker').length) {
 
 		//forms
 		$('#fNsnTsearch').addClass('form_container')
-						.css({'width': '60%'})
+						.css({'width': '70%'})
 		$('#fNsnTpat_info').addClass('form_container')
 						.css({'width': '100%'})
 
