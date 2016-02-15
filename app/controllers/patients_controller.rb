@@ -1,9 +1,9 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
-  after_action :create_phi, only: [:create]
-  after_action :show_phi, only: [:complex_search, :show, :patients_site_search]
-  after_action :update_phi, only: [:update]
-  after_action :destroy_phi, only: [:destroy]
+  # after_action :create_phi, only: [:create]
+  # after_action :show_phi, only: [:complex_search, :show, :patients_site_search]
+  # after_action :update_phi, only: [:update]
+  # after_action :destroy_phi, only: [:destroy]
   
 
 
