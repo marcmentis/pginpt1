@@ -30,6 +30,7 @@ class NsNotesController < ApplicationController
   def create
     @ns_note = NsNote.new(ns_note_params)
 
+    authorize @ns_note
     respond_to do |format|
       if @ns_note.save
         format.html { redirect_to @ns_note, notice: 'Ns note was successfully created.' }
@@ -59,6 +60,7 @@ class NsNotesController < ApplicationController
   # DELETE /ns_notes/1
   # DELETE /ns_notes/1.json
   def destroy
+    authorize @ns_note
     @ns_note.destroy
     respond_to do |format|
       format.html { redirect_to ns_notes_url, notice: 'Ns note was successfully destroyed.' }

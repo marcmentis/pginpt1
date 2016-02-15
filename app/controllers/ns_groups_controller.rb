@@ -23,11 +23,19 @@ class NsGroupsController < ApplicationController
   # GET /ns_groups/1
   # GET /ns_groups/1.json
   def show
+
+    respond_to do |format|
+      format.json {render json: @ns_group}
+    end
   end
 
   # GET /ns_groups/new
   def new
     @ns_group = NsGroup.new
+
+    # respond_to do |format|
+    #   format.json {render json: @ns_group}
+    # end
   end
 
   # GET /ns_groups/1/edit
@@ -41,10 +49,10 @@ class NsGroupsController < ApplicationController
 
     respond_to do |format|
       if @ns_group.save
-        format.html { redirect_to @ns_group, notice: 'Ns group was successfully created.' }
-        format.json { render :show, status: :created, location: @ns_group }
+        # format.html { redirect_to @ns_group, notice: 'Ns group was successfully created.' }
+        format.json { render json: @ns_group}
       else
-        format.html { render :new }
+        # format.html { render :new }
         format.json { render json: @ns_group.errors, status: :unprocessable_entity }
       end
     end
@@ -55,10 +63,9 @@ class NsGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @ns_group.update(ns_group_params)
-        format.html { redirect_to @ns_group, notice: 'Ns group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ns_group }
+        format.json { render json: @ns_group}
       else
-        format.html { render :edit }
+        # format.html { render :edit }
         format.json { render json: @ns_group.errors, status: :unprocessable_entity }
       end
     end
@@ -69,7 +76,7 @@ class NsGroupsController < ApplicationController
   def destroy
     @ns_group.destroy
     respond_to do |format|
-      format.html { redirect_to ns_groups_url, notice: 'Ns group was successfully destroyed.' }
+      # format.html { redirect_to ns_groups_url, notice: 'Ns group was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -105,7 +105,6 @@ CREATE  INDEX "nsnote-patientid" ON "NS_NOTES" ("PATIENT_ID")
 
 /
 
-
 INSERT INTO schema_migrations (version) VALUES ('20151217170525')
 
 /

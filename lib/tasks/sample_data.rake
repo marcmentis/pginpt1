@@ -2,7 +2,7 @@
 namespace :db do
 	desc "Fill database with sample data "
 	task populate: :environment do
-		100.times do |n|
+		25.times do |n|
 			firstname = Faker::Name.first_name
 			lastname = Faker::Name.last_name
 			identifier = Faker::Number.number(7)
@@ -23,7 +23,7 @@ namespace :db do
 						updated_by: updated_by)
 
 		end
-		100.times do |n|
+		25.times do |n|
 			firstname = Faker::Name.first_name
 			lastname = Faker::Name.last_name
 			identifier = Faker::Number.number(7)
@@ -44,7 +44,7 @@ namespace :db do
 						updated_by: updated_by)
 			
 		end
-		100.times do |n|
+		25.times do |n|
 			firstname = Faker::Name.first_name
 			lastname = Faker::Name.last_name
 			identifier = Faker::Number.number(7)

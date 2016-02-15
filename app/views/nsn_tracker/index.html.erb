@@ -1,0 +1,59 @@
+<div id="divNsnTPageWrapper">
+<div id="divNsnTPageInnerWrapper" align="center">
+
+	<div id="div_NsnTTitle">
+		Aggregate Values For Patient Non-Scheduled Notes
+	</div>
+
+	<div id="div_NsnT_uppercontainer">
+		<form id="fNsnTsearch">
+			<div id="div_NsnT_searchGrid" class="grid">
+				<h3>Select Patient and Date Range for Notes</h3>
+				<div class="spacer_vertical_small"></div>
+				<div class="col-1-2" >
+					<select id="slt_NsnT_ward"></select>
+					<select id="slt_NsnT_patient"></select>
+				</div>
+				<div class="col-1-2 align_right" >
+					<label for="dt_NsnT_after">Date: after</label>
+					<input type="text" id="dt_NsnT_after" />
+					<label for="dt_NsnT_before">before</label>
+					<input type="text" id="dt_NsnT_before" />
+				</div>
+				
+			</div>			
+		</form> 
+	</div>
+
+	<div id="div_NsnT_lowercontainer" class="spacer_vertical_medium">
+		<form id="fNsnTpat_info">
+			<div id="div_NsnT_resultsGrid" class="grid">
+				<div class="col-1-2">
+					<div>
+						<h3>
+							Aggregate Values Across Non-Scheduled Group Notes
+							<input type="button" id="bt_NsnT_togAggregate" value="tog" />
+						</h3>
+						<div class="spacer_vertical_small">
+							<textarea id="txa_NsnT_Aggregate"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="col-1-2">
+					<div>
+						<h3>
+							Comments From Each Non-Scheduled Group Note
+							<input type="button" id="bt_NsnT_togComments" value="tog" />
+						</h3>
+						<div class="spacer_vertical_small">
+							<textarea id="txa_NsnT_Comments"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+</div>  <!-- id="divNsnTPageInnerWrapper" -->
+</div>  <!-- id="divNsnTPageWrapper" -->
